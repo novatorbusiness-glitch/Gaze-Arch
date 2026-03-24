@@ -62,6 +62,27 @@
     update();
   }
 
+  function initBookingMini() {
+    var form = document.querySelector(".js-booking-mini");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = (form.querySelector('[name="name"]') || {}).value || "";
+      var contact = (form.querySelector('[name="contact"]') || {}).value || "";
+      var note = (form.querySelector('[name="note"]') || {}).value || "";
+      var text =
+        "Запись с сайта GAZE. ARCHITECTURE\n" +
+        "Имя: " +
+        name.trim() +
+        "\nКонтакт: " +
+        contact.trim() +
+        "\nУдобное время: " +
+        note.trim();
+      var url = "https://t.me/a_annett_a?text=" + encodeURIComponent(text);
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+  }
+
   function initMagnetic() {
     var wraps = document.querySelectorAll(".magnetic");
     wraps.forEach(function (wrap) {
@@ -147,6 +168,7 @@
       lastFocus = document.activeElement;
       backdrop.hidden = false;
       modal.hidden = false;
+      backdrop.setAttribute("aria-hidden", "false");
       backdrop.classList.add("is-open");
       modal.classList.add("is-open");
       document.body.style.overflow = "hidden";
@@ -191,6 +213,7 @@
 
       window.setTimeout(function () {
         backdrop.hidden = true;
+        backdrop.setAttribute("aria-hidden", "true");
         modal.hidden = true;
       }, 320);
 
@@ -368,6 +391,7 @@
     initReveals();
     initParallax();
     initMagnetic();
+    initBookingMini();
     initTransformModal();
   });
 })();
