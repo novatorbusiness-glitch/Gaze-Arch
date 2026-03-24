@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>GAZE Architecture — архитектура взгляда, брови и ресницы, премиум сервис</title>
+    <meta name="description" content="GAZE Architecture — премиальный сервис архитектуры взгляда в Москве: идеальные брови и ресницы, индивидуальная геометрия, деликатный сервис и ощущение частного салона.">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GAZE Architecture — премиальная архитектура взгляда">
+    <meta property="og:description" content="Брови и ресницы в премиальном формате: архитектура взгляда, идеальные линии, мягкий свет и приватная атмосфера. Запишитесь онлайн и зафиксируйте скидку -20% на первый визит.">
+    <meta property="og:image" content="/og-gaze-architecture.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Favicon φ -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ctext x='50' y='62' font-size='60' text-anchor='middle' fill='%23c5a059'%3E%CF%86%3C/text%3E%3C/svg%3E">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #c5a059; --black: #050505; --dark-gray: #111; }
+        
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: var(--black); color: white;
+            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
+        }
+
+        /* 1. Живой фон с эффектом следящего света */
+        .wrapper {
+            position: relative;
+            width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #2a2010 0%, var(--black) 60%);
+        }
+
+        /* 2. Центральная золотая ось */
+        .axis {
+            position: absolute; left: 50%; top: 0; width: 1px;
+            background: var(--gold); z-index: 1; height: 0;
+            animation: drawLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            box-shadow: 0 0 15px var(--gold);
+        }
+        @keyframes drawLine { to { height: 100%; opacity: 0.2; } }
+
+        /* 3. Боковые надписи (скрываются на мобильных) */
+        .side {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            text-align: center; width: 250px; z-index: 2;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0; cursor: pointer;
+        }
+        #brows-side { left: 5%; animation: fadeIn 2s ease 1s forwards; }
+        #lashes-side { right: 5%; animation: fadeIn 2s ease 1s forwards; }
+        @keyframes fadeIn { to { opacity: 0.3; } }
+
+        .side:hover { opacity: 1; transform: translateY(-50%) scale(1.05); filter: drop-shadow(0 0 10px var(--gold)); }
+        .side h2 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(30px, 5vw, 56px); letter-spacing: 12px; color: var(--gold); margin: 0; text-transform: uppercase; }
+        .side p { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px; opacity: 0.8; }
+
+        /* 4. Центральный блок: Лого и Карта */
+        .center-box { position: relative; z-index: 10; width: 100%; max-width: 400px; text-align: center; }
+
+        .logo-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(50px, 10vw, 80px);
+            letter-spacing: 20px; margin: 0; line-height: 1;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+        }
+
+        .logo-sub { font-size: 10px; letter-spacing: 8px; color: var(--gold); margin: 10px 0 30px; text-transform: uppercase; }
+
+        /* Обновленная карта формы */
+        .form-card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid rgba(197, 160, 89, 0.6);
+            padding: 40px; border-radius: 2px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 80px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.4);
+            transition: 0.5s;
+        }
+
+        /* Оживляем карту при наведении */
+        .form-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 40px 120px rgba(0,0,0,1), 0 0 55px rgba(197, 160, 89, 0.5);
+        }
+
+        .discount-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(197, 160, 89, 0.9);
+            background: radial-gradient(circle at 0 0, rgba(197,160,89,0.35), transparent 60%);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .discount-pill span {
+            font-weight: 700;
+            color: white;
+            margin-left: 6px;
+        }
+
+        .offer-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 40px;
+            letter-spacing: 6px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 25px rgba(197,160,89,0.7);
+        }
+
+        .offer-subtitle { font-size: 11px; letter-spacing: 2px; margin-bottom: 30px; opacity: 0.6; text-transform: uppercase; }
+
+        input {
+            width: 100%; padding: 15px; margin-bottom: 15px;
+            background: transparent; border: none; border-bottom: 1px solid #333;
+            color: white; text-align: center; font-size: 14px; box-sizing: border-box;
+            transition: 0.3s;
+        }
+        input:focus { border-bottom-color: var(--gold); outline: none; background: rgba(197, 160, 89, 0.05); }
+
+        .btn {
+            width: 100%; padding: 20px; background: var(--gold); color: black;
+            border: none; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; cursor: pointer; transition: 0.4s;
+            position: relative; overflow: hidden; margin-top: 15px;
+        }
+        .btn:hover { background: white; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+
+        /* Второй блок: математика и эстетика */
+        .second-section {
+            background: #050505;
+            border-top: 1px solid rgba(197, 160, 89, 0.25);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 60px 20px 80px;
+        }
+
+        .second-inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .second-title {
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: clamp(18px, 2.4vw, 24px);
+            color: var(--gold);
+            margin: 0 0 20px;
+        }
+
+        .second-text {
+            max-width: 640px;
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin: 0 0 40px;
+        }
+
+        .benefits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .benefit-card {
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            background: radial-gradient(circle at 0 0, rgba(197,160,89,0.12), transparent 60%);
+            padding: 20px 22px 22px;
+            border-radius: 4px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197, 160, 89, 0.6);
+            box-shadow: 0 26px 70px rgba(0, 0, 0, 0.9);
+        }
+
+        .benefit-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0 0 10px;
+        }
+
+        .benefit-text {
+            font-size: 13px;
+            line-height: 1.6;
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        @media (min-width: 900px) {
+            .benefits-grid {
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .benefit-card {
+                flex: 1;
+            }
+        }
+
+        /* Третий блок: призыв к записи */
+        .cta-section {
+            background: #050505;
+            padding: 90px 20px 110px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .cta-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: clamp(18px, 2.6vw, 26px);
+            color: var(--gold);
+            margin: 0 0 18px;
+        }
+
+        .cta-text {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.85;
+            max-width: 540px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 260px;
+            padding: 20px 40px;
+            border-radius: 999px;
+            border: none;
+            background: var(--gold);
+            color: #050505;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 0 rgba(197, 160, 89, 0.0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            animation: ctaGlow 2.6s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #f3e4bd;
+        }
+
+        @keyframes ctaGlow {
+            0%, 100% {
+                box-shadow: 0 0 0 rgba(197, 160, 89, 0.0);
+            }
+            40% {
+                box-shadow: 0 0 35px rgba(197, 160, 89, 0.55);
+            }
+            70% {
+                box-shadow: 0 0 18px rgba(197, 160, 89, 0.35);
+            }
+        }
+
+        /* Reveal-анимация блока при появлении */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Прячем бока на смартфонах */
+        @media (max-width: 1000px) { .side { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="axis"></div>
+
+        <div class="side" id="brows-side">
+            <h2>Brows</h2>
+            <p>Геометрия & Цвет</p>
+        </div>
+
+        <div class="center-box">
+        <h1 class="logo-main">GAZE</h1>
+        <h2 class="logo-sub">ARCHITECTURE</h2>
+
+            <div class="form-card">
+                <div class="discount-pill">
+                    Ваша привилегия — <span>-20%</span>
+                </div>
+                <div class="offer-title">СКИДКА -20%</div>
+                <div class="offer-subtitle">На первый визит | действует 24 часа после заявки</div>
+                
+                <form id="bookingForm" onsubmit="alert('Вы забронировали место! Мы позвоним вам в течение 15 минут.'); return false;">
+                    <input type="text" placeholder="ВАШЕ ИМЯ" required>
+                    <input type="tel" placeholder="ВАШ ТЕЛЕФОН" required id="phoneInput">
+                    <button type="submit" class="btn">ЗАБРОНИРОВАТЬ</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="side" id="lashes-side">
+            <h2>Lashes</h2>
+            <p>Объем & Изгиб</p>
+        </div>
+    </div>
+
+    <section class="second-section">
+        <div class="second-inner">
+            <h2 class="second-title">МАТЕМАТИКА И ЭСТЕТИКА ВАШЕГО ВЗГЛЯДА</h2>
+            <p class="second-text">
+                Мы не работаем по шаблонам. Каждое лицо — это уникальная геометрия. Наша задача — найти идеальные линии,
+                которые сделают ваш взгляд более открытым, уверенным и гармоничным.
+            </p>
+
+            <div class="benefits-grid">
+                <article class="benefit-card">
+                    <h3 class="benefit-title">Индивидуальное проектирование</h3>
+                    <p class="benefit-text">
+                        Учитываем анатомию век, посадку глаз и черты лица для создания формы, которая принадлежит только вам.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <h3 class="benefit-title">Премиальные материалы</h3>
+                    <p class="benefit-text">
+                        Используем только проверенные бренды с предсказуемым поведением, безопасными составами и стабильным результатом.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <h3 class="benefit-title">Естественный эффект</h3>
+                    <p class="benefit-text">
+                        Взгляд, который выглядит дорого, аккуратно и уместно — в офисе, на встрече и в мягком вечернем свете.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-inner reveal-on-scroll" id="cta-block">
+            <h2 class="cta-title">ГОТОВЫ УВИДЕТЬ СВОЮ ИДЕАЛЬНУЮ АРХИТЕКТУРУ?</h2>
+            <p class="cta-text">
+                Запишитесь на консультацию, чтобы подобрать форму, которая подчеркнет вашу индивидуальность.
+            </p>
+            <button class="cta-button" type="button">
+                ЗАБРОНИРОВАТЬ ВРЕМЯ
+            </button>
+        </div>
+    </section>
+
+    <script>
+        // Эффект следящего света за мышкой (как на скриншоте)
+        const wrapper = document.querySelector('.wrapper');
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            wrapper.style.setProperty('--x', x + '%');
+            wrapper.style.setProperty('--y', y + '%');
+        });
+
+        // Плавная маска телефона: +7 (XXX) XXX-XX-XX
+        const phoneInput = document.getElementById('phoneInput');
+
+        const formatPhone = (value) => {
+            // оставляем только цифры
+            const digits = value.replace(/\D/g, '').replace(/^8/, '7');
+
+            // убираем ведущие нули и всё, что не относится к номеру
+            let numbers = digits;
+            if (numbers.startsWith('7')) numbers = numbers.slice(1);
+
+            let result = '+7';
+            if (numbers.length > 0) {
+                result += ' (' + numbers.substring(0, 3);
+            }
+            if (numbers.length >= 4) {
+                result += ') ' + numbers.substring(3, 6);
+            }
+            if (numbers.length >= 7) {
+                result += '-' + numbers.substring(6, 8);
+            }
+            if (numbers.length >= 9) {
+                result += '-' + numbers.substring(8, 10);
+            }
+            return result;
+        };
+
+        phoneInput.addEventListener('focus', () => {
+            if (!phoneInput.value) phoneInput.value = '+7 ';
+        });
+
+        phoneInput.addEventListener('input', (e) => {
+            const before = e.target.value;
+            const formatted = formatPhone(before);
+            e.target.value = formatted;
+            const newPos = formatted.length;
+            e.target.setSelectionRange(newPos, newPos);
+        });
+
+        // Reveal-анимация для блока с призывом
+        const ctaBlock = document.getElementById('cta-block');
+        if ('IntersectionObserver' in window && ctaBlock) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            ctaBlock.classList.add('is-visible');
+                            observer.unobserve(ctaBlock);
+                        }
+                    });
+                },
+                { threshold: 0.2 }
+            );
+            observer.observe(ctaBlock);
+        } else if (ctaBlock) {
+            // Fallback: показать сразу, если IntersectionObserver недоступен
+            ctaBlock.classList.add('is-visible');
+        }
+    </script>
+</body>
+</html>
