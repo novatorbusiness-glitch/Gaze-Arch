@@ -62,27 +62,6 @@
     update();
   }
 
-  function initBookingMini() {
-    var form = document.querySelector(".js-booking-mini");
-    if (!form) return;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = (form.querySelector('[name="name"]') || {}).value || "";
-      var contact = (form.querySelector('[name="contact"]') || {}).value || "";
-      var note = (form.querySelector('[name="note"]') || {}).value || "";
-      var text =
-        "Запись с сайта GAZE. ARCHITECTURE\n" +
-        "Имя: " +
-        name.trim() +
-        "\nКонтакт: " +
-        contact.trim() +
-        "\nУдобное время: " +
-        note.trim();
-      var url = "https://t.me/a_annett_a?text=" + encodeURIComponent(text);
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-  }
-
   function initMagnetic() {
     var wraps = document.querySelectorAll(".magnetic");
     wraps.forEach(function (wrap) {
@@ -124,7 +103,7 @@
       rect.setAttribute("width", String(Math.max(0.2, w - 0.2 * i)));
       rect.setAttribute("height", String(Math.max(0.2, h - 0.2 * i)));
       rect.setAttribute("fill", "none");
-      rect.setAttribute("stroke", "#4A4441");
+      rect.setAttribute("stroke", "#2C2724");
       rect.setAttribute("stroke-width", "0.07");
       rect.setAttribute("opacity", String(0.45 - i * 0.05));
       group.appendChild(rect);
@@ -242,11 +221,11 @@
 
       function addNode(cx, cy) {
         var c = document.createElementNS(NS, "circle");
-        c.setAttribute("r", "0.55");
-        c.setAttribute("fill", "#4A4441");
-        c.setAttribute("opacity", "0.55");
-        c.setAttribute("stroke", "#EAD7D1");
-        c.setAttribute("stroke-width", "0.12");
+        c.setAttribute("r", "0.65");
+        c.setAttribute("fill", "#2C2724");
+        c.setAttribute("opacity", "0.65");
+        c.setAttribute("stroke", "#D4B8AD");
+        c.setAttribute("stroke-width", "0.18");
         nodesLayer.appendChild(c);
         nodeEls.push(c);
         return c;
@@ -254,9 +233,9 @@
 
       function addLine() {
         var line = document.createElementNS(NS, "line");
-        line.setAttribute("stroke", "#4A4441");
-        line.setAttribute("stroke-width", "0.1");
-        line.setAttribute("opacity", "0.4");
+        line.setAttribute("stroke", "#2C2724");
+        line.setAttribute("stroke-width", "0.22");
+        line.setAttribute("opacity", "0.55");
         linesLayer.appendChild(line);
         lineEls.push(line);
         return line;
@@ -285,6 +264,9 @@
 
       function clientToSvg(clientX, clientY) {
         var rect = svg.getBoundingClientRect();
+        if (rect.width < 2 || rect.height < 2 || !isFinite(clientX) || !isFinite(clientY)) {
+          return { x: 50, y: 50 };
+        }
         var px = (clientX - rect.left) / rect.width;
         var py = (clientY - rect.top) / rect.height;
         return {
@@ -302,6 +284,7 @@
       }
 
       stageEl.addEventListener("mousemove", onPointer, { passive: true });
+      stageEl.addEventListener("touchstart", onPointer, { passive: true });
       stageEl.addEventListener("touchmove", onPointer, { passive: true });
       stageEl.addEventListener("mouseleave", function () {
         targetMx = 50;
@@ -310,13 +293,19 @@
 
       function tick() {
         if (!running) return;
-        smoothMx += (targetMx - smoothMx) * 0.08;
-        smoothMy += (targetMy - smoothMy) * 0.08;
+        var now = performance.now() * 0.001;
+        var idleX = 50 + Math.sin(now * 1.05) * 4.2;
+        var idleY = 50 + Math.cos(now * 0.78) * 3.2;
+        var useIdle = reduceMotion ? 0 : 0.38;
+        var aimX = targetMx * (1 - useIdle) + idleX * useIdle;
+        var aimY = targetMy * (1 - useIdle) + idleY * useIdle;
+        smoothMx += (aimX - smoothMx) * 0.11;
+        smoothMy += (aimY - smoothMy) * 0.11;
 
         var axisPull = Math.exp(-Math.pow((smoothMx - 50) / 22, 2));
         var magnet = 0.18 + axisPull * 0.42;
-        var driftX = (smoothMx - 50) * 0.08;
-        var driftY = (smoothMy - 50) * 0.06;
+        var driftX = (smoothMx - 50) * 0.1;
+        var driftY = (smoothMy - 50) * 0.075;
 
         var leftPts = [];
         NODE_BASE.forEach(function (base, i) {
@@ -367,8 +356,8 @@
           k++;
         }
 
-        var pulse = 0.38 + axisPull * 0.2;
-        linesLayer.setAttribute("opacity", String(pulse));
+        var pulse = 0.48 + axisPull * 0.22;
+        linesLayer.setAttribute("opacity", String(Math.min(0.95, pulse)));
 
         rafId = requestAnimationFrame(tick);
       }
@@ -391,7 +380,6 @@
     initReveals();
     initParallax();
     initMagnetic();
-    initBookingMini();
     initTransformModal();
   });
 })();
