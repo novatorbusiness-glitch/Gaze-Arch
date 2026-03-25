@@ -1,7 +1,14 @@
 ---
+description: 
 globs: *.html, *.css, *.js
 alwaysApply: false
 ---
 
-МИКРО-ИНТЕРАКЦИИ И 60-FPS АНИМАЦИИ: 
-Настрой плавные каскадные анимации fade-in-up при скролле. Заложи интерактивный блок "Преображение": по клику на стильную кнопку запускается плавный процесс трансформации бровей/ресниц (кастомный слайдер до/после или анимированный переход). Добавь детали премиум-класса: магнитные кнопки (magnetic hover), легкий параллакс. Все анимации — строго 60 FPS (только transform и opacity).
+# MICRO-INTERACTIONS & 60-FPS ANIMATION (PREMIUM ONLY)
+- Standard: CSS-only for simple transitions, JS (Intersection Observer) for scroll. 
+- Performance: Use ONLY `transform` and `opacity`. Strict 60-FPS. No `layout shifts` or `paint triggers`.
+- Interactions:
+  - Scroll: Smooth cascade `fade-in-up` for sections/cards.
+  - "Transformation" Block: Custom smooth slider (Before/After) or cross-fade transition on button click.
+  - Premium Details: Magnetic hover effects for main buttons, subtle parallax for images (bio/process).
+- Aesthetics: High-end easing (cubic-bezier 0.4, 0, 0.2, 1). No bouncy or aggressive motions.

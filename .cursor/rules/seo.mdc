@@ -1,7 +1,12 @@
 ---
+description: 
 globs: *.html
 alwaysApply: false
 ---
 
-ТОПОВОЕ SEO И A11Y: 
-Строгая иерархия заголовков (один H1, логичные H2-H3). Базовые мета-теги (title, description). Настрой loading="lazy" для изображений. Прописывай alt-тексты для фото и aria-label для иконок/кнопок.
+# SEO & ACCESSIBILITY (A11Y) STANDARDS
+- Semantic HTML: Strict header hierarchy (Single H1, Logical H2-H3). 
+- Metadata: Auto-generate optimized <title> and <meta description> for every page.
+- Images: Force `loading="lazy"` and `decoding="async"`. 
+- Descriptions: Always include descriptive `alt` tags for photos and `aria-label` for icons/buttons.
+- Performance: Use `WebP` or compressed `PNG`. Ensure high Contrast Ratio for pastel text vs background.
