@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAZE. ARCHITECTURE — Метод Анны Казак | Дорогой взгляд в Челябинске</title>
+    <meta name="description" content="Авторский метод Анны Казак в студии «Грани». Архитектура взгляда: наращивание и ламинирование ресниц, оформление бровей точно под твою анатомию лица. Забудь о косметике на месяц.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Premium Pastel Palette */
+            --color-powder: #FDF8F5;
+            --color-beige: #F5EBE0;
+            --color-ivory: #FFFDFB;
+            --color-accent: #D5BDAF;
+            --color-accent-dark: #B59F91;
+            --color-text-main: #4A3F35;
+            --color-text-muted: #8D7B6D;
+            --color-glass: rgba(255, 253, 251, 0.5);
+            
+            --font-main: 'Montserrat', sans-serif;
+            --transition-smooth: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.3s ease;
+            
+            --container-width: 1240px;
+            --radius-lg: 30px;
+            --radius-md: 15px;
+            --radius-round: 50px;
+        }
+
+        /* 100% Reset */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--color-powder); font-family: var(--font-main); color: var(--color-text-main); line-height: 1.6; overflow-x: hidden; }
+        img { max-width: 100%; height: auto; display: block; filter: sepia(10%) saturate(90%) contrast(95%); /* Global Photo Filter */ }
+        a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+        ul { list-style: none; }
+        button { background: none; border: none; font-family: inherit; cursor: pointer; outline: none; }
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+
+        /* Global Components */
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; border-radius: var(--radius-round); transition: var(--transition-smooth); text-align: center; }
+        .btn--primary { background: var(--color-text-main); color: #fff; padding: 18px 35px; box-shadow: 0 10px 30px rgba(74, 63, 53, 0.1); }
+        .btn--primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(74, 63, 53, 0.2); }
+        .btn--secondary { border: 1px solid var(--color-accent); color: var(--color-text-main); padding: 17px 34px; }
+        .btn--secondary:hover { background: var(--color-ivory); border-color: var(--color-ivory); }
+        .btn--small { padding: 12px 25px; font-size: 0.8rem; }
+
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); text-align: center; margin-bottom: 15px; }
+        .section-subtitle { font-size: 1.1rem; color: var(--color-text-muted); text-align: center; max-width: 600px; margin: 0 auto 60px; font-weight: 400; }
+        .eyebrow { display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 3px; color: var(--color-accent); text-transform: uppercase; margin-bottom: 20px; }
+
+        /* 60-FPS Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .cascade > * { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity; }
+        .cascade.active > * { opacity: 1; transform: translateY(0); }
+        .cascade.active > *:nth-child(1) { transition-delay: 0.1s; }
+        .cascade.active > *:nth-child(2) { transition-delay: 0.2s; }
+        .cascade.active > *:nth-child(3) { transition-delay: 0.3s; }
+        .cascade.active > *:nth-child(4) { transition-delay: 0.4s; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 1: НАВИГАЦИЯ (HEADER)
+        --------------------------------------------------------------*/
+        .header { padding: 20px 0; position: fixed; top: 0; width: 100%; background: rgba(253, 248, 245, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 1000; transition: padding 0.3s ease; }
+        .header.scrolled { padding: 15px 0; box-shadow: 0 5px 20px rgba(141, 123, 109, 0.05); }
+        .header__container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; color: var(--color-text-main); }
+        .logo span { color: var(--color-accent); }
+        .nav__list { display: flex; gap: 35px; align-items: center; }
+        .nav__link { font-size: 0.85rem; font-weight: 500; color: var(--color-text-main); position: relative; padding: 5px 0; }
+        .nav__link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--color-accent); transition: var(--transition-fast); }
+        .nav__link:hover { color: var(--color-accent); }
+        .nav__link:hover::after { width: 100%; }
+        .header__btn { position: relative; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 2: ГЛАВНЫЙ ЭКРАН (HERO)
+        --------------------------------------------------------------*/
+        .hero { padding: 180px 0 100px; min-height: 100vh; display: flex; align-items: center; background: radial-gradient(circle at 70% 30%, var(--color-ivory) 0%, var(--color-powder) 60%); }
+        .hero__container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
+        .hero__content { position: relative; z-index: 2; }
+        .hero__title { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 25px; font-weight: 700; letter-spacing: -1px; }
+        .hero__subtitle { font-size: 1.15rem; color: var(--color-text-muted); max-width: 580px; margin-bottom: 45px; font-weight: 400; }
+        .hero__actions { display: flex; gap: 20px; align-items: center; margin-bottom: 60px; }
+        .hero__image-wrapper { position: relative; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 80px rgba(213, 189, 175, 0.25); transform: rotate(1deg); }
+        .hero__img { width: 100%; object-fit: cover; }
+        
+        .hero__badges { display: flex; gap: 15px; flex-wrap: wrap; }
+        .badge { background: var(--color-glass); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.5); padding: 15px 25px; border-radius: var(--radius-round); display: flex; flex-direction: column; transition: var(--transition-smooth); }
+        .badge:hover { background: var(--color-ivory); transform: translateY(-5px); }
+        .badge__icon { font-weight: 700; color: var(--color-text-main); font-size: 1rem; margin-bottom: 2px; }
+        .badge__text { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 3: ВИДЕО ПРИВЕТСТВИЕ
+        --------------------------------------------------------------*/
+        .video-intro { padding: 120px 0; background: var(--color-ivory); position: relative; }
+        .video-intro__container { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+        .video-intro__wrapper { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(141, 123, 109, 0.15); cursor: pointer; aspect-ratio: 16/10; }
+        .video-intro__cover { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .video-intro__wrapper:hover .video-intro__cover { transform: scale(1.03); }
+        .video-intro__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: var(--transition-smooth); }
+        .video-intro__play::before { content: ''; border-style: solid; border-width: 15px 0 15px 25px; border-color: transparent transparent transparent var(--color-text-main); margin-left: 5px; }
+        .video-intro__wrapper:hover .video-intro__play { background: #fff; transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        .video-intro__title { font-size: 2.5rem; margin-bottom: 15px; }
+        .video-intro__subtitle { font-size: 1.1rem; color: var(--color-accent-dark); margin-bottom: 30px; font-weight: 500; }
+        .video-intro__text { color: var(--color-text-muted); margin-bottom: 40px; max-width: 500px; }
+        .video-intro__bullets { display: grid; gap: 20px; }
+        .bullet { display: flex; gap: 15px; align-items: flex-start; }
+        .bullet__check { color: var(--color-accent); font-weight: 700; margin-top: 2px; }
+        .bullet__content h4 { font-size: 1rem; margin-bottom: 2px; color: var(--color-text-main); }
+        .bullet__content p { font-size: 0.9rem; color: var(--color-text-muted); }
+
+        /*--------------------------------------------------------------
+        # БЛОК 4: БОЛИ И РЕШЕНИЯ (СМЫСЛОВОЙ ПРОГРЕВ)
+        --------------------------------------------------------------*/
+        .pains { padding: 140px 0; background: var(--color-powder); }
+        .pains__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .glass-card { background: var(--color-glass); border: 1px solid rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); padding: 50px 40px; border-radius: var(--radius-lg); transition: var(--transition-smooth); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .glass-card:hover { transform: translateY(-10px); background: var(--color-ivory); border-color: var(--color-ivory); box-shadow: 0 30px 60px rgba(213, 189, 175, 0.2); }
+        .glass-card__icon { font-size: 2rem; color: var(--color-accent); margin-bottom: 30px; font-weight: 300; }
+        .glass-card__title { font-size: 1.4rem; margin-bottom: 20px; line-height: 1.3; }
+        .glass-card__text { font-size: 0.95rem; color: var(--color-text-muted); flex-grow: 1; }
+        
+        /*--------------------------------------------------------------
+        # БЛОК 5: ЭКСПЕРТНОСТЬ И ИСТОРИЯ (ЗНАКОМСТВО С АННОЙ)
+        --------------------------------------------------------------*/
+        .bio { padding: 120px 0; background: var(--color-ivory); overflow: hidden; }
+        .bio__container { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+        .bio__image-wrapper { position: relative; }
+        .bio__img { border-radius: var(--radius-lg); width: 100%; box-shadow: 0 30px 60px rgba(141, 123, 109, 0.15); }
+        .bio__deco { position: absolute; bottom: -30px; right: -30px; width: 150px; height: 150px; background: var(--color-beige); border-radius: 50%; z-index: -1; }
+        
+        .bio__content h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 10px; }
+        .bio__content h3 { font-size: 1.2rem; color: var(--color-accent-dark); font-weight: 500; margin-bottom: 40px; }
+        .bio__text p { margin-bottom: 25px; color: var(--color-text-muted); font-size: 1rem; max-width: 580px; }
+        .bio__text p:last-child { margin-bottom: 0; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 6: СЕТКА УСЛУГ И ПРАЙС
+        --------------------------------------------------------------*/
+        .price { padding: 140px 0; background: var(--color-powder); }
+        .price__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 70px; }
+        .price-card { background: var(--color-ivory); padding: 40px; border-radius: var(--radius-lg); transition: var(--transition-fast); border: 1px solid transparent; }
+        .price-card:hover { border-color: var(--color-beige); box-shadow: 0 20px 40px rgba(213, 189, 175, 0.1); }
+        .price-card__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .price-card__number { font-size: 0.8rem; font-weight: 600; color: var(--color-accent); }
+        .price-card__title { font-size: 1.3rem; margin-bottom: 10px; }
+        .price-card__desc { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 30px; height: 45px; overflow: hidden; }
+        
+        .price-list { border-top: 1px solid var(--color-beige); padding-top: 25px; }
+        .price-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.95rem; }
+        .price-item:last-child { margin-bottom: 0; }
+        .price-item__name { color: var(--color-text-main); font-weight: 500; }
+        .price-item__val { font-weight: 600; color: var(--color-text-main); white-space: nowrap; }
+        .price-card__feat { margin-top: 20px; font-size: 0.85rem; color: var(--color-accent-dark); font-style: italic; }
+
+        .price-cta { background: var(--color-beige); padding: 60px; border-radius: var(--radius-lg); display: flex; justify-content: space-between; align-items: center; }
+        .price-cta__content { max-width: 500px; }
+        .price-cta__title { font-size: 1.5rem; margin-bottom: 10px; }
+        .price-cta__text { color: var(--color-text-muted); font-size: 0.95rem; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 7: SOCIAL PROOF (РЕЙТИНГИ И ЭМОЦИИ)
+        --------------------------------------------------------------*/
+        .proof { padding: 120px 0; background: var(--color-ivory); }
+        .proof__text-block { max-width: 700px; margin: 0 auto 80px; text-align: center; }
+        .proof__text-block p { margin-bottom: 20px; color: var(--color-text-muted); font-size: 1rem; }
+        
+        .ratings { display: flex; justify-content: center; gap: 40px; margin-bottom: 100px; flex-wrap: wrap; }
+        .rating-card { text-align: center; background: var(--color-powder); padding: 30px 50px; border-radius: var(--radius-md); transition: var(--transition-fast); }
+        .rating-card:hover { transform: scale(1.05); background: var(--color-beige); }
+        .rating-card__val { font-size: 2.5rem; font-weight: 700; color: var(--color-text-main); line-height: 1; }
+        .rating-card__max { font-size: 1.2rem; color: var(--color-text-muted); font-weight: 400; }
+        .rating-card__stars { color: #FFD700; font-size: 1.2rem; margin: 10px 0; letter-spacing: 2px; }
+        .rating-card__platform { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-accent-dark); font-weight: 600; }
+
+        /* Review Slider Placeholder */
+        .reviews-slider { padding: 40px 0; position: relative; cursor: grab; overflow: hidden; margin-bottom: 80px; }
+        .reviews-track { display: flex; gap: 30px; will-change: transform; transition: transform 0.5s ease-out; }
+        .review-slide { flex: 0 0 320px; max-width: 320px; background: #fff; padding: 20px; border-radius: var(--radius-md); box-shadow: 0 10px 30px rgba(141, 123, 109, 0.05); user-select: none; }
+        .review-slide img { border-radius: 10px; width: 100%; filter: none; /* Raw screenshots */ }
+        
+        .proof__cta-wrap { text-align: center; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 8: ЛИД-МАГНИТ (ПЕРЕВОД НА ГАЙД)
+        --------------------------------------------------------------*/
+        .lead-magnet { padding: 140px 0; background: var(--color-text-main); color: var(--color-ivory); position: relative; overflow: hidden; }
+        .lead-magnet__container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+        .lead-magnet__title { font-size: 2.8rem; color: #fff; margin-bottom: 15px; text-align: left; }
+        .lead-magnet__subtitle { color: var(--color-accent); margin-bottom: 40px; font-size: 1.1rem; text-align: left; max-width: 100%; }
+        .lead-magnet__text p { color: rgba(255,255,255,0.8); margin-bottom: 25px; font-size: 0.95rem; }
+        .lead-magnet__list h4 { margin-top: 40px; margin-bottom: 20px; color: #fff; }
+        .lead-magnet__list ul { display: grid; gap: 15px; }
+        .lead-magnet__list li { display: flex; gap: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .lead-magnet__list li::before { content: '→'; color: var(--color-accent); font-weight: 700; }
+        
+        .lead-magnet__visual { position: relative; display: flex; justify-content: center; align-items: center; }
+        .lead-magnet__circle { width: 400px; height: 400px; border: 1px solid rgba(213, 189, 175, 0.3); border-radius: 50%; position: absolute; animation: rotate 20s linear infinite; }
+        .lead-magnet__btn { background: var(--color-ivory); color: var(--color-text-main); font-size: 1rem; padding: 25px 50px; }
+        .lead-magnet__btn:hover { background: #fff; transform: translateY(-5px) scale(1.02); }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /*--------------------------------------------------------------
+        # БЛОК 9: ОТВЕТЫ НА ВОПРОСЫ (FAQ)
+        --------------------------------------------------------------*/
+        .faq { padding: 120px 0; background: var(--color-ivory); }
+        .faq__wrapper { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--color-beige); }
+        .faq-item:first-child { border-top: 1px solid var(--color-beige); }
+        .faq-question { width: 100%; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .faq-question h4 { font-size: 1.15rem; font-weight: 600; color: var(--color-text-main); max-width: 90%; }
+        .faq-icon { width: 20px; height: 20px; position: relative; transition: var(--transition-smooth); }
+        .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--color-accent-dark); transition: var(--transition-smooth); }
+        .faq-icon::before { width: 100%; height: 2px; top: 9px; left: 0; }
+        .faq-icon::after { width: 2px; height: 100%; left: 9px; top: 0; }
+        
+        .faq-item.active .faq-icon { transform: rotate(135deg); }
+        .faq-item.active .faq-icon::before, .faq-item.active .faq-icon::after { background: var(--color-text-muted); }
+
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: max-height; }
+        .faq-answer__content { padding-bottom: 35px; color: var(--color-text-muted); font-size: 0.95rem; max-width: 90%; }
+        .faq-answer p { margin-bottom: 15px; }
+        .faq-answer p:last-child { margin-bottom: 0; }
+
+        /*--------------------------------------------------------------
+        # БЛОК 10: КОНТАКТЫ И КАРТА
+        --------------------------------------------------------------*/
+        .contacts { padding: 120px 0; background: var(--color-powder); }
+        .contacts__container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+        .contacts__content { padding-top: 20px; }
+        .contacts__content p { color: var(--color-text-muted); margin-bottom: 40px; font-size: 1rem; }
+        .contacts__info { margin-bottom: 50px; }
+        .contact-item { margin-bottom: 25px; }
+        .contact-item__label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-accent-dark); font-weight: 600; margin-bottom: 5px; }
+        .contact-item__value { font-size: 1.1rem; font-weight: 500; color: var(--color-text-main); }
+        
+        .contacts__social h4 { font-size: 0.9rem; margin-bottom: 20px; color: var(--color-text-main); }
+        .social-btns { display: flex; gap: 15px; }
+        .btn-soc { width: 180px; padding: 15px; border-radius: var(--radius-round); font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; transition: var(--transition-smooth); }
+        .btn-soc--tg { background: rgba(0, 136, 204, 0.1); color: #0088cc; border: 1px solid rgba(0, 136, 204, 0.2); }
+        .btn-soc--tg:hover { background: #0088cc; color: #fff; }
+        .btn-soc--wa { background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid rgba(37, 211, 102, 0.2); }
+        .btn-soc--wa:hover { background: #25D366; color: #fff; }
+
+        .contacts__map-wrapper { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(141, 123, 109, 0.1); aspect-ratio: 1/1; }
+        .map-placeholder { width: 100%; height: 100%; background: var(--color-beige); display: flex; align-items: center; justify-content: center; color: var(--color-accent-dark); flex-direction: column; font-size: 0.9rem; gap: 10px; }
+        .map-placeholder::before { content: '📍'; font-size: 2rem; }
+
+        /*--------------------------------------------------------------
+        # ПОДВАЛ САЙТА (FOOTER)
+        --------------------------------------------------------------*/
+        .footer { padding: 80px 0 30px; background: #2A241F; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .footer__top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        .footer__brand .logo { color: #fff; font-size: 1.3rem; margin-bottom: 15px; display: block; }
+        .footer__brand p { color: rgba(255,255,255,0.5); max-width: 300px; line-height: 1.5; }
+        
+        .footer__nav h4, .footer__contacts h4 { color: #fff; font-size: 0.9rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer__nav ul { display: grid; gap: 10px; }
+        .footer__nav a:hover { color: var(--color-accent); }
+        
+        .footer__contacts p { margin-bottom: 10px; line-height: 1.5; }
+        .footer__contacts a:hover { color: #fff; }
+
+        .footer__bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+        .footer__legal { display: flex; gap: 25px; }
+        .footer__legal a:hover { color: #fff; }
+
+        /*--------------------------------------------------------------
+        # RESPONSIVE MEDIA QUERIES
+        --------------------------------------------------------------*/
+        @media (max-width: 1199px) {
+            :root { --container-width: 960px; }
+            .hero__container { gap: 30px; }
+            .hero__title { font-size: 3rem; }
+            .video-intro__container, .bio__container { gap: 40px; }
+            .bio__deco { display: none; }
+        }
+
+        @media (max-width: 991px) {
+            :root { --container-width: 720px; }
+            .section-title { font-size: 2.2rem; }
+            
+            .header__btn, .nav { display: none; } /* Mobile Menu Placeholder */
+            
+            .hero { padding: 140px 0 80px; text-align: center; }
+            .hero__container { grid-template-columns: 1fr; gap: 50px; }
+            .hero__image-wrapper { order: -1; max-width: 400px; margin: 0 auto; transform: none; }
+            .hero__subtitle { margin: 0 auto 40px; }
+            .hero__actions { justify-content: center; }
+            .hero__badges { justify-content: center; }
+            
+            .video-intro, .bio, .contacts { padding: 80px 0; }
+            .video-intro__container, .bio__container, .contacts__container, .lead-magnet__container { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .video-intro__wrapper, .bio__image-wrapper, .contacts__map-wrapper { max-width: 500px; margin: 0 auto; }
+            .video-intro__wrapper { aspect-ratio: 16/9; }
+            .video-intro__text, .bio__text p { margin: 0 auto 25px; }
+            .bullet { text-align: left; }
+            .bio__image-wrapper { order: -1; }
+            
+            .pains__grid { grid-template-columns: 1fr 1fr; }
+            .pains, .price, .lead-magnet { padding: 100px 0; }
+            
+            .price-cta { flex-direction: column; text-align: center; gap: 30px; padding: 40px; }
+            
+            .ratings { gap: 20px; }
+            .rating-card { padding: 20px 30px; flex: 1 1 calc(33% - 20px); }
+            
+            .lead-magnet__title, .lead-magnet__subtitle { text-align: center; }
+            .lead-magnet__list { text-align: left; max-width: 400px; margin: 0 auto; }
+            
+            .footer__top { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .footer__brand { grid-column: 1 / -1; text-align: center; }
+            .footer__brand p { margin: 0 auto; }
+        }
+
+        @media (max-width: 767px) {
+            :root { font-size: 15px; }
+            .section-title { font-size: 1.8rem; }
+            
+            .hero__title { font-size: 2.4rem; }
+            .hero__actions { flex-direction: column; gap: 15px; }
+            .btn--secondary { margin-left: 0; width: 100%; }
+            .btn { width: 100%; }
+            
+            .pains__grid { grid-template-columns: 1fr; }
+            .glass-card { padding: 30px; }
+            
+            .ratings { flex-direction: column; align-items: center; }
+            .rating-card { width: 100%; max-width: 300px; }
+            
+            .price__grid { grid-template-columns: 1fr; }
+            
+            .faq-question h4 { font-size: 1rem; }
+            
+            .social-btns { flex-direction: column; align-items: center; }
+            .btn-soc { width: 100%; max-width: 280px; }
+            
+            .footer__top { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .footer__bottom { flex-direction: column; text-align: center; }
+            .footer__legal { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="/" class="logo">GAZE<span>.</span> ARCHITECTURE</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="#cases" class="nav__link">Портфолио</a></li>
+                    <li><a href="#expertise" class="nav__link">Обучение</a></li>
+                    <li><a href="#blog" class="nav__link">Блог</a></li>
+                    <li><a href="#faq" class="nav__link">Вопросы</a></li>
+                </ul>
+            </nav>
+            <div class="header__btn">
+                <a href="https://t.me/anya_kazak" target="_blank" class="btn btn--primary btn--small magnetic">Записаться</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__content revealactive">
+                    <span class="eyebrow reveal active">МЕТОД АННЫ КАЗАК // GAZE ARCHITECTURE</span>
+                    <h1 class="hero__title reveal active" style="transition-delay: 0.1s;">Твой дорогой взгляд без&nbsp;грамма косметики. Свободное утро и&nbsp;уверенность 24/7.</h1>
+                    <p class="hero__subtitle reveal active" style="transition-delay: 0.2s;">Подбираю форму бровей и ресниц точно под твое лицо. Эффект до 4 недель — экономия 30 минут на сборах каждый день. Забирай бонус 5% на первое знакомство.</p>
+                    
+                    <div class="hero__actions cascade active" style="transition-delay: 0.3s;">
+                        <a href="#interactive" class="btn btn--primary magnetic">Подобрать геометрию</a>
+                        <a href="#cases" class="btn btn--secondary">Смотреть работы</a>
+                    </div>
+
+                    <div class="hero__badges cascade active" style="transition-delay: 0.5s;">
+                        <div class="badge">
+                            <span class="badge__icon">+30 минут сна</span>
+                            <span class="badge__text">Свобода по утрам</span>
+                        </div>
+                        <div class="badge">
+                            <span class="badge__icon">Твоя анатомия</span>
+                            <span class="badge__text">Строгая геометрия</span>
+                        </div>
+                        <div class="badge">
+                            <span class="badge__icon">Умные составы</span>
+                            <span class="badge__text">Здоровье волосков</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero__image-wrapper reveal active" style="transition-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1596412832364-f65583b6f0f4?q=80&w=800&auto=format&fit=crop" alt="Анна Казак — автор метода GAZE ARCHITECTURE" class="hero__img">
+                </div>
+            </div>
+        </section>
+
+        <section class="video-intro" id="video-intro">
+            <div class="container video-intro__container">
+                <div class="video-intro__wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=800&auto=format&fit=crop" alt="Студия Грани" class="video-intro__cover">
+                    <div class="video-intro__play"></div>
+                </div>
+                <div class="video-intro__content reveal">
+                    <span class="eyebrow">Давай знакомиться лично</span>
+                    <h2 class="video-intro__title">Посмотри мне в глаза до визита</h2>
+                    <p class="video-intro__subtitle">Включай видео. Рассказываю, как мы стираем утреннюю рутину.</p>
+                    <p class="video-intro__text">В коротком ролике без фильтров рассказываю, как работает моя система. Почему я отказалась от слепых шаблонов — и как именно мы вернем тебе лишние полчаса сна.</p>
+                    <div class="video-intro__bullets cascade">
+                        <div class="bullet">
+                            <span class="bullet__check">✓</span>
+                            <div class="bullet__content">
+                                <h4>Моя философия</h4>
+                                <p>Выстраиваю чистую геометрию лица, а не делаю конвейер.</p>
+                            </div>
+                        </div>
+                        <div class="bullet">
+                            <span class="bullet__check">✓</span>
+                            <div class="bullet__content">
+                                <h4>Твое пространство</h4>
+                                <p>Студия «Грани», где ты сможешь выдохнуть и отдохнуть.</p>
+                            </div>
+                        </div>
+                        <div class="bullet">
+                            <span class="bullet__check">✓</span>
+                            <div class="bullet__content">
+                                <h4>Честное обещание</h4>
+                                <p>Что ты увидишь в зеркале через месяц после процедуры.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pains" id="pains">
+            <div class="container">
+                <span class="eyebrow eyebrow--center reveal">Новый уровень комфорта</span>
+                <h2 class="section-title reveal">Почему привычная рутина больше не работает</h2>
+                <p class="section-subtitle reveal">Честный разбор того, что ворует твое время, и как мы это исправляем.</p>
+                
+                <div class="pains__grid cascade">
+                    <div class="glass-card">
+                        <div class="glass-card__icon">01</div>
+                        <h3 class="glass-card__title">Утренний компромисс с зеркалом</h3>
+                        <p class="glass-card__text">Каждое утро ты стоишь с карандашом, выводишь симметрию, наслаиваешь тушь. Я выстраиваю архитектуру взгляда, и следующие 3-4 недели ты просыпаешься с уже оформленным лицом. Это утренняя тишина для себя.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="glass-card__icon">02</div>
+                        <h3 class="glass-card__title">Чужие шаблоны вместо анатомии</h3>
+                        <p class="glass-card__text">Индустрия штампует одинаковые лица, делая объемы «как у всех». В зеркале — тяжелый взгляд. Я работаю как инженер: строгий анализ посадки глаз и точечный подбор каждого волоска. Только дорогой, органичный результат.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="glass-card__icon">03</div>
+                        <h3 class="glass-card__title">Тревога вместо комфорта</h3>
+                        <p class="glass-card__text">Ты платишь за процедуру, а через неделю эстетика сыпется. Мой подход — умные составы и выверенные протоколы. Форма носится чисто месяц, пигмент сходит мягко. Тренируйся, плавай — твоя эстетика под контролем.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bio" id="bio">
+            <div class="container bio__container">
+                <div class="bio__content reveal">
+                    <span class="eyebrow">Твой архитектор взгляда</span>
+                    <h2>Как я создала метод, возвращающий любовь к себе</h2>
+                    <h3>Мой путь от бизнес-стратегий к геометрии идеального утра.</h3>
+                    <div class="bio__text cascade">
+                        <p>Сколько себя помню, я всегда видела линии и пропорции. Я рисовала с удивительной точностью. Но пошла учиться на бизнес-менеджмент. Это казалось правильным scenarios.</p>
+                        <p>И я рискнула. Оставила понятный путь и начала работать с лицом. Одно обучение, второе, десятки мастер-классов. За 5 лет через мои руки прошли сотни девушек.</p>
+                        <p>Когда я начала преподавать, я увидела, как базовая школа загоняет таланты в рамки, давая слепые трафареты. Я поняла, что хочу дать больше — умение думать.</p>
+                        <p>Так появился метод GAZE ARCHITECTURE — система, где эстетика опирается на точный расчет и глубокое уважение к природе.</p>
+                    </div>
+                </div>
+                <div class="bio__image-wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=800&auto=format&fit=crop" alt="Анна Казак за работой" class="bio__img">
+                    <div class="bio__deco"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="price" id="price">
+            <div class="container">
+                <span class="eyebrow eyebrow--center reveal">Инженерия взгляда</span>
+                <h2 class="section-title reveal">Сколько стоит забыть о косметичке?</h2>
+                <p class="section-subtitle reveal">Инвестиция в эстетику, которая окупается в первый же день. Спойлер: это выгоднее, чем скупать тушь.</p>
+                
+                <div class="price__grid cascade">
+                    <div class="price-card">
+                        <div class="price-card__head">
+                            <h3 class="price-card__title">01. Наращивание</h3>
+                            <span class="price-card__number">Ресницы</span>
+                        </div>
+                        <p class="price-card__desc">Классика и Объемы. Подбираем густоту, которая делает взгляд живым.</p>
+                        <div class="price-list">
+                            <div class="price-item"><span class="price-item__name">Классика</span><span class="price-item__val">2100 ₽</span></div>
+                            <div class="price-item"><span class="price-item__name">2D Объём</span><span class="price-item__val">2600 ₽</span></div>
+                            <div class="price-item"><span class="price-item__name">3D Объём</span><span class="price-item__val">3000 ₽</span></div>
+                        </div>
+                        <p class="price-card__feat">+ Трендовые лучи/мокрый эффект (+200 ₽)</p>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__head">
+                            <h3 class="price-card__title">02. Ламинирование</h3>
+                            <span class="price-card__number">Ресницы</span>
+                        </div>
+                        <p class="price-card__desc">Выжимаем максимум из природной базы. Красивый изгиб и пигмент.</p>
+                        <div class="price-list">
+                            <div class="price-item"><span class="price-item__name">Комплекс лами</span><span class="price-item__val">2700 ₽</span></div>
+                            <div class="price-item"><span class="price-item__name">Только окрашивание</span><span class="price-item__val">700 ₽</span></div>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__head">
+                            <h3 class="price-card__title">03. Геометрия</h3>
+                            <span class="price-card__number">Брови</span>
+                        </div>
+                        <p class="price-card__desc">Создаем форму, которая "держит" лицо. Фиксируем на месяц.</p>
+                        <div class="price-list">
+                            <div class="price-item"><span class="price-item__name">Архитектура (форма+цвет)</span><span class="price-item__val">1600 ₽</span></div>
+                            <div class="price-item"><span class="price-item__name">Ламинирование (укладка)</span><span class="price-item__val">2600 ₽</span></div>
+                            <div class="price-item"><span class="price-item__name">Глубокий уход</span><span class="price-item__val">600 ₽</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-cta reveal">
+                    <div class="price-cta__content">
+                        <h4 class="price-cta__title">🎁 СДЕЛАЙ ПЕРВЫЙ ШАГ</h4>
+                        <p class="price-cta__text">Для новых клиентов — приветственный бонус 5% на любой чек в кресле.</p>
+                    </div>
+                    <a href="https://t.me/anya_kazak" target="_blank" class="btn btn--primary btn--large magnetic">Рассчитать стоимость и забрать 5%</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="proof" id="cases">
+            <div class="container">
+                <span class="eyebrow eyebrow--center reveal">Ваши состояния</span>
+                <h2 class="section-title reveal">Я не коллекционирую отзывы</h2>
+                
+                <div class="proof__text-block reveal">
+                    <p>Я могу часами рассказывать про геометрию. Но всё это не имеет значения, если на следующий день ты просыпаешься и снова чувствуешь себя неуверенно.</p>
+                    <p>Моя цель — тот самый момент утром, когда ты ловишь отражение в зеркале и понимаешь: тебе больше не нужно ничего исправлять. Ты прекрасна. Без фильтров и макияжа.</p>
+                </div>
+
+                <div class="ratings cascade">
+                    <div class="rating-card">
+                        <div class="rating-card__val">4.9 <span class="rating-card__max">/ 5.0</span></div>
+                        <div class="rating-card__stars">★★★★★</div>
+                        <div class="rating-card__platform">Яндекс</div>
+                    </div>
+                    <div class="rating-card">
+                        <div class="rating-card__val">5.0 <span class="rating-card__max">/ 5.0</span></div>
+                        <div class="rating-card__stars">★★★★★</div>
+                        <div class="rating-card__platform">DIKIDI</div>
+                    </div>
+                    <div class="rating-card">
+                        <div class="rating-card__val">4.9 <span class="rating-card__max">/ 5.0</span></div>
+                        <div class="rating-card__stars">★★★★★</div>
+                        <div class="rating-card__platform">Авито</div>
+                    </div>
+                </div>
+
+                <div class="reviews-slider reveal" id="reviews-slider">
+                    <div class="reviews-track" id="reviews-track">
+                        <div class="review-slide">
+                            <img src="https://via.placeholder.com/320x500/F5EBE0/4A3F35?text=Отзыв+1" alt="Отзыв клиента" draggable="false">
+                        </div>
+                        <div class="review-slide">
+                            <img src="https://via.placeholder.com/320x500/D5BDAF/FFFDFB?text=Отзыв+2" alt="Отзыв клиента" draggable="false">
+                        </div>
+                        <div class="review-slide">
+                            <img src="https://via.placeholder.com/320x500/F5EBE0/4A3F35?text=Отзыв+3" alt="Отзыв клиента" draggable="false">
+                        </div>
+                         <div class="review-slide">
+                            <img src="https://via.placeholder.com/320x500/D5BDAF/FFFDFB?text=Отзыв+4" alt="Отзыв клиента" draggable="false">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proof__cta-wrap reveal">
+                    <a href="https://t.me/anya_kazak" target="_blank" class="btn btn--secondary magnetic">Хочу испытать это чувство</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="lead-magnet" id="lead-magnet">
+            <div class="container lead-magnet__container">
+                <div class="lead-magnet__content reveal">
+                    <span class="eyebrow eyebrow--left">Твоя безопасность</span>
+                    <h2 class="lead-magnet__title">Как подобрать форму и не испортить лицо</h2>
+                    <p class="lead-magnet__subtitle">Бесплатное руководство по анатомии взгляда.</p>
+                    
+                    <div class="lead-magnet__text">
+                        <p>Ты платишь немалые деньги, ложишься на кушетку и просто надеешься, что мастер угадает твои ожидания. Это игра в рулетку.</p>
+                        <p>Я собрала свой пятилетний опыт в понятную инструкцию. Я хочу, чтобы ты сама научилась видеть свои пропорции так же, как это делают топ-мастера.</p>
+                    </div>
+                    
+                    <div class="lead-magnet__list cascade">
+                        <h4>За 10 минут чтения ты узнаешь:</h4>
+                        <ul>
+                            <li>Свой истинный тип лица и посадку глаз.</li>
+                            <li>Ловушку «тяжелого» взгляда и возрастных шаблонов.</li>
+                            <li>Три неочевидные детали в портфолио, от которых нужно бежать.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lead-magnet__visual reveal">
+                    <div class="lead-magnet__circle"></div>
+                    <a href="#" class="btn lead-magnet__btn magnetic">Забрать инструкцию бесплатно</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="container">
+                <span class="eyebrow eyebrow--center reveal">Честный разговор</span>
+                <h2 class="section-title reveal">Остались сомнения? Давай обсудим</h2>
+                
+                <div class="faq__wrapper cascade">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <h4>Мои родные ресницы не испортятся после снятия?</h4>
+                            <div class="faq-icon"></div>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer__content">
+                                <p>Это самый частый страх. Мой подход строится на строгом математическом расчете веса. Я подбираю материал так, чтобы родная ресница не замечала нагрузку. природный цикл обновления не нарушается. Твоя база остается абсолютно здоровой.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <h4>Сколько времени мне придется лежать в кресле?</h4>
+                            <div class="faq-icon"></div>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer__content">
+                                <p>Я ценю твое время. Качественное наращивание любого объема занимает в среднем 1,5–2 часа. Ламинирование ресниц или архитектура бровей — это всего 45–60 минут. Многие девушки просто засыпают, а просыпаются уже с готовым образом.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <h4>Придется спать на спине и бояться воды?</h4>
+                            <div class="faq-icon"></div>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer__content">
+                                <p>Забудь про эти устаревшие правила. Мои умные составы полимеризуются мгновенно. Ты можешь спать в любимой позе, умываться習慣пенкой, плавать. Эстетика останется безупречной.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">
+                            <h4>А если мне не пойдет то, что я выберу?</h4>
+                            <div class="faq-icon"></div>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer__content">
+                                <p>Тебе вообще не нужно пытаться угадать эффект. Это моя зона ответственности. Мы обсуждаем твои пожелания, и я предлагаю то, что органично впишется в твою внешность. Ты застрахована от шаблонов.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contacts" id="contacts">
+            <div class="container contacts__container">
+                <div class="contacts__content reveal">
+                    <span class="eyebrow eyebrow--left">Жду тебя в Гранях</span>
+                    <h2 class="lead-magnet__title" style="color: var(--color-text-main); font-size: 2.2rem; margin-bottom: 10px;">Твоя точка спокойствия на карте</h2>
+                    <p>Никакой суеты проходных салонов. Только ты, вкусный чай и полное погружение в эстетику.</p>
+                    
+                    <div class="contacts__info cascade">
+                        <div class="contact-item">
+                            <div class="contact-item__label">Адрес</div>
+                            <div class="contact-item__value">Челябинск, ул. Летчика Ларюшина, 6/2</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item__label">Студия</div>
+                            <div class="contact-item__value">Грани (Парковый мкр.)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contacts__social reveal">
+                        <h4>Напиши мне напрямую, я отвечаю сама:</h4>
+                        <div class="social-btns cascade">
+                            <a href="https://t.me/anya_kazak" target="_blank" class="btn-soc btn-soc--tg magnetic">Telegram</a>
+                            <a href="https://wa.me/79990000000" target="_blank" class="btn-soc btn-soc--wa magnetic">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts__map-wrapper reveal">
+                    <div class="map-placeholder">
+                        <p>Яндекс Карта</p>
+                        <p style="font-size: 0.8rem; color: var(--color-text-muted);">ул. Летчика Ларюшина, 6/2</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__top reveal">
+            <div class="footer__brand">
+                <a href="/" class="logo">GAZE<span>.</span> ARCHITECTURE</a>
+                <p>Авторский метод Анны Казак. Инженерия взгляда без шаблонов в Челябинске.</p>
+            </div>
+            <nav class="footer__nav">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#price">Услуги и цены</a></li>
+                    <li><a href="#cases">Портфолио</a></li>
+                    <li><a href="#expertise">Обучение</a></li>
+                    <li><a href="#lead-magnet">Забрать гайд</a></li>
+                </ul>
+            </nav>
+            <div class="footer__contacts">
+                <h4>Контакты</h4>
+                <p>ул. Летчика Ларюшина, 6/2</p>
+                <p>Парковый, Челябинск</p>
+                <a href="https://t.me/anya_kazak" target="_blank">@anya_kazak</a>
+            </div>
+        </div>
+        <div class="container footer__bottom reveal">
+            <p>&copy; 2026 GAZE. ARCHITECTURE. Все права защищены.</p>
+            <div class="footer__legal">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Оферта</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 60-FPS Reveal on Scroll (Intersection Observer)
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once animated, no need to keep observing
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .cascade').forEach(el => revealObserver.observe(el));
+
+        // 2. Header Style change on Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 3. Magnetic Buttons Effect
+        const magneticElements = document.querySelectorAll('.magnetic');
+        
+        magneticElements.forEach(el => {
+            el.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                this.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                if (this.classList.contains('btn--primary')) {
+                    this.style.boxShadow = `0 15px 40px rgba(74, 63, 53, 0.2)`;
+                }
+            });
+            
+            el.addEventListener('mouseleave', function() {
+                this.style.transform = `translate(0px, 0px)`;
+                if (this.classList.contains('btn--primary')) {
+                    this.style.boxShadow = `0 10px 30px rgba(74, 63, 53, 0.1)`;
+                }
+            });
+        });
+
+        // 4. FAQ Accordion 60-FPS
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = 0;
+                    }
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                    // Set maxHeight for pure CSS 60fps animation
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = 0;
+                }
+            });
+        });
+
+        // 5. Minimalistic Touch Draggable Review Slider
+        const track = document.getElementById('reviews-track');
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = 0;
+
+        const setSliderPosition = () => {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        };
+
+        const animation = () => {
+            setSliderPosition();
+            if (isDragging) requestAnimationFrame(animation);
+        };
+
+        // Pointer Events for better mouse/touch handling
+        track.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            track.style.cursor = 'grabbing';
+            prevTranslate = currentTranslate;
+            animationID = requestAnimationFrame(animation);
+        });
+
+        window.addEventListener('pointerup', () => {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            track.style.cursor = 'grab';
+            
+            // Constrain Slider bounds
+            const trackWidth = track.scrollWidth;
+            const containerWidth = track.parentElement.offsetWidth;
+            const maxTranslate = 0;
+            const minTranslate = -(trackWidth - containerWidth + 20); // 20 padding
+
+            if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
+            if (currentTranslate < minTranslate) currentTranslate = minTranslate;
+            
+            track.style.transition = 'transform 0.5s ease-out'; // add smooth back
+            setSliderPosition();
+            
+            setTimeout(() => {
+                track.style.transition = 'none'; // remove transition for dragging
+            }, 500);
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.clientX;
+            const diff = currentX - startX;
+            currentTranslate = prevTranslate + diff;
+        });
+
+        // Prevent dragging images
+        track.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', (e) => e.preventDefault());
+        });
+    </script>
+</body>
+</html>
