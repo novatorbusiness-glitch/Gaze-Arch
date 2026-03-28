@@ -146,4 +146,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }, lineData.delay);
         });
     };
+
+    // --- ACCORDION LOGIC (FAQ) ---
+    const accordionTriggers = document.querySelectorAll('.accordion-item__trigger');
+    accordionTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const item = trigger.closest('.accordion-item');
+            
+            // Optional: Close other open items (uncomment if desired)
+            /*
+            const currentlyOpen = document.querySelector('.accordion-item.is-open');
+            if (currentlyOpen && currentlyOpen !== item) {
+                currentlyOpen.classList.remove('is-open');
+                currentlyOpen.querySelector('.accordion-item__trigger').setAttribute('aria-expanded', 'false');
+            }
+            */
+
+            // Toggle current item
+            const isOpen = item.classList.contains('is-open');
+            item.classList.toggle('is-open');
+            trigger.setAttribute('aria-expanded', !isOpen);
+        });
+    });
+
+    // --- SCROLL REVEAL ANIMATIONS (Intersection Observer) ---
+    const revealElements = document.querySelectorAll('.reveal-up');
+    
+    const revealObserverOptions = {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                // Optional: Stop observing once revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealObserverOptions);
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
 });
