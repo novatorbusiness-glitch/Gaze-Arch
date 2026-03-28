@@ -5,9 +5,16 @@
     --color-primary: #6B5E53;
     --color-primary-light: rgba(107, 94, 83, 0.8);
     --color-bg: #F9F8F6;
+    --color-bg-alt: #EAE1DE;
+    --color-bg-darker: #F4F1EF;
     --color-accent: #E0C7C0;
     --color-button: #EAE1DE;
     --color-white: #FFFFFF;
+    
+    /* Layout Constants */
+    --section-padding: clamp(80px, 10vw, 160px) clamp(20px, 5vw, 80px);
+    --content-max-width: 1440px;
+    --gap-large: clamp(40px, 8vw, 100px);
     
     /* Fonts */
     --font-primary: 'Montserrat', sans-serif;
@@ -19,8 +26,8 @@
     --blur-sm: blur(8px);
     
     /* Transitions */
-    --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    --transition-magnetic: 0.1s linear;
+    --transition-smooth: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-magnetic: transform 0.1s linear, box-shadow 0.3s ease;
 }
 
 /* Reset & Base */
@@ -66,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    transition: transform var(--transition-magnetic), background-color var(--transition-smooth), color var(--transition-smooth);
+    transition: var(--transition-magnetic), background-color 0.4s ease, color 0.4s ease;
     will-change: transform;
     position: relative;
     overflow: hidden;
@@ -75,7 +82,11 @@ h1, h2, h3, h4, h5, h6 {
 .btn__text {
     position: relative;
     z-index: 2;
-    transition: transform var(--transition-magnetic);
+    transition: var(--transition-magnetic);
+}
+
+.btn--magnetic {
+    /* Optional class to mark magnetic elements in DOM */
 }
 
 .btn--primary {
@@ -196,15 +207,18 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     min-height: calc(100vh - 100px);
-    padding: 120px 80px 40px;
+    padding: var(--section-padding);
     display: flex;
     align-items: center;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-darker) 100%);
 }
 
 .hero__inner {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 40px;
+    gap: var(--gap-large);
     width: 100%;
     align-items: center;
 }
@@ -519,10 +533,11 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================= */
 .reveal-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     /* Fallback delay, can be overridden by inline styles */
     transition-delay: calc(var(--reveal-delay, 0) * 0.1s);
+    will-change: transform, opacity;
 }
 
 .reveal-up.is-revealed {
@@ -534,16 +549,16 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 3: VIDEO GREETING
    ========================================================================= */
 .video-greeting {
-    padding: 100px 80px;
-    background-color: var(--color-bg);
+    padding: var(--section-padding);
+    background-color: var(--color-bg-alt); /* Alternate bg for depth */
 }
 
 .video-greeting__inner {
-    max-width: 1440px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 5fr 5fr;
-    gap: 80px;
+    gap: var(--gap-large);
     align-items: center;
 }
 
@@ -661,8 +676,8 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 4: PAIN & SOLUTIONS
    ========================================================================= */
 .pain-solutions {
-    padding: 120px 80px;
-    background-color: #F4F1EF;
+    padding: var(--section-padding);
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg-darker) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -689,10 +704,10 @@ h1, h2, h3, h4, h5, h6 {
 .pain-solutions__grid {
     position: relative;
     z-index: 1;
-    max-width: 1440px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
 }
 
@@ -749,16 +764,16 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 5: EXPERTISE
    ========================================================================= */
 .expertise {
-    padding: 120px 80px;
+    padding: var(--section-padding);
     background-color: var(--color-bg);
 }
 
 .expertise__inner {
-    max-width: 1440px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 5fr 7fr;
-    gap: 100px;
+    gap: var(--gap-large);
 }
 
 .expertise__visual {
@@ -811,8 +826,8 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 6: SERVICES
    ========================================================================= */
 .services {
-    padding: 120px 80px;
-    background-color: var(--color-bg);
+    padding: var(--section-padding);
+    background-color: var(--color-bg-darker);
 }
 
 .services__header {
@@ -998,19 +1013,19 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 8: LEAD MAGNET
    ========================================================================= */
 .lead-magnet {
-    padding: 120px 80px;
+    padding: var(--section-padding);
     background-color: var(--color-bg);
 }
 
 .lead-magnet__inner {
-    max-width: 1440px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
-    background-color: #EAE1DE;
+    background-color: var(--color-bg-alt);
     border-radius: 40px;
-    padding: 80px;
+    padding: clamp(40px, 6vw, 80px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: var(--gap-large);
     align-items: center;
 }
 
@@ -1109,7 +1124,7 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 9: FAQ
    ========================================================================= */
 .faq {
-    padding: 120px 80px;
+    padding: var(--section-padding);
     background-color: var(--color-bg);
     position: relative;
 }
@@ -1241,16 +1256,16 @@ h1, h2, h3, h4, h5, h6 {
    BLOCK 10: CONTACTS
    ========================================================================= */
 .contacts {
-    padding: 120px 80px;
-    background-color: #F4F1EF;
+    padding: var(--section-padding);
+    background-color: var(--color-bg-darker);
 }
 
 .contacts__inner {
-    max-width: 1440px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 5fr 7fr;
-    gap: 100px;
+    gap: var(--gap-large);
 }
 
 .contacts__text p {
@@ -1470,11 +1485,18 @@ h1, h2, h3, h4, h5, h6 {
     .faq__inner,
     .contacts__inner {
         grid-template-columns: 1fr;
-        gap: 60px;
     }
 
-    .pain-solutions__grid {
-        grid-template-columns: repeat(2, 1fr);
+    .hero__inner {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero__content {
+        grid-column: span 1;
+    }
+    
+    .hero__visual {
+        grid-column: span 1;
     }
 
     .lead-magnet__inner {
@@ -1488,21 +1510,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-    .video-greeting,
-    .pain-solutions,
-    .expertise,
-    .services,
-    .social-proof,
-    .lead-magnet,
-    .faq,
-    .contacts,
-    .footer {
-        padding-left: 20px;
-        padding-right: 20px;
+    /* Mobile styles overrides */
+    .hero__actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
     }
-
-    .pain-solutions__grid {
-        grid-template-columns: 1fr;
+    
+    .hero__actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero__features {
+        flex-direction: column;
+    }
+    
+    .header__nav {
+        display: none;
     }
 
     .services__cta {

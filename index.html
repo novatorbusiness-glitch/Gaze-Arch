@@ -2,8 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAZE. ARCHITECTURE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>GAZE. ARCHITECTURE | Премиальная архитектура взгляда от Анны Казак</title>
+    <meta name="description" content="Твой дорогой взгляд без грамма косметики. Авторский метод GAZE ARCHITECTURE: подбираю форму бровей и ресниц точно под твое лицо. Экономия 30 минут на сборах каждый день.">
+    <meta name="keywords" content="наращивание ресниц, ламинирование ресниц, архитектура бровей, премиум бьюти, Люберцы, Анна Казак, GAZE ARCHITECTURE">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="GAZE. ARCHITECTURE | Архитектура твоего взгляда">
+    <meta property="og:description" content="Инженерия взгляда без шаблонов. Свободное утро и уверенность 24/7 с методом Анны Казак.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gaze-architecture.com">
+    <meta property="og:image" content="https://gaze-architecture.com/images/og-image.jpg">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -26,10 +36,10 @@
             </nav>
             
             <div class="header__actions">
-                <button class="btn btn--primary btn--magnetic" data-magnetic>
+                <button class="btn btn--primary btn--magnetic" data-magnetic aria-label="Записаться на процедуру">
                     <span class="btn__text">Записаться</span>
                 </button>
-                <button class="header__hamburger" aria-label="Menu">
+                <button class="header__hamburger" aria-label="Открыть мобильное меню" aria-expanded="false">
                     <span></span>
                     <span></span>
                 </button>
@@ -38,12 +48,12 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="hero__inner">
                 <div class="hero__content">
-                    <div class="hero__badge fade-in-up">МЕТОД АННЫ КАЗАК // GAZE ARCHITECTURE</div>
+                    <div class="hero__badge fade-in-up" aria-hidden="true">МЕТОД АННЫ КАЗАК // GAZE ARCHITECTURE</div>
                     
-                    <h1 class="hero__title fade-in-up" style="--animation-order: 1;">
+                    <h1 id="hero-title" class="hero__title fade-in-up" style="--animation-order: 1;">
                         Твой дорогой взгляд без грамма косметики. Свободное утро и уверенность 24/7.
                     </h1>
                     
@@ -52,34 +62,34 @@
                     </h2>
                     
                     <div class="hero__features fade-in-up" style="--animation-order: 3;">
-                        <div class="feature-card">
+                        <article class="feature-card">
                             <p>+30 минут сна. Свобода от косметики по утрам.</p>
-                        </div>
-                        <div class="feature-card">
+                        </article>
+                        <article class="feature-card">
                             <p>Твоя анатомия. Строгая геометрия без шаблонов.</p>
-                        </div>
-                        <div class="feature-card">
+                        </article>
+                        <article class="feature-card">
                             <p>Умные составы. Здоровье родных ресниц и бровей.</p>
-                        </div>
+                        </article>
                     </div>
                     
                     <div class="hero__actions fade-in-up" style="--animation-order: 4;">
-                        <button class="btn btn--large btn--magnetic" id="open-geometry-modal" data-magnetic>
+                        <button class="btn btn--large btn--magnetic" id="open-geometry-modal" data-magnetic aria-label="Подобрать идеальную геометрию">
                             <span class="btn__text">Подобрать геометрию</span>
                         </button>
-                        <button class="btn btn--link">
+                        <button class="btn btn--link" aria-label="Смотреть работы">
                             <span class="btn__text">Смотреть работы</span>
                         </button>
                     </div>
                 </div>
                 
-                <div class="hero__visual">
-                    <div class="hero__visual-wrapper">
+                <aside class="hero__visual">
+                    <div class="hero__visual-wrapper" aria-label="Портрет с геометрическими линиями архитектуры лица" role="img">
                         <!-- Placeholder for high-end fashion portrait -->
                         <div class="hero__image-placeholder"></div>
                         
                         <!-- Animated SVG overlay -->
-                        <svg class="hero__geometry-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <svg class="hero__geometry-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                             <path class="geometry-line" d="M20,50 L40,30 L60,30 L80,50" />
                             <path class="geometry-line" d="M30,50 L50,70 L70,50" />
                             <path class="geometry-line" d="M50,10 L50,90" />
@@ -88,15 +98,15 @@
                             <circle class="geometry-point" cx="50" cy="70" r="1.5" />
                         </svg>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
         <!-- BUILD BLOCK 3: VIDEO GREETING -->
-        <section class="video-greeting">
+        <section class="video-greeting" aria-labelledby="video-title">
             <div class="video-greeting__inner">
                 <div class="video-greeting__content">
-                    <h2 class="section-title reveal-up">Посмотри мне в глаза до визита.</h2>
+                    <h2 id="video-title" class="section-title reveal-up">Посмотри мне в глаза до визита.</h2>
                     <p class="section-subtitle reveal-up" style="--reveal-delay: 1;">Включай видео. Рассказываю, как мы стираем утреннюю рутину без вреда для твоих ресниц и бровей.</p>
                     
                     <div class="video-greeting__text reveal-up" style="--reveal-delay: 2;">
@@ -120,69 +130,69 @@
                     </ul>
                 </div>
                 
-                <div class="video-greeting__visual reveal-up" style="--reveal-delay: 4;">
+                <aside class="video-greeting__visual reveal-up" style="--reveal-delay: 4;">
                     <div class="video-container">
-                        <div class="video-placeholder">
+                        <div class="video-placeholder" aria-label="Обложка видео-презентации Анны Казак" role="img">
                             <!-- Placeholder image representing: "Стильная обложка видео с Анной в студии «Грани»" -->
                         </div>
-                        <button class="play-btn btn--magnetic" data-magnetic aria-label="Play video">
-                            <div class="play-icon"></div>
+                        <button class="play-btn btn--magnetic" data-magnetic aria-label="Запустить видео">
+                            <div class="play-icon" aria-hidden="true"></div>
                         </button>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
         <!-- BUILD BLOCK 4: PAIN & SOLUTIONS -->
-        <section class="pain-solutions">
-            <div class="blob-bg"></div>
+        <section class="pain-solutions" aria-labelledby="pain-title">
+            <div class="blob-bg" aria-hidden="true"></div>
             <div class="pain-solutions__header">
-                <h2 class="section-title text-center mx-auto reveal-up">Почему привычная бьюти-рутина больше не работает.</h2>
+                <h2 id="pain-title" class="section-title text-center mx-auto reveal-up">Почему привычная бьюти-рутина больше не работает.</h2>
                 <p class="section-subtitle text-center reveal-up" style="--reveal-delay: 1;">Честный разбор того, что ворует твое время, и как мы это исправляем.</p>
             </div>
             
             <div class="pain-solutions__grid">
                 <!-- Card 1 -->
-                <div class="glass-card reveal-up" style="--reveal-delay: 2;">
-                    <div class="glass-card__icon">
+                <article class="glass-card reveal-up" style="--reveal-delay: 2;">
+                    <div class="glass-card__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     </div>
                     <h3 class="glass-card__title">Утренний компромисс с зеркалом</h3>
                     <p class="glass-card__body">Каждое утро ты проигрываешь битву за полчаса сна: стоишь с карандашом, выводишь симметрию, наслаиваешь тушь, которая к вечеру осыпается. Мы удаляем эту рутину. Я выстраиваю архитектуру взгляда, и следующие 3-4 недели ты просыпаешься с уже оформленным лицом. Это не просто экономия времени — это утренняя тишина, когда ты посвящаешь полчаса себе, а не попыткам нарисовать уверенность.</p>
-                </div>
+                </article>
 
                 <!-- Card 2 -->
-                <div class="glass-card reveal-up" style="--reveal-delay: 3;">
-                    <div class="glass-card__icon">
+                <article class="glass-card reveal-up" style="--reveal-delay: 3;">
+                    <div class="glass-card__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 22 22 22"></polygon><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="22" x2="12" y2="12"></line></svg>
                     </div>
                     <h3 class="glass-card__title">Чужие шаблоны вместо твоей анатомии</h3>
                     <p class="glass-card__body">Индустрия привыкла штамповать одинаковые лица, делая объемы «как у всех» и ломая природные линии. В зеркале — тяжелый, кукольный взгляд, который удешевляет образ. Я работаю как инженер: строгий анализ посадки глаз и точечный подбор каждого волоска. Никаких шаблонов — только дорогой, органичный результат. Никто не спросит, где ты наращивала ресницы. Тебе просто сделают комплимент, как свежо ты выглядишь.</p>
-                </div>
+                </article>
 
                 <!-- Card 3 -->
-                <div class="glass-card reveal-up" style="--reveal-delay: 4;">
-                    <div class="glass-card__icon">
+                <article class="glass-card reveal-up" style="--reveal-delay: 4;">
+                    <div class="glass-card__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
                     <h3 class="glass-card__title">Тревога вместо обещанного комфорта</h3>
                     <p class="glass-card__body">Ты платишь за процедуру, а через неделю эстетика начинает сыпаться: появляются проплешины в ресницах, грязный оттенок бровей. Приходится снова маскировать пробелы косметикой. Вместо свободы ты покупаешь фоновую тревогу. Мой подход — умные составы и выверенные протоколы фиксации. Форма носится чисто 3-4 недели, пигмент сходит мягко и без пятен. Иди на тренировку, плавай, живи в своем ритме — твоя эстетика под надежным контролем.</p>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- BUILD BLOCK 5: EXPERTISE & STORYTELLING -->
-        <section class="expertise">
+        <section class="expertise" aria-labelledby="expertise-title">
             <div class="expertise__inner">
-                <div class="expertise__visual">
+                <aside class="expertise__visual">
                     <div class="expertise__sticky-container">
-                        <div class="expertise__image-placeholder"></div>
-                        <div class="expertise__overlay"></div>
+                        <div class="expertise__image-placeholder" aria-label="Анна Казак за работой" role="img"></div>
+                        <div class="expertise__overlay" aria-hidden="true"></div>
                     </div>
-                </div>
+                </aside>
                 
                 <div class="expertise__content">
-                    <h2 class="expertise__title reveal-up">Как я создала метод, возвращающий любовь к себе.</h2>
+                    <h2 id="expertise-title" class="expertise__title reveal-up">Как я создала метод, возвращающий любовь к себе.</h2>
                     <p class="expertise__subtitle reveal-up" style="--reveal-delay: 1;">Мой путь от бизнес-стратегий к архитектуре твоего идеального утра.</p>
                     
                     <div class="editorial-text">
@@ -199,15 +209,15 @@
         </section>
 
         <!-- BUILD BLOCK 6: SERVICES GRID & PRICING -->
-        <section class="services">
+        <section class="services" aria-labelledby="services-title" id="services">
             <div class="services__header">
-                <h2 class="section-title text-center mx-auto reveal-up">Сколько стоит забыть о косметичке?</h2>
+                <h2 id="services-title" class="section-title text-center mx-auto reveal-up">Сколько стоит забыть о косметичке?</h2>
                 <p class="section-subtitle text-center mx-auto reveal-up" style="--reveal-delay: 1;">Инвестиция в эстетику, которая окупается в первый же день. Это выгоднее, чем бесконечно искать идеальную тушь.</p>
             </div>
             
             <div class="services__grid">
                 <!-- Service 1 -->
-                <div class="service-card reveal-up" style="--reveal-delay: 2;">
+                <article class="service-card reveal-up" style="--reveal-delay: 2;">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Наращивание: классика и объемы</h3>
                         <p class="service-card__desc">От невесомой классики до глубокого 3D. Подбираем густоту, которая не перегружает глаз и делает взгляд живым.</p>
@@ -216,10 +226,10 @@
                             <li><strong>Спецэффекты:</strong> Трендовые лучи или мокрый эффект — +<span class="price-mono">200 ₽</span> к объему.</li>
                         </ul>
                     </div>
-                </div>
+                </article>
 
                 <!-- Service 2 -->
-                <div class="service-card reveal-up" style="--reveal-delay: 3;">
+                <article class="service-card reveal-up" style="--reveal-delay: 3;">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Ламинирование ресниц</h3>
                         <p class="service-card__desc">Выжимаем максимум из природной базы. Распахнутый изгиб и плотный пигмент без грамма клея. Взгляд открытый и отдохнувший.</p>
@@ -228,10 +238,10 @@
                             <li>Только окрашивание: <span class="price-mono">700 ₽</span></li>
                         </ul>
                     </div>
-                </div>
+                </article>
 
                 <!-- Service 3 -->
-                <div class="service-card reveal-up" style="--reveal-delay: 4;">
+                <article class="service-card reveal-up" style="--reveal-delay: 4;">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Геометрия и ламинирование бровей</h3>
                         <p class="service-card__desc">Создаем форму, которая «держит» лицо. Укрощаем жесткие волоски, добавляем оттенок и фиксируем чистую геометрию на месяц.</p>
@@ -240,10 +250,10 @@
                             <li><strong>Моно-услуги:</strong> Коррекция / окрашивание — по <span class="price-mono">700 ₽</span> | Глубокий уход — <span class="price-mono">600 ₽</span>.</li>
                         </ul>
                     </div>
-                </div>
+                </article>
 
                 <!-- Service 4 -->
-                <div class="service-card reveal-up" style="--reveal-delay: 5;">
+                <article class="service-card reveal-up" style="--reveal-delay: 5;">
                     <div class="service-card__content">
                         <h3 class="service-card__title">Комплекс GAZE (ресницы + брови)</h3>
                         <p class="service-card__desc">Тотальная перезагрузка за один визит. Ты расслабляешься в кресле, а выходишь с готовым дорогим лицом на месяц вперед.</p>
@@ -251,24 +261,24 @@
                             <li><strong>Стоимость:</strong> Складывается из выбранных услуг. Самый удобный формат, чтобы закрыть все бьюти-задачи разом.</li>
                         </ul>
                     </div>
-                </div>
+                </article>
             </div>
             
             <div class="services__cta reveal-up" style="--reveal-delay: 6;">
                 <div class="services__cta-content">
-                    <span class="services__cta-icon">🎁</span>
+                    <span class="services__cta-icon" aria-hidden="true">🎁</span>
                     <p class="services__cta-text"><strong>СДЕЛАЙ ПЕРВЫЙ ШАГ.</strong> Для новых клиентов — приветственный бонус 5% на любой чек.</p>
                 </div>
-                <button class="btn btn--primary btn--large btn--magnetic" data-magnetic>
+                <button class="btn btn--primary btn--large btn--magnetic" data-magnetic aria-label="Забрать бонус 5% на первый визит">
                     <span class="btn__text">Забрать бонус 5%</span>
                 </button>
             </div>
         </section>
 
         <!-- BUILD BLOCK 7: SOCIAL PROOF -->
-        <section class="social-proof">
+        <section class="social-proof" aria-labelledby="social-title">
             <div class="social-proof__header px-20">
-                <h2 class="section-title text-center mx-auto reveal-up">Я не коллекционирую отзывы. Я собираю твои состояния.</h2>
+                <h2 id="social-title" class="section-title text-center mx-auto reveal-up">Я не коллекционирую отзывы. Я собираю твои состояния.</h2>
                 <p class="section-subtitle text-center reveal-up" style="--reveal-delay: 1;">Настоящая работа проверяется не в студии под кольцевой лампой, а в жизни.</p>
                 
                 <div class="social-proof__text mx-auto text-center reveal-up" style="--reveal-delay: 2;">
@@ -276,17 +286,17 @@
                     <p class="mb-12">Моя цель — момент, когда ты смотришь в зеркало и понимаешь: исправлять нечего. Ты прекрасна без фильтров, макияжа и компромиссов. Рейтинги на платформах доказывают надежность моей системы. А живые сообщения в мессенджерах — что этот подход возвращает любовь к себе.</p>
                 </div>
                 
-                <div class="social-proof__trust reveal-up" style="--reveal-delay: 3;">
+                <div class="social-proof__trust reveal-up" style="--reveal-delay: 3;" aria-label="Рейтинги на платформах">
                     <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--yandex"></div>
+                        <div class="trust-badge__icon trust-badge__icon--yandex" aria-hidden="true"></div>
                         <span class="trust-badge__text">Яндекс: 4.9 / 5.0</span>
                     </div>
                     <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--avito"></div>
+                        <div class="trust-badge__icon trust-badge__icon--avito" aria-hidden="true"></div>
                         <span class="trust-badge__text">Авито: 4.9 / 5.0</span>
                     </div>
                     <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--dikidi"></div>
+                        <div class="trust-badge__icon trust-badge__icon--dikidi" aria-hidden="true"></div>
                         <span class="trust-badge__text">DIKIDI: 5.0 / 5.0</span>
                     </div>
                 </div>
@@ -315,20 +325,20 @@
             </div>
             
             <div class="social-proof__actions">
-                <button class="btn btn--large btn--magnetic" data-magnetic>
+                <button class="btn btn--large btn--magnetic" data-magnetic aria-label="Записаться и получить такой же результат">
                     <span class="btn__text">Хочу так же</span>
                 </button>
-                <button class="btn btn--link">
+                <button class="btn btn--link" aria-label="Оформить подарочный сертификат">
                     <span class="btn__text">Подарить сертификат</span>
                 </button>
             </div>
         </section>
 
         <!-- BUILD BLOCK 8: LEAD MAGNET -->
-        <section class="lead-magnet">
+        <section class="lead-magnet" aria-labelledby="magnet-title">
             <div class="lead-magnet__inner">
                 <div class="lead-magnet__content">
-                    <h2 class="section-title reveal-up">Как подобрать форму и не испортить лицо.</h2>
+                    <h2 id="magnet-title" class="section-title reveal-up">Как подобрать форму и не испортить лицо.</h2>
                     <p class="section-subtitle reveal-up" style="--reveal-delay: 1;">Бесплатное руководство по анатомии взгляда. Сохрани ресницы и душевное равновесие.</p>
                     
                     <div class="lead-magnet__text reveal-up" style="--reveal-delay: 2;">
@@ -348,42 +358,42 @@
                     <p class="lead-magnet__warning reveal-up" style="--reveal-delay: 4;">Сохрани гайд сейчас, чтобы завтра не искать мастера для сложного исправления.</p>
                     
                     <div class="reveal-up" style="--reveal-delay: 5;">
-                        <button class="btn btn--large btn--magnetic" data-magnetic>
+                        <button class="btn btn--large btn--magnetic" data-magnetic aria-label="Скачать бесплатный гайд по анатомии взгляда">
                             <span class="btn__text">Забрать гайд бесплатно</span>
                         </button>
                     </div>
                 </div>
                 
-                <div class="lead-magnet__visual">
-                    <div class="mockup-floating">
+                <aside class="lead-magnet__visual">
+                    <div class="mockup-floating" aria-label="Обложка руководства по анатомии взгляда" role="img">
                         <div class="mockup-glass">
                             <!-- Placeholder inside mockup -->
                         </div>
-                        <div class="mockup-shadow"></div>
+                        <div class="mockup-shadow" aria-hidden="true"></div>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
         <!-- BUILD BLOCK 9: FAQ -->
-        <section class="faq">
-            <div class="faq__bg-blob"></div>
+        <section class="faq" aria-labelledby="faq-title">
+            <div class="faq__bg-blob" aria-hidden="true"></div>
             <div class="faq__inner">
                 <div class="faq__header">
                     <div class="faq__sticky">
-                        <h2 class="section-title reveal-up">Остались сомнения? Давай обсудим их сейчас.</h2>
+                        <h2 id="faq-title" class="section-title reveal-up">Остались сомнения? Давай обсудим их сейчас.</h2>
                         <p class="section-subtitle reveal-up" style="--reveal-delay: 1;">Честные ответы на главные страхи перед первой процедурой.</p>
                     </div>
                 </div>
                 
-                <div class="faq__accordion">
+                <div class="faq__accordion" role="tablist">
                     <!-- Item 1 -->
                     <div class="accordion-item reveal-up" style="--reveal-delay: 2;">
-                        <button class="accordion-item__trigger">
+                        <button class="accordion-item__trigger" aria-expanded="false" aria-controls="faq-content-1" id="faq-trigger-1">
                             <span class="accordion-item__question">Мои родные ресницы не испортятся после снятия?</span>
-                            <span class="accordion-item__icon"></span>
+                            <span class="accordion-item__icon" aria-hidden="true"></span>
                         </button>
-                        <div class="accordion-item__content">
+                        <div class="accordion-item__content" id="faq-content-1" role="region" aria-labelledby="faq-trigger-1">
                             <div class="accordion-item__body">
                                 Нет. Мой подход строится на строгом математическом расчете веса: я подбираю материал так, чтобы родная ресница не замечала нагрузку. Природный цикл обновления волоска не нарушается, и после снятия твоя база остается абсолютно здоровой.
                             </div>
@@ -392,11 +402,11 @@
                     
                     <!-- Item 2 -->
                     <div class="accordion-item reveal-up" style="--reveal-delay: 3;">
-                        <button class="accordion-item__trigger">
+                        <button class="accordion-item__trigger" aria-expanded="false" aria-controls="faq-content-2" id="faq-trigger-2">
                             <span class="accordion-item__question">Сколько времени мне придется лежать в кресле?</span>
-                            <span class="accordion-item__icon"></span>
+                            <span class="accordion-item__icon" aria-hidden="true"></span>
                         </button>
-                        <div class="accordion-item__content">
+                        <div class="accordion-item__content" id="faq-content-2" role="region" aria-labelledby="faq-trigger-2">
                             <div class="accordion-item__body">
                                 Наращивание любого объема занимает 1,5–2 часа. Ламинирование ресниц или архитектура бровей — 45–60 минут. Никаких трехчасовых испытаний для спины и нервной системы. Многие девушки просто засыпают в процессе, а просыпаются уже с готовым образом.
                             </div>
@@ -405,11 +415,11 @@
                     
                     <!-- Item 3 -->
                     <div class="accordion-item reveal-up" style="--reveal-delay: 4;">
-                        <button class="accordion-item__trigger">
+                        <button class="accordion-item__trigger" aria-expanded="false" aria-controls="faq-content-3" id="faq-trigger-3">
                             <span class="accordion-item__question">Придется спать на спине и бояться воды?</span>
-                            <span class="accordion-item__icon"></span>
+                            <span class="accordion-item__icon" aria-hidden="true"></span>
                         </button>
-                        <div class="accordion-item__content">
+                        <div class="accordion-item__content" id="faq-content-3" role="region" aria-labelledby="faq-trigger-3">
                             <div class="accordion-item__body">
                                 Забудь про эти устаревшие правила. Современные составы полимеризуются мгновенно. Ты можешь спать в любимой позе, умываться привычной пенкой, активно тренироваться и плавать. Эстетика останется безупречной.
                             </div>
@@ -418,11 +428,11 @@
 
                     <!-- Item 4 -->
                     <div class="accordion-item reveal-up" style="--reveal-delay: 5;">
-                        <button class="accordion-item__trigger">
+                        <button class="accordion-item__trigger" aria-expanded="false" aria-controls="faq-content-4" id="faq-trigger-4">
                             <span class="accordion-item__question">А если мне не пойдет то, что я выберу?</span>
-                            <span class="accordion-item__icon"></span>
+                            <span class="accordion-item__icon" aria-hidden="true"></span>
                         </button>
-                        <div class="accordion-item__content">
+                        <div class="accordion-item__content" id="faq-content-4" role="region" aria-labelledby="faq-trigger-4">
                             <div class="accordion-item__body">
                                 Тебе не нужно угадывать эффект до визита — это моя зона ответственности. Перед процедурой я анализирую посадку глаз, мимику и густоту волосков. Мы обсуждаем пожелания, и я предлагаю форму, которая органично впишется в твою внешность. Никаких слепых шаблонов.
                             </div>
@@ -431,11 +441,11 @@
 
                     <!-- Item 5 -->
                     <div class="accordion-item reveal-up" style="--reveal-delay: 6;">
-                        <button class="accordion-item__trigger">
+                        <button class="accordion-item__trigger" aria-expanded="false" aria-controls="faq-content-5" id="faq-trigger-5">
                             <span class="accordion-item__question">Где проходит процедура и как записаться?</span>
-                            <span class="accordion-item__icon"></span>
+                            <span class="accordion-item__icon" aria-hidden="true"></span>
                         </button>
-                        <div class="accordion-item__content">
+                        <div class="accordion-item__content" id="faq-content-5" role="region" aria-labelledby="faq-trigger-5">
                             <div class="accordion-item__body">
                                 Я принимаю в студии «Грани» Люберцы, ул. Летчика Ларюшина, 6/2). Это тихое пространство без суеты салонов-конвейеров. Для записи нажми любую кнопку на сайте — она переведет в Telegram. Там мы выберем удобное окно и обсудим все вопросы до твоего визита.
                             </div>
@@ -446,10 +456,10 @@
         </section>
 
         <!-- BUILD BLOCK 10: CONTACTS & LOCATION -->
-        <section class="contacts">
+        <section class="contacts" aria-labelledby="contacts-title" id="contacts">
             <div class="contacts__inner">
                 <div class="contacts__content">
-                    <h2 class="section-title reveal-up">Твоя точка спокойствия на карте.</h2>
+                    <h2 id="contacts-title" class="section-title reveal-up">Твоя точка спокойствия на карте.</h2>
                     <p class="section-subtitle reveal-up" style="--reveal-delay: 1;">Никакой суеты проходных салонов. Только ты, вкусный чай и полное погружение в эстетику.</p>
                     
                     <div class="contacts__text reveal-up" style="--reveal-delay: 2;">
@@ -468,39 +478,39 @@
                         <p class="contacts__desc mb-8">Не люблю сложные формы и автоответчики. Если есть вопросы или хочешь подобрать удобное окно — пиши в мессенджеры. Отвечаю сама.</p>
                         
                         <div class="contacts__buttons">
-                            <a href="#" class="contact-btn">
-                                <span class="contact-btn__icon tg-icon"></span>
+                            <a href="#" class="contact-btn" aria-label="Связаться в Telegram">
+                                <span class="contact-btn__icon tg-icon" aria-hidden="true"></span>
                                 Написать в Telegram
                             </a>
-                            <a href="#" class="contact-btn">
-                                <span class="contact-btn__icon wa-icon"></span>
+                            <a href="#" class="contact-btn" aria-label="Связаться в WhatsApp">
+                                <span class="contact-btn__icon wa-icon" aria-hidden="true"></span>
                                 Написать в WhatsApp
                             </a>
-                            <a href="tel:+79990000000" class="contact-phone">Телефон: +7 (999) 000-00-00</a>
+                            <a href="tel:+79990000000" class="contact-phone" aria-label="Позвонить по номеру +7 (999) 000-00-00">Телефон: +7 (999) 000-00-00</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contacts__map-wrapper reveal-up" style="--reveal-delay: 5;">
+                <aside class="contacts__map-wrapper reveal-up" style="--reveal-delay: 5;">
                     <div class="contacts__map-container">
                         <!-- Custom Map Placeholder -->
-                        <div class="custom-map">
+                        <div class="custom-map" aria-label="Интерактивная карта с расположением студии" role="img">
                             <div class="map-pin">
-                                <div class="map-pin__pulse"></div>
-                                <div class="map-pin__dot"></div>
+                                <div class="map-pin__pulse" aria-hidden="true"></div>
+                                <div class="map-pin__dot" aria-hidden="true"></div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
     </main>
 
     <!-- BUILD BLOCK 11: FOOTER -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer__inner">
             <div class="footer__col footer__col--brand">
-                <div class="footer__logo">GAZE. ARCHITECTURE</div>
+                <div class="footer__logo" aria-hidden="true">GAZE. ARCHITECTURE</div>
                 <p class="footer__desc">Авторский метод Анны Казак. Инженерия взгляда без шаблонов.</p>
             </div>
             

@@ -41,31 +41,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 1000);
 
-    // 4. Magnetic Hover Effect
+    // 4. Magnetic Hover Effect (Smooth 60 FPS)
     const magneticButtons = document.querySelectorAll('[data-magnetic]');
     
     magneticButtons.forEach(btn => {
         const text = btn.querySelector('.btn__text');
+        let rect = btn.getBoundingClientRect();
         
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+        // Use requestAnimationFrame for smooth 60 FPS updates
+        let mouseX = 0;
+        let mouseY = 0;
+        let btnX = 0;
+        let btnY = 0;
+        let textX = 0;
+        let textY = 0;
+        let isHovered = false;
+
+        const update = () => {
+            // Easing for smooth follow (intertia)
+            const ease = 0.15;
             
-            // Move button slightly
-            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            
-            // Move text slightly more for parallax effect
-            if (text) {
-                text.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            if (isHovered) {
+                // Calculate target positions based on cursor distance from center
+                const targetX = (mouseX - rect.left - rect.width / 2) * 0.3; // Magnet strength on container
+                const targetY = (mouseY - rect.top - rect.height / 2) * 0.3;
+
+                // Move current pos towards target using easing
+                btnX += (targetX - btnX) * ease;
+                btnY += (targetY - btnY) * ease;
+                
+                // Text moves slightly less for parallax
+                textX += (targetX * 0.5 - textX) * ease;
+                textY += (targetY * 0.5 - textY) * ease;
+            } else {
+                // Return to origin (0,0)
+                btnX += (0 - btnX) * ease;
+                btnY += (0 - btnY) * ease;
+                textX += (0 - textX) * ease;
+                textY += (0 - textY) * ease;
             }
+
+            // Apply via translate3d for GPU acceleration
+            btn.style.transform = `translate3d(${btnX}px, ${btnY}px, 0)`;
+            if (text) {
+                text.style.transform = `translate3d(${textX}px, ${textY}px, 0)`;
+            }
+
+            // Only request next frame if we are hovered, OR if we haven't settled back to origin yet
+            if (isHovered || Math.abs(btnX) > 0.1 || Math.abs(btnY) > 0.1) {
+                requestAnimationFrame(update);
+            }
+        };
+
+        btn.addEventListener('mouseenter', () => {
+            isHovered = true;
+            rect = btn.getBoundingClientRect(); // Update on enter in case window scrolled
+            requestAnimationFrame(update);
+        });
+
+        btn.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
         
         btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-            if (text) {
-                text.style.transform = '';
-            }
+            isHovered = false;
         });
     });
 
