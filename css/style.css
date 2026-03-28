@@ -43,6 +43,16 @@ body {
     color: var(--color-primary);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+p {
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+p:last-child {
+    margin-bottom: 0;
 }
 
 a {
@@ -925,11 +935,21 @@ h1, h2, h3, h4, h5, h6 {
 .social-proof {
     padding: 120px 0;
     overflow: hidden;
+    width: 100%;
 }
 @media (max-width: 768px) {
     .social-proof {
         padding: 80px 0;
     }
+}
+
+.social-proof__header {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-bg--pearl {
@@ -941,6 +961,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .social-proof__text {
     max-width: 800px;
+    margin: 0 auto;
     font-size: 18px;
     line-height: 1.8;
     color: rgba(107, 94, 83, 0.9);
@@ -948,6 +969,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    text-align: center;
 }
 
 .social-proof__trust {
@@ -1391,6 +1413,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Premium Pill Modifier for Contacts */
 .premium-pill--contact {
     padding: 14px 28px;
+    white-space: nowrap;
+    width: auto;
+    max-width: 100%;
+    flex: 0 1 auto;
+}
+
+@media (max-width: 480px) {
+    .premium-pill--contact {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .contacts__map-container {
