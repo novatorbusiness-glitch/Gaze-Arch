@@ -116,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const simulatorSvg = document.querySelector('.geometry-simulator__svg');
     const simulatorText = document.querySelector('.geometry-simulator__text');
     
+    // Only bind modal logic if elements exist (to prevent errors on subpages)
+    if (modal && openBtn) {
+    
     let simulatorAnimationTimeout;
 
     const openModal = () => {
@@ -186,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, lineData.delay);
         });
     };
+    } // End of modal check
 
     // --- ACCORDION LOGIC (FAQ) ---
     const accordionTriggers = document.querySelectorAll('.accordion-item__trigger');

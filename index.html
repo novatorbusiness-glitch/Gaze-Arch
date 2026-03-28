@@ -275,29 +275,35 @@
             </div>
         </section>
 
-        <!-- BUILD BLOCK 7: SOCIAL PROOF -->
-        <section class="social-proof" aria-labelledby="social-title">
+        <!-- BUILD BLOCK 7: SOCIAL PROOF / PHILOSOPHY & RATINGS -->
+        <section class="social-proof section-bg--pearl" aria-labelledby="social-title" id="philosophy">
             <div class="social-proof__header px-20">
-                <h2 id="social-title" class="section-title text-center mx-auto reveal-up">Я не коллекционирую отзывы. Я собираю твои состояния.</h2>
+                <h2 id="social-title" class="section-title text-center mx-auto reveal-up">Я не коллекционирую отзывы.<br>Я собираю твои состояния.</h2>
                 <p class="section-subtitle text-center reveal-up" style="--reveal-delay: 1;">Настоящая работа проверяется не в студии под кольцевой лампой, а в жизни.</p>
                 
                 <div class="social-proof__text mx-auto text-center reveal-up" style="--reveal-delay: 2;">
-                    <p class="mb-4">Я могу часами говорить про сложную геометрию лица и умные составы. Но это не важно, если утром ты просыпаешься и снова чувствуешь себя неуверенно.</p>
-                    <p class="mb-12">Моя цель — момент, когда ты смотришь в зеркало и понимаешь: исправлять нечего. Ты прекрасна без фильтров, макияжа и компромиссов. Рейтинги на платформах доказывают надежность моей системы. А живые сообщения в мессенджерах — что этот подход возвращает любовь к себе.</p>
+                    <p>Я могу часами говорить про сложную геометрию лица и умные составы. Но это не важно, если утром ты просыпаешься и снова чувствуешь себя неуверенно.</p>
+                    <p>Моя цель — момент, когда ты смотришь в зеркало и понимаешь: исправлять нечего. Ты прекрасна без фильтров, макияжа и компромиссов. Рейтинги на платформах доказывают надежность моей системы. А живые сообщения в мессенджерах — что этот подход возвращает любовь к себе.</p>
                 </div>
                 
                 <div class="social-proof__trust reveal-up" style="--reveal-delay: 3;" aria-label="Рейтинги на платформах">
-                    <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--yandex" aria-hidden="true"></div>
-                        <span class="trust-badge__text">Яндекс: 4.9 / 5.0</span>
+                    <div class="premium-pill">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="premium-pill__icon">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#E0C7C0"/>
+                        </svg>
+                        <span class="premium-pill__text">Яндекс: 4.9 / 5.0</span>
                     </div>
-                    <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--avito" aria-hidden="true"></div>
-                        <span class="trust-badge__text">Авито: 4.9 / 5.0</span>
+                    <div class="premium-pill">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="premium-pill__icon">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#E0C7C0"/>
+                        </svg>
+                        <span class="premium-pill__text">Авито: 4.9 / 5.0</span>
                     </div>
-                    <div class="trust-badge">
-                        <div class="trust-badge__icon trust-badge__icon--dikidi" aria-hidden="true"></div>
-                        <span class="trust-badge__text">DIKIDI: 5.0 / 5.0</span>
+                    <div class="premium-pill">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="premium-pill__icon">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#E0C7C0"/>
+                        </svg>
+                        <span class="premium-pill__text">DIKIDI: 5.0 / 5.0</span>
                     </div>
                 </div>
             </div>
@@ -358,9 +364,9 @@
                     <p class="lead-magnet__warning reveal-up" style="--reveal-delay: 4;">Сохрани гайд сейчас, чтобы завтра не искать мастера для сложного исправления.</p>
                     
                     <div class="reveal-up" style="--reveal-delay: 5;">
-                        <button class="btn btn--large btn--magnetic" data-magnetic aria-label="Скачать бесплатный гайд по анатомии взгляда">
+                        <a href="./blog/gaide.html" class="btn btn--large btn--magnetic" data-magnetic aria-label="Скачать бесплатный гайд по анатомии взгляда">
                             <span class="btn__text">Забрать гайд бесплатно</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 
@@ -456,37 +462,49 @@
         </section>
 
         <!-- BUILD BLOCK 10: CONTACTS & LOCATION -->
-        <section class="contacts" aria-labelledby="contacts-title" id="contacts">
+        <section class="contacts section-bg--warm" aria-labelledby="contacts-title" id="contacts">
             <div class="contacts__inner">
                 <div class="contacts__content">
-                    <h2 id="contacts-title" class="section-title reveal-up">Твоя точка спокойствия на карте.</h2>
+                    <h2 id="contacts-title" class="section-title reveal-up">Твоя точка спокойствия<br>на карте.</h2>
                     <p class="section-subtitle reveal-up" style="--reveal-delay: 1;">Никакой суеты проходных салонов. Только ты, вкусный чай и полное погружение в эстетику.</p>
                     
                     <div class="contacts__text reveal-up" style="--reveal-delay: 2;">
-                        <p class="mb-4">Я выбрала уютное пространство студии «Грани» в микрорайоне Парковый. Здесь нет конвейера, уставших мастеров и очередей. Это камерное место: ты спокойно паркуешься, оставляешь дела за дверью и ложишься в кресло. Полтора часа тишины — и ты выходишь с идеальным лицом.</p>
-                        <p class="mb-10">Работаю только по предварительной записи. Мое время и внимание принадлежат только тебе.</p>
+                        <p>Я выбрала уютное пространство студии «Грани» в микрорайоне Парковый. Здесь нет конвейера, уставших мастеров и очередей. Это камерное место: ты спокойно паркуешься, оставляешь дела за дверью и ложишься в кресло. Полтора часа тишины — и ты выходишь с идеальным лицом.</p>
+                        <p>Работаю только по предварительной записи. Мое время и внимание принадлежат только тебе.</p>
                     </div>
                     
-                    <div class="contacts__address reveal-up" style="--reveal-delay: 3;">
-                        <p class="contacts__label">Адрес:</p>
-                        <p class="contacts__mono-text">Московская область, г. Люберцы</p>
-                        <p class="contacts__mono-text mb-10">ул. Летчика Ларюшина, 6/2 (Студия «Грани»)</p>
-                    </div>
+                    <div class="contacts__details">
+                        <div class="contacts__block reveal-up" style="--reveal-delay: 3;">
+                            <h3 class="contacts__label">Адрес</h3>
+                            <div class="contacts__address-info">
+                                <p class="contacts__mono-text">Московская область, г. Люберцы</p>
+                                <p class="contacts__mono-text">ул. Летчика Ларюшина, 6/2 (Студия «Грани»)</p>
+                            </div>
+                        </div>
 
-                    <div class="contacts__communication reveal-up" style="--reveal-delay: 4;">
-                        <p class="contacts__label">Как связаться со мной напрямую:</p>
-                        <p class="contacts__desc mb-8">Не люблю сложные формы и автоответчики. Если есть вопросы или хочешь подобрать удобное окно — пиши в мессенджеры. Отвечаю сама.</p>
-                        
-                        <div class="contacts__buttons">
-                            <a href="#" class="contact-btn" aria-label="Связаться в Telegram">
-                                <span class="contact-btn__icon tg-icon" aria-hidden="true"></span>
-                                Написать в Telegram
-                            </a>
-                            <a href="#" class="contact-btn" aria-label="Связаться в WhatsApp">
-                                <span class="contact-btn__icon wa-icon" aria-hidden="true"></span>
-                                Написать в WhatsApp
-                            </a>
-                            <a href="tel:+79990000000" class="contact-phone" aria-label="Позвонить по номеру +7 (999) 000-00-00">Телефон: +7 (999) 000-00-00</a>
+                        <div class="contacts__block reveal-up" style="--reveal-delay: 4;">
+                            <h3 class="contacts__label">Связаться напрямую</h3>
+                            <p class="contacts__desc">Не люблю сложные формы и автоответчики. Если есть вопросы или хочешь подобрать удобное окно — пиши в мессенджеры. Отвечаю сама.</p>
+                            
+                            <div class="contacts__buttons">
+                                <a href="#" class="premium-pill premium-pill--contact" aria-label="Связаться в Telegram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="premium-pill__icon">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.48 15.82 14.45 15.48 16.29C15.33 17.07 15.04 17.34 14.77 17.36C14.17 17.41 13.72 16.96 13.14 16.58C12.23 15.98 11.71 15.61 10.83 15.03C9.82 14.36 10.48 13.99 11.06 13.39C11.21 13.23 13.84 10.84 13.89 10.63C13.9 10.6 13.9 10.53 13.86 10.5C13.82 10.47 13.75 10.48 13.7 10.49C13.62 10.51 12.35 11.35 9.8 13.07C9.43 13.33 9.09 13.45 8.78 13.45C8.45 13.44 7.82 13.26 7.34 13.11C6.75 12.92 6.29 12.82 6.33 12.49C6.35 12.32 6.58 12.14 7.04 11.96C9.84 10.74 11.7 9.94 12.63 9.55C15.28 8.45 15.83 8.26 16.19 8.25C16.27 8.25 16.45 8.27 16.56 8.36C16.65 8.43 16.68 8.53 16.69 8.6C16.68 8.64 16.66 8.74 16.64 8.8Z" fill="#E0C7C0"/>
+                                    </svg>
+                                    <span class="premium-pill__text">Telegram</span>
+                                </a>
+                                <a href="#" class="premium-pill premium-pill--contact" aria-label="Связаться в WhatsApp">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="premium-pill__icon">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.46 15.88C16.1 16.89 15.2 17.57 14.28 17.75C13.56 17.89 12.58 17.87 10.43 16.98C7.6 15.8 5.76 12.91 5.61 12.71C5.46 12.51 4.3 10.97 4.3 9.38C4.3 7.79 5.12 7.02 5.46 6.67C5.74 6.38 6.22 6.24 6.62 6.24C6.75 6.24 6.87 6.24 6.98 6.25C7.32 6.26 7.49 6.28 7.71 6.81C7.98 7.46 8.62 9.03 8.7 9.2C8.78 9.37 8.88 9.58 8.77 9.8C8.66 10.02 8.56 10.11 8.39 10.3C8.22 10.49 8.06 10.63 7.88 10.84C7.72 11.02 7.53 11.23 7.74 11.59C7.94 11.95 8.61 13.05 9.61 13.94C10.9 15.09 11.94 15.45 12.33 15.61C12.67 15.75 13.08 15.72 13.34 15.44C13.68 15.08 14.09 14.47 14.52 13.88C14.82 13.46 15.2 13.41 15.61 13.56C16.03 13.7 18.23 14.79 18.66 15.01C19.09 15.23 19.38 15.34 19.49 15.53C19.6 15.71 19.6 16.65 19.24 17.66L16.46 15.88Z" fill="#E0C7C0"/>
+                                    </svg>
+                                    <span class="premium-pill__text">WhatsApp</span>
+                                </a>
+                            </div>
+                            <div class="contacts__phone-wrapper mt-6">
+                                <a href="tel:+79990000000" class="contacts__phone-link">
+                                    <span class="contacts__phone-label">Телефон:</span> +7 (999) 000-00-00
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
