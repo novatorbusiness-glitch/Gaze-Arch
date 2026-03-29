@@ -251,3 +251,39 @@ document.addEventListener('DOMContentLoaded', () => {
         blurObserver.observe(el);
     });
 });
+
+/* ВСТАВИТЬ В JS/MAIN.JS */
+
+/* ==========================================================================
+   EDUCATION LANDING PAGE ANIMATIONS & LOGIC
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Scroll Reveal Intersection Observer (for .reveal-hidden and .blur-reveal-hidden)
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('reveal-hidden')) {
+                    entry.target.classList.remove('reveal-hidden');
+                    entry.target.classList.add('reveal-visible');
+                }
+                
+                if (entry.target.classList.contains('blur-reveal-hidden')) {
+                    entry.target.classList.remove('blur-reveal-hidden');
+                    entry.target.classList.add('blur-reveal-visible');
+                }
+                
+                // Once revealed, we don't need to observe it anymore
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Trigger when 15% of the element is visible
+    });
+
+    // Observe all elements with animation classes
+    const animatedElements = document.querySelectorAll('.reveal-hidden, .blur-reveal-hidden');
+    animatedElements.forEach(el => revealObserver.observe(el));
+});

@@ -1781,3 +1781,120 @@ h1, h2, h3, h4, h5, h6 {
 .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 .transform { transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
 .group:hover .group-hover\:translate-x-1 { transform: translateX(0.25rem); }
+
+/* ВСТАВИТЬ В CSS/STYLE.CSS */
+
+/* ==========================================================================
+   GLOBAL DESIGN SYSTEM & UI LAWS (EDUCATION LANDING PAGE)
+   ========================================================================== */
+:root {
+    --color-deep-cocoa: #4A413A;
+    --color-pearl-ivory: #F9F8F6;
+    --color-soft-cocoa: #6B5E53;
+    --color-dusty-rose: #E0C7C0;
+    --color-warm-powder: #EAE1DE;
+    --edu-border-radius-card: 32px;
+    --edu-border-radius-btn: 9999px;
+}
+
+/* Base Editorial Styling */
+.edu-section {
+    padding: 120px 0;
+}
+@media (max-width: 1024px) {
+    .edu-section {
+        padding: 80px 0;
+    }
+}
+
+.edu-text-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.edu-paragraph {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    line-height: 1.8;
+    color: var(--color-soft-cocoa);
+    margin-bottom: 32px;
+}
+.edu-paragraph--center {
+    text-align: center;
+}
+
+.edu-bento-grid {
+    display: grid;
+    gap: 24px;
+}
+
+/* Bento Card Hover */
+.edu-bento-card {
+    background-color: var(--color-warm-powder);
+    border-radius: var(--edu-border-radius-card);
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+.edu-bento-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+.reveal-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-out;
+}
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blur-reveal-hidden {
+    filter: blur(10px);
+    opacity: 0;
+    transition: filter 1s ease-out, opacity 1s ease-out;
+}
+.blur-reveal-visible {
+    filter: blur(0);
+    opacity: 1;
+}
+
+/* Custom CTA Button */
+.edu-btn--primary {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-deep-cocoa);
+    color: var(--color-white);
+    border-radius: var(--edu-border-radius-btn);
+    padding: 24px 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.edu-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(74, 65, 58, 0.2);
+}
+
+/* Hero Frosted Glass (Стекломорфизм) */
+.edu-frosted-glass {
+    background: rgba(249, 248, 246, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(224, 199, 192, 0.3);
+    border-radius: var(--edu-border-radius-card);
+    padding: 60px 40px;
+    box-shadow: 0 40px 80px rgba(107, 94, 83, 0.05);
+}
+@media (max-width: 768px) {
+    .edu-frosted-glass {
+        padding: 40px 20px;
+    }
+}
