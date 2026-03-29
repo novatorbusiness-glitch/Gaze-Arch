@@ -1,3 +1,24 @@
+/* База для всех страниц */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; overflow-x: hidden; }
+
+/* Тот самый контейнер, который соберет сайт в кучу */
+.container, [class$="__inner"], [class$="-inner"] {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Сетка услуг на главной (3 в ряд) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+section { padding: 100px 0; }
+
 /* ВСТАВИТЬ В CSS/STYLE.CSS */
 
 :root {

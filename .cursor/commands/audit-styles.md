@@ -1,1 +1,0 @@
-grep -r "class=" . | cut -d'"' -f2 | sort | uniq
