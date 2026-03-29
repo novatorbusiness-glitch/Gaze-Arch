@@ -1,0 +1,493 @@
+/* GLOBAL SETTINGS - Genesis Standard */
+:root {
+    --bg-color: #F9F8F6;
+    --text-color: #6B5E53;
+    --accent-color: #E0C7C0;
+    --highlight-color: #EAE1DE;
+
+    --font-heading: 'Montserrat', sans-serif;
+    --font-micro: 'JetBrains Mono', monospace;
+
+    --container-width: 1200px;
+    --header-height: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-heading);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* ========================================= */
+/* BLOCK 1: HEADER                           */
+/* ========================================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 50;
+    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.header.scrolled {
+    background-color: rgba(249, 248, 246, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header-logo a {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+.header-nav {
+    display: none; /* Mobile first hidden, show on desktop */
+}
+
+@media (min-width: 1024px) {
+    .header-nav {
+        display: block;
+    }
+
+    .nav-list {
+        display: flex;
+        gap: 32px; /* gap-8 in tailwind approx */
+    }
+
+    .nav-list a {
+        font-family: var(--font-micro);
+        font-size: 14px;
+        color: var(--text-color);
+        opacity: 0.7;
+        position: relative;
+    }
+
+    .nav-list a:hover {
+        opacity: 1;
+    }
+
+    /* Premium Underline Animation */
+    .nav-list a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 50%;
+        background-color: var(--accent-color);
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .nav-list a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+}
+
+.header-action {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 8px 24px;
+    border-radius: 999px; /* Pill shape */
+    font-size: 14px;
+    font-family: var(--font-micro);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+/* Minimalist Hamburger */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    width: 30px;
+    height: 30px;
+    z-index: 60;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover .hamburger-line {
+    width: 30px;
+    background-color: var(--accent-color);
+}
+
+/* ========================================= */
+/* BLOCK 2: HERO SCREEN                      */
+/* ========================================= */
+
+.hero {
+    min-height: calc(100vh - var(--header-height));
+    padding-top: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding-bottom: 80px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-content {
+    grid-column: span 12; /* Mobile full width */
+}
+
+@media (min-width: 1024px) {
+    .hero-content {
+        grid-column: span 7;
+    }
+    .hero-visual {
+        grid-column: span 5;
+    }
+}
+
+/* Typography & Content */
+.badge {
+    display: inline-block;
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    padding: 4px 16px;
+    color: var(--accent-color);
+    font-family: var(--font-micro);
+    font-size: 12px;
+    margin-bottom: 32px;
+    letter-spacing: 0.1em;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 42px; /* Scale down for mobile */
+    line-height: 1.1;
+    color: var(--text-color);
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 56px;
+    }
+}
+
+.hero-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 40px;
+    max-width: 90%;
+}
+
+.hero-subtitle .highlight {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+/* Features Cards */
+.features-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+    .features-cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.feature-card p {
+    font-family: var(--font-micro);
+    font-size: 12px;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* Actions */
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+    .hero-actions {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 999px;
+    font-family: var(--font-heading);
+}
+
+.btn-geometry {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
+
+.btn-geometry:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.btn-secondary {
+    font-family: var(--font-micro);
+    font-size: 14px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-secondary:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+
+/* Visual Overlay & Animation */
+.hero-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5/6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visual-placeholder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(234, 225, 222, 0.2), rgba(249, 248, 246, 0.5));
+}
+
+.geometry-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.face-base {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+}
+
+
+/* SVG Path Drawing Animation */
+.draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawPath 4s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite alternate;
+}
+
+@keyframes drawPath {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ========================================= */
+/* ANIMATIONS (Intersection Observer)        */
+/* ========================================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================= */
+/* GEOMETRY GAME OVERLAY                     */
+/* ========================================= */
+
+.geometry-overlay-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(249, 248, 246, 0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.geometry-overlay-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.geometry-game-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas#geometryCanvas {
+    cursor: crosshair;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.game-instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-micro);
+    color: var(--text-color);
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.close-geometry {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 24px;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+    transition: transform 0.3s ease;
+}
+
+.close-geometry:hover {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}

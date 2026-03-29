@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAZE. ARCHITECTURE</title>
+    <meta name="description" content="Твой дорогой взгляд без грамма косметики. Метод Анны Казак.">
+
+    <!-- OpenGraph Meta -->
+    <meta property="og:title" content="GAZE. ARCHITECTURE">
+    <meta property="og:description" content="Твой дорогой взгляд без грамма косметики. Метод Анны Казак.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- BLOCK 1: HEADER -->
+    <header class="header js-header">
+        <div class="container header-inner">
+            <div class="header-logo">
+                <a href="index.html">GAZE. ARCHITECTURE</a>
+            </div>
+
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li><a href="portfolio.html">Портфолио</a></li>
+                    <li><a href="education.html">Обучение</a></li>
+                    <li><a href="blog/index.html">Блог</a></li>
+                    <li><a href="certificates.html">Сертификаты</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-action">
+                <a href="#booking" class="btn btn-primary magnetic" data-magnetic>Записаться</a>
+                <button class="hamburger" aria-label="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BLOCK 2: HERO SCREEN -->
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+
+                <!-- LEFT COLUMN -->
+                <div class="hero-content">
+                    <div class="badge fade-up">МЕТОД АННЫ КАЗАК // GAZE ARCHITECTURE</div>
+
+                    <h1 class="hero-title fade-up">
+                        Твой дорогой взгляд без грамма косметики. Свободное утро и уверенность 24/7.
+                    </h1>
+
+                    <h2 class="hero-subtitle fade-up">
+                        Подбираю форму бровей и ресниц точно под твое лицо. Эффект до 4 недель — экономия 30 минут на сборах каждый день. Забирай <span class="highlight">бонус 5%</span> на первое знакомство.
+                    </h2>
+
+                    <div class="features-cards">
+                        <div class="feature-card fade-up">
+                            <p>+30 минут сна. Свобода от косметики по утрам.</p>
+                        </div>
+                        <div class="feature-card fade-up">
+                            <p>Твоя анатомия. Строгая геометрия без шаблонов.</p>
+                        </div>
+                        <div class="feature-card fade-up">
+                            <p>Умные составы. Здоровье родных ресниц и бровей.</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions fade-up">
+                        <button class="btn btn-large btn-geometry js-open-geometry" data-magnetic>Подобрать геометрию</button>
+                        <a href="portfolio.html" class="btn btn-secondary">Смотреть работы</a>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN (VISUAL) -->
+                <div class="hero-visual fade-up">
+                    <div class="visual-placeholder">
+                        <!-- Abstract Face Silhouette Base -->
+                        <svg viewBox="0 0 500 600" class="face-base" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 250, 50 C 350, 50 400, 150 400, 300 C 400, 450 320, 550 250, 550 C 180, 550 100, 450 100, 300 C 100, 150 150, 50 250, 50 Z" fill="#EAE1DE" opacity="0.3"/>
+                        </svg>
+
+                        <!-- Animated Golden Geometry -->
+                        <svg viewBox="0 0 500 600" class="geometry-overlay js-animated-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Eyebrow Left -->
+                            <path class="draw-line" d="M 160, 230 Q 200, 210 230, 230" stroke="#E0C7C0" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- Eyebrow Right -->
+                            <path class="draw-line" d="M 340, 230 Q 300, 210 270, 230" stroke="#E0C7C0" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- Eye Left -->
+                            <path class="draw-line" d="M 160, 270 Q 195, 250 220, 270 Q 195, 280 160, 270" stroke="#E0C7C0" stroke-width="1.5" fill="none"/>
+                            <!-- Eye Right -->
+                            <path class="draw-line" d="M 340, 270 Q 305, 250 280, 270 Q 305, 280 340, 270" stroke="#E0C7C0" stroke-width="1.5" fill="none"/>
+                            <!-- Golden Ratio Spiral Overlay (Abstract) -->
+                            <path class="draw-line" d="M 250, 300 C 350, 300 350, 200 250, 200 C 180, 200 180, 320 250, 320 C 380, 320 380, 150 250, 150" stroke="#E0C7C0" stroke-width="0.5" fill="none" opacity="0.6"/>
+                            <!-- Connecting Lines -->
+                            <line class="draw-line" x1="250" y1="50" x2="250" y2="550" stroke="#E0C7C0" stroke-width="0.5" stroke-dasharray="5,5" opacity="0.5"/>
+                            <line class="draw-line" x1="100" y1="270" x2="400" y2="270" stroke="#E0C7C0" stroke-width="0.5" stroke-dasharray="5,5" opacity="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- GEOMETRY GAME OVERLAY -->
+    <div class="geometry-overlay-screen js-geometry-overlay">
+        <button class="close-geometry js-close-geometry" aria-label="Закрыть">✕</button>
+        <div class="geometry-game-container">
+            <canvas id="geometryCanvas"></canvas>
+            <div class="game-instructions">
+                Соединяй ключевые точки для создания идеальной архитектуры
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
