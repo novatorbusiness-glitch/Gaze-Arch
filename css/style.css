@@ -957,10 +957,16 @@ canvas#geometryCanvas {
 /* Grid Layout */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 30px;
     margin-bottom: 80px;
     width: 100%;
+}
+
+@supports (grid-template-rows: subgrid) {
+    .services-grid {
+        grid-template-rows: auto auto 1fr auto auto;
+    }
 }
 
 /* Service Card */
@@ -973,6 +979,16 @@ canvas#geometryCanvas {
     display: flex;
     flex-direction: column;
     min-width: 0;
+}
+
+@supports (grid-template-rows: subgrid) {
+    .service-card {
+        display: grid;
+        grid-row: span 5;
+        grid-template-rows: subgrid;
+        padding: 40px 30px;
+        gap: 0;
+    }
 }
 
 .service-card:hover {
@@ -1001,6 +1017,12 @@ canvas#geometryCanvas {
     opacity: 0.8;
     margin-bottom: 30px;
     flex-grow: 1; /* Pushes price list to the bottom */
+}
+
+@supports (grid-template-rows: subgrid) {
+    .service-desc {
+        flex-grow: 0;
+    }
 }
 
 /* Price List inside Card */
@@ -1036,9 +1058,15 @@ canvas#geometryCanvas {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     opacity: 0.6;
-    margin-top: 15px;
+    margin-top: auto; /* Fallback for flexbox */
     border-top: 1px dashed rgba(107, 94, 83, 0.2);
     padding-top: 15px;
+}
+
+@supports (grid-template-rows: subgrid) {
+    .service-note {
+        margin-top: 15px;
+    }
 }
 
 /* Final CTA / Bonus Container */
@@ -1091,6 +1119,16 @@ canvas#geometryCanvas {
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    @supports (grid-template-rows: subgrid) {
+        .service-card {
+            grid-template-rows: auto;
+            grid-row: auto;
+        }
+        .services-grid {
+            grid-template-rows: auto;
+        }
     }
     .services-pricing {
         padding: 80px 0;
