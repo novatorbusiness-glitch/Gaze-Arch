@@ -1142,6 +1142,253 @@ canvas#geometryCanvas {
 }
 
 /* =========================================
+   BLOCK 8: LEAD MAGNET (GUIDE DOWNLOAD)
+   ========================================= */
+
+.lead-magnet {
+    padding: 150px 0;
+    background-color: var(--bg-color); /* Pearl Ivory */
+    overflow: hidden;
+}
+
+.lead-magnet-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    align-items: center;
+}
+
+/* Left Column: Content (6 cols) */
+.lead-magnet-content {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lead-magnet-title {
+    font-family: var(--font-heading);
+    font-weight: 600; /* SemiBold */
+    font-size: 42px;
+    color: var(--text-color);
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+}
+
+.lead-magnet-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-color); /* Dusty Rose */
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.lead-magnet-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.lead-magnet-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.lead-magnet-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.bullet-number {
+    font-family: var(--font-micro);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--accent-color);
+    letter-spacing: 0.1em;
+    padding-top: 2px; /* align with first line of text */
+}
+
+.bullet-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.lead-magnet-warning {
+    font-family: var(--font-micro);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 2px solid var(--accent-color);
+}
+
+.magnetic-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    position: relative;
+    padding: 18px 40px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    font-family: var(--font-micro);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.4s ease; /* Transform is handled by JS Lerp */
+}
+
+.magnetic-btn:hover {
+    background-color: var(--text-color);
+}
+
+.magnetic-btn .btn-text {
+    position: relative;
+    z-index: 2;
+    pointer-events: none; /* Let the container handle mouse events for Lerp */
+}
+
+/* Middle Column: Spacer (1 col) */
+.lead-magnet-spacer {
+    grid-column: span 1;
+}
+
+/* Right Column: Visual Mockup (5 cols) */
+.lead-magnet-visual {
+    grid-column: 8 / span 5;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mockup-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 3 / 4;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(107, 94, 83, 0.15); /* Soft Cocoa shadow */
+    animation: floating 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(-2deg); }
+}
+
+.mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mockup-container:hover .mockup-image {
+    filter: grayscale(0%);
+}
+
+.mockup-glass-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(249, 248, 246, 0.6); /* Pearl Ivory glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    transition: background 0.5s ease;
+}
+
+.mockup-container:hover .mockup-glass-overlay {
+    background: rgba(249, 248, 246, 0.8);
+}
+
+.mockup-badge {
+    display: block;
+    font-family: var(--font-micro);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.mockup-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--text-color);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* =========================================
+   MOBILE ADAPTATION FOR BLOCK 8
+   ========================================= */
+@media (max-width: 992px) {
+    .lead-magnet-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .lead-magnet-content {
+        grid-column: 1 / -1;
+    }
+
+    .lead-magnet-spacer {
+        display: none;
+    }
+
+    .lead-magnet-visual {
+        grid-column: 1 / -1;
+        order: 2; /* Ensure visual is under text */
+    }
+
+    .mockup-container {
+        animation: none; /* Disable floating on tablet/mobile for performance */
+        transform: rotate(-2deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .lead-magnet {
+        padding: 80px 0;
+    }
+
+    .lead-magnet-title {
+        font-size: clamp(32px, 8vw, 42px);
+    }
+
+    .mockup-container {
+        max-width: 320px;
+        transform: none; /* Flat on mobile */
+    }
+}
+
+
+/* =========================================
    BLOCK 7: SOCIAL PROOF & MARQUEE
    ========================================= */
 

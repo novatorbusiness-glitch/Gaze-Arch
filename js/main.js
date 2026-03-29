@@ -32,24 +32,66 @@ document.addEventListener('DOMContentLoaded', () => {
     fadeElements.forEach(el => observer.observe(el));
 
     // 3. MAGNETIC HOVER EFFECT FOR BUTTONS
-    const magneticElements = document.querySelectorAll('[data-magnetic]');
+    const magneticElements = document.querySelectorAll('[data-magnetic], .js-magnetic');
 
     magneticElements.forEach((el) => {
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let animationFrameId = null;
+
+        const lerp = (start, end, factor) => {
+            return start + (end - start) * factor;
+        };
+
+        const updatePosition = () => {
+            currentX = lerp(currentX, mouseX, 0.1); // Lerp factor (0.1) controls the "stickiness" or delay
+            currentY = lerp(currentY, mouseY, 0.1);
+
+            // Apply transformation
+            el.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+            // Continue animating if difference is significant, otherwise stop
+            if (Math.abs(currentX - mouseX) > 0.1 || Math.abs(currentY - mouseY) > 0.1) {
+                animationFrameId = requestAnimationFrame(updatePosition);
+            } else {
+                animationFrameId = null;
+            }
+        };
+
         el.addEventListener('mousemove', (e) => {
             const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+            // Calculate distance from center of the element
+            const x = (e.clientX - rect.left - rect.width / 2);
+            const y = (e.clientY - rect.top - rect.height / 2);
 
-            // Limit movement to a small radius
-            const limit = 10;
-            const moveX = Math.max(-limit, Math.min(limit, x * 0.2));
-            const moveY = Math.max(-limit, Math.min(limit, y * 0.2));
+            // Limit the maximum movement
+            const strength = 0.3; // How far it can move relative to mouse
+            mouseX = x * strength;
+            mouseY = y * strength;
 
-            el.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+            // Start animation loop if not running
+            if (!animationFrameId) {
+                updatePosition();
+            }
         });
 
         el.addEventListener('mouseleave', () => {
-            el.style.transform = 'translate(0px, 0px) scale(1)';
+            // Reset target position
+            mouseX = 0;
+            mouseY = 0;
+
+            if (!animationFrameId) {
+                updatePosition();
+            }
+
+            // Ensure snap back to exactly 0,0 after a delay
+            setTimeout(() => {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+                el.style.transform = '';
+            }, 500);
         });
     });
 
