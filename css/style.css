@@ -1712,6 +1712,7 @@ canvas#geometryCanvas {
    BLOCK 9: FAQ
    ========================================================================== */
 #faq {
+    padding: 150px 0;
     background-color: var(--bg-color);
 }
 
@@ -1727,11 +1728,23 @@ canvas#geometryCanvas {
     top: 15vh;
 }
 
-.faq-sticky-col .section-title {
+.faq-title {
     font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 64px;
+    font-weight: 800; /* Extra Bold */
+    font-size: 40px;
+    color: var(--text-color); /* #6B5E53 */
+    line-height: 1.2;
     margin-top: 20px;
+    margin-bottom: 24px; /* mb-6 equivalent */
+}
+
+.faq-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 500; /* Medium */
+    font-size: 18px;
+    color: var(--accent-color); /* #E0C7C0 */
+    margin-bottom: 40px; /* mb-10 equivalent */
+    line-height: 1.5;
 }
 
 .faq-accordion {
@@ -1825,7 +1838,7 @@ canvas#geometryCanvas {
 
 .faq-answer {
     overflow: hidden;
-    font-family: var(--font-text);
+    font-family: var(--font-heading);
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-color);
