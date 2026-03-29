@@ -1707,3 +1707,154 @@ canvas#geometryCanvas {
         margin: 20px;
     }
 }
+
+/* ==========================================================================
+   BLOCK 9: FAQ
+   ========================================================================== */
+#faq {
+    background-color: var(--bg-color);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 120px;
+    align-items: start;
+}
+
+.faq-sticky-col {
+    position: sticky;
+    top: 15vh;
+}
+
+.faq-sticky-col .section-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 64px;
+    margin-top: 20px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(107, 94, 83, 0.2);
+}
+
+.faq-item:first-child {
+    border-top: 1px solid rgba(107, 94, 83, 0.2);
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 40px 0;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: rgba(107, 94, 83, 0.7);
+}
+
+/* 1px minimalistic plus icon */
+.faq-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--text-color);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Horizontal line */
+.faq-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: translateY(-50%);
+}
+
+/* Vertical line */
+.faq-icon::after {
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+/* Open State for Icon */
+.faq-item.is-open .faq-icon::before {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-item.is-open .faq-icon::after {
+    transform: translateX(-50%) rotate(45deg);
+}
+
+/* Accordion Animation Logic via CSS Grid */
+.faq-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.is-open .faq-answer-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.faq-answer {
+    overflow: hidden;
+    font-family: var(--font-text);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Inner padding trick to avoid margin collapse issues during animation */
+.faq-item.is-open .faq-answer {
+    padding-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .faq-sticky-col {
+        position: relative;
+        top: 0;
+    }
+
+    .faq-question {
+        padding: 30px 0;
+        font-size: 20px;
+    }
+
+    .faq-item.is-open .faq-answer {
+        padding-bottom: 30px;
+    }
+}

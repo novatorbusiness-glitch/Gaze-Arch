@@ -346,3 +346,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+/* ==========================================================================
+   FAQ ACCORDION LOGIC
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const currentItem = question.closest('.faq-item');
+            const isOpen = currentItem.classList.contains('is-open');
+
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('is-open');
+                const btn = item.querySelector('.faq-question');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle current
+            if (!isOpen) {
+                currentItem.classList.add('is-open');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+});
