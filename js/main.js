@@ -240,4 +240,67 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.removeEventListener('mousemove', handleMouseMove);
         canvas.removeEventListener('touchmove', handleTouchMove);
     });
+
+    // 6. BONUS MODAL LOGIC (LEAD MAGNET)
+    const bonusModalOverlay = document.querySelector('.js-bonus-modal-overlay');
+    const openBonusBtns = document.querySelectorAll('.js-open-bonus-modal');
+    const closeBonusBtn = document.querySelector('.js-close-bonus-modal');
+
+    if (bonusModalOverlay && closeBonusBtn) {
+        // Open modal
+        openBonusBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                bonusModalOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden'; // Lock background scroll
+            });
+        });
+
+        // Close modal on button click
+        closeBonusBtn.addEventListener('click', () => {
+            bonusModalOverlay.classList.remove('is-open');
+            document.body.style.overflow = ''; // Unlock scroll
+        });
+
+        // Close modal on overlay click (outside the content)
+        bonusModalOverlay.addEventListener('click', (e) => {
+            if (e.target === bonusModalOverlay) {
+                bonusModalOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && bonusModalOverlay.classList.contains('is-open')) {
+                bonusModalOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Form submit override (prevent default for demo purposes)
+        const bonusForm = bonusModalOverlay.querySelector('.bonus-form');
+        if (bonusForm) {
+            bonusForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = bonusForm.querySelector('.modal-submit');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.textContent = 'Отправлено!';
+                submitBtn.style.backgroundColor = 'var(--text-color)';
+                submitBtn.style.color = 'var(--bg-color)';
+
+                setTimeout(() => {
+                    bonusModalOverlay.classList.remove('is-open');
+                    document.body.style.overflow = '';
+                    // Reset form
+                    bonusForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.style.color = '';
+                }, 2000);
+            });
+        }
+    }
+
 });

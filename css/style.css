@@ -918,3 +918,8 @@ canvas#geometryCanvas {
 .sticky-image-wrapper {
     z-index: 10;
 }
+
+/* =========================================
+   IMPORT BLOCKS 6 & 7
+   ========================================= */
+@import url('blocks67.css');
