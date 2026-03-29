@@ -372,3 +372,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// LASH MAPPER ANIMATION
+document.addEventListener('DOMContentLoaded', () => {
+    const lashMapperSection = document.getElementById('lash-mapper');
+    if (!lashMapperSection) return;
+
+    const lashPath = document.getElementById('lash-path');
+    const annotations = document.querySelectorAll('.lash-mapper .annotation');
+
+    const mapperObserverOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Start animation when 50% of the section is visible
+    };
+
+    const mapperObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 1. Draw the SVG line
+                if (lashPath) {
+                    lashPath.classList.add('draw');
+                }
+
+                // 2. Fade in annotations with a staggered delay
+                annotations.forEach((anno, index) => {
+                    setTimeout(() => {
+                        anno.classList.add('is-visible');
+                    }, 800 + (index * 300)); // Start after the line draws a bit, then 300ms stagger
+                });
+
+                // Stop observing once animated
+                observer.unobserve(entry.target);
+            }
+        });
+    }, mapperObserverOptions);
+
+    mapperObserver.observe(lashMapperSection);
+});
