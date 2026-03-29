@@ -401,6 +401,198 @@ button {
 }
 
 /* ========================================= */
+/* BLOCK 3: VIDEO GREETING                   */
+/* ========================================= */
+
+.video-greeting {
+    padding: 128px 0; /* py-32 */
+    background-color: var(--bg-color);
+}
+
+.greeting-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.greeting-content {
+    grid-column: span 12;
+}
+
+@media (min-width: 1024px) {
+    .greeting-content {
+        grid-column: span 6;
+    }
+    .greeting-visual {
+        grid-column: span 5;
+        grid-column-start: 8; /* pushes to the right */
+    }
+}
+
+.greeting-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--text-color);
+    margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+    .greeting-title {
+        font-size: 48px;
+    }
+}
+
+.greeting-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-color);
+    margin-bottom: 32px;
+}
+
+.greeting-paragraph {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.greeting-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* gap-6 */
+    margin-top: 40px;
+}
+
+.bullet-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 20px;
+    cursor: default;
+}
+
+.bullet-indicator {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 2px;
+    height: 12px;
+    background-color: var(--accent-color);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top;
+}
+
+.bullet-item:hover .bullet-indicator {
+    transform: scaleY(3); /* Vertical indicator scales up */
+}
+
+.bullet-item p {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.bullet-item strong {
+    font-weight: 600;
+}
+
+/* Video Visual Container */
+.greeting-visual {
+    width: 100%;
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Strictly 16:9 as requested */
+    border-radius: 2rem;
+    overflow: hidden;
+    position: relative;
+    background-color: #EAE1DE; /* Fallback */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Fallback background image (Anna in studio "Grani") + slow zoom effect */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* You can replace this URL with the actual high-quality image later */
+    background-image: url('https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1);
+    transition: transform 15s ease-in-out;
+}
+
+/* Slow zoom hover effect on the container to simulate 'live' frame */
+.video-placeholder:hover .video-background {
+    transform: scale(1.05);
+}
+
+/* Dark overlay to make play button visible */
+.video-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(107, 94, 83, 0.1);
+    z-index: 1;
+    transition: background 0.4s ease;
+}
+
+.video-placeholder:hover::after {
+    background: rgba(107, 94, 83, 0.2);
+}
+
+/* Glassmorphism Play Button */
+.play-btn {
+    position: relative;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* White icon for contrast */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.play-btn svg {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px; /* visually center the play triangle */
+}
+
+/* Inherits the .magnetic class behavior defined earlier for hover */
+.play-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* ========================================= */
 /* ANIMATIONS (Intersection Observer)        */
 /* ========================================= */
 

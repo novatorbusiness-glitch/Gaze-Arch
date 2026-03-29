@@ -53,7 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. GEOMETRY MINI-GAME (CANVAS)
+    // 4. VIDEO PLAY BUTTON (BLOCK 3)
+    const playBtns = document.querySelectorAll('.js-play-video');
+    playBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Video play triggered');
+            // В будущем здесь будет логика открытия модального окна с плеером
+        });
+    });
+
+    // 5. GEOMETRY MINI-GAME (CANVAS)
     const openBtn = document.querySelector('.js-open-geometry');
     const closeBtn = document.querySelector('.js-close-geometry');
     const overlay = document.querySelector('.js-geometry-overlay');
