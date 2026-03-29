@@ -287,3 +287,166 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.reveal-hidden, .blur-reveal-hidden');
     animatedElements.forEach(el => revealObserver.observe(el));
 });
+/* ВСТАВИТЬ В JS/MAIN.JS */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Header Scroll Effect
+    const header = document.getElementById('header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 2. Magnetic Hover Effect (Smooth 60 FPS)
+    const magneticButtons = document.querySelectorAll('[data-magnetic]');
+
+    magneticButtons.forEach(btn => {
+        const text = btn.querySelector('.btn__text');
+        let rect = btn.getBoundingClientRect();
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let btnX = 0;
+        let btnY = 0;
+        let textX = 0;
+        let textY = 0;
+        let isHovered = false;
+
+        const update = () => {
+            const ease = 0.15;
+
+            if (isHovered) {
+                const targetX = (mouseX - rect.left - rect.width / 2) * 0.3;
+                const targetY = (mouseY - rect.top - rect.height / 2) * 0.3;
+
+                btnX += (targetX - btnX) * ease;
+                btnY += (targetY - btnY) * ease;
+
+                textX += (targetX * 0.5 - textX) * ease;
+                textY += (targetY * 0.5 - textY) * ease;
+            } else {
+                btnX += (0 - btnX) * ease;
+                btnY += (0 - btnY) * ease;
+                textX += (0 - textX) * ease;
+                textY += (0 - textY) * ease;
+            }
+
+            btn.style.transform = `translate3d(${btnX}px, ${btnY}px, 0)`;
+            if (text) {
+                text.style.transform = `translate3d(${textX}px, ${textY}px, 0)`;
+            }
+
+            if (isHovered || Math.abs(btnX) > 0.1 || Math.abs(btnY) > 0.1) {
+                requestAnimationFrame(update);
+            }
+        };
+
+        btn.addEventListener('mouseenter', () => {
+            isHovered = true;
+            rect = btn.getBoundingClientRect();
+            requestAnimationFrame(update);
+        });
+
+        btn.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            isHovered = false;
+        });
+    });
+
+    // 3. EDITORIAL SCROLL REVEAL (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal-hidden, .blur-reveal-hidden, .clip-path-reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                // Only reveal once
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.1
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // 4. ACCORDION LOGIC
+    const accordionTriggers = document.querySelectorAll('.clean-accordion-trigger');
+    accordionTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+            // Close others (Optional, but clean)
+            accordionTriggers.forEach(otherTrigger => {
+                if (otherTrigger !== trigger) {
+                    otherTrigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current
+            trigger.setAttribute('aria-expanded', !isExpanded);
+        });
+    });
+
+    // 5. TIMELINE SCROLL LOGIC
+    const timelineContainer = document.querySelector('.timeline-container');
+    const timelineProgress = document.getElementById('timeline-progress');
+    const timelineSteps = document.querySelectorAll('.timeline-step');
+    const pointBVisual = document.getElementById('point-b-visual');
+
+    if (timelineContainer && timelineProgress) {
+        window.addEventListener('scroll', () => {
+            // Calculate relative scroll position within the container
+            const rect = timelineContainer.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // Start when top of container reaches middle of screen
+            const start = rect.top - viewportHeight / 2;
+            const end = rect.height; // Use full height
+
+            if (start < 0) {
+                // Calculate percentage (0 to 100)
+                let percentage = (Math.abs(start) / end) * 100;
+
+                // Cap between 0 and 100
+                percentage = Math.max(0, Math.min(percentage, 100));
+
+                // Update line height smoothly
+                timelineProgress.style.height = `${percentage}%`;
+
+                // Activate steps based on percentage
+                timelineSteps.forEach((step, index) => {
+                    const stepThreshold = (index + 1) * (100 / timelineSteps.length) - 10; // Trigger slightly before
+                    if (percentage > stepThreshold) {
+                        step.classList.add('active');
+                    } else {
+                        step.classList.remove('active');
+                    }
+                });
+
+                // Trigger Point B visual glow when near the end
+                if (percentage > 90) {
+                    pointBVisual.classList.remove('opacity-0');
+                    pointBVisual.classList.add('opacity-100');
+                } else {
+                    pointBVisual.classList.add('opacity-0');
+                    pointBVisual.classList.remove('opacity-100');
+                }
+            }
+        });
+    }
+
+});
