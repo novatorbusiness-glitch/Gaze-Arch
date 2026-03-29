@@ -16,7 +16,7 @@
     
     <!-- ВСТАВИТЬ В INDEX.HTML (В данном случае education.html) -->
     
-    <header class="header" id="header">
+    <header class="header" id="header" style="background: transparent; backdrop-filter: none; border: none;">
         <div class="header__inner">
             <div class="header__logo">GAZE. ARCHITECTURE</div>
             
@@ -37,43 +37,151 @@
     </header>
 
     <main>
-        <!-- BLOCK 1: HERO & STORYTELLING -->
-        <section class="edu-section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding-top: 140px;">
-            
-            <!-- Soft gradient background -->
-            <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% -20%, rgba(224, 199, 192, 0.4) 0%, rgba(249, 248, 246, 0) 70%); z-index: -1;"></div>
-
-            <div class="edu-text-container edu-frosted-glass blur-reveal-hidden" style="position: relative; z-index: 1;">
-                
-                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); line-height: 1.1; color: var(--color-deep-cocoa); text-align: center; margin-bottom: 40px;" class="reveal-hidden">
-                    Освой профессию один на один и выйди на стабильные 50–70 тысяч рублей в месяц
+        <!-- REVISED EDITORIAL BLOCK 1: HERO -->
+        <section class="edu-hero-mesh">
+            <div class="edu-hero-mesh__inner blur-reveal-hidden">
+                <h1 class="edu-huge-h1 reveal-hidden">
+                    Освой профессию<br>один на один и выйди<br>на стабильные 50–70 тысяч.
                 </h1>
                 
-                <div class="edu-text-content">
-                    <p class="edu-paragraph edu-paragraph--center reveal-hidden" style="transition-delay: 0.1s;">
-                        Индустрия выпускает сотни мастеров, которые в итоге сидят без клиентов. Я передаю профессию лично из рук в руки: от уверенной постановки пинцета до первых платных записей. Ты начнешь работать сразу — без страха ошибки и месяцев бесплатных тренировок на подругах.
-                    </p>
+                <div class="edu-hero-grid">
+                    <div class="edu-hero-grid__left">
+                        <p class="edu-lead-text reveal-hidden" style="transition-delay: 0.1s;">
+                            Индустрия выпускает сотни мастеров, которые в итоге сидят без клиентов. Я передаю профессию лично из рук в руки: от уверенной постановки пинцета до первых платных записей.
+                        </p>
+                    </div>
                     
-                    <p class="edu-paragraph reveal-hidden" style="transition-delay: 0.2s;">
-                        Вместо того чтобы быть одной из двадцати человек в шумном классе, ты получаешь индивидуальное наставничество. Никакой толпы за спиной. Только ты, я и живые модели. Я физически ставлю тебе руку и слежу за каждым микродвижением, пока ты не почувствуешь абсолютную уверенность в своих действиях.
-                    </p>
-                    
-                    <p class="edu-paragraph reveal-hidden" style="transition-delay: 0.3s;">
-                        Но уметь делать красивую архитектуру лица — это только половина дела. Я по шагам покажу, как найти людей. Мы вместе оформим твой профиль на Авито, разберем, что писать и как общаться в переписке, чтобы записывались именно к тебе. Никаких бессмысленных трат: базовый стартовый набор, методическое пособие и гайд по колористике уже ждут тебя на столе. А после того, как ты получишь диплом, я остаюсь на связи, чтобы разбирать твои самостоятельные работы.
-                    </p>
+                    <div class="edu-hero-grid__right">
+                        <p class="edu-sub-text reveal-hidden" style="transition-delay: 0.2s;">
+                            Вместо того чтобы быть одной из двадцати человек в шумном классе, ты получаешь индивидуальное наставничество. Никакой толпы за спиной. Только ты, я и живые модели. Я физически ставлю тебе руку и слежу за каждым микродвижением, пока ты не почувствуешь абсолютную уверенность в своих действиях.
+                        </p>
+                        
+                        <p class="edu-sub-text reveal-hidden" style="transition-delay: 0.3s;">
+                            Но уметь делать красивую архитектуру лица — это только половина дела. Я по шагам покажу, как найти людей. Мы вместе оформим твой профиль на Авито, разберем, что писать и как общаться в переписке, чтобы записывались именно к тебе. Никаких бессмысленных трат: базовый стартовый набор, методическое пособие и гайд по колористике уже ждут тебя на столе. А после того, как ты получишь диплом, я остаюсь на связи, чтобы разбирать твои самостоятельные работы.
+                        </p>
+                        
+                        <div class="edu-hero-btn-wrapper reveal-hidden" style="transition-delay: 0.4s;">
+                            <button class="edu-btn--primary">Выбрать программу</button>
+                        </div>
+                    </div>
                 </div>
-
-                <div style="text-align: center; margin-top: 56px;" class="reveal-hidden" style="transition-delay: 0.4s;">
-                    <button class="edu-btn--primary">Выбрать программу обучения</button>
-                </div>
-                
             </div>
         </section>
+
+        <!-- BLOCK 2: EDITORIAL SPLIT (PHILOSOPHY/APPROACH) -->
+        <section class="edu-split-section">
+            <div class="edu-split-grid">
+                <div class="edu-split-visual reveal-hidden">
+                    <!-- Placeholder for Fashion/Studio Editorial Image -->
+                </div>
+                
+                <div class="edu-split-content">
+                    <h2 class="edu-h2-editorial reveal-hidden" style="transition-delay: 0.1s;">
+                        Не курсы, а<br>наставничество.
+                    </h2>
+                    
+                    <p class="edu-paragraph reveal-hidden" style="transition-delay: 0.2s; max-width: 600px;">
+                        Мы не будем тратить время на бессмысленные лекции, скачанные из интернета. Ты придешь в студию, наденешь форму, и мы сразу начнем работать. Я покажу, как выглядит премиальный сервис, как правильно выстроить свет, снять портфолио и, главное, как создать геометрию лица, за которую клиенты готовы платить выше рынка.
+                    </p>
+                    
+                    <p class="edu-paragraph reveal-hidden" style="transition-delay: 0.3s; max-width: 600px;">
+                        Моя цель — выпустить сильного конкурента, а не очередного мастера, который будет демпинговать цены, чтобы наработать базу.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 3: PROGRAM & PRICING BENTO GRID -->
+        <section class="edu-bento-section">
+            <div class="edu-bento-container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 class="edu-h2-editorial reveal-hidden">Архитектура обучения</h2>
+                    <p class="edu-paragraph reveal-hidden" style="transition-delay: 0.1s;">
+                        Выбери свой формат погружения. Все программы включают стартовый набор, методическое пособие и мою личную поддержку после выпуска.
+                    </p>
+                </div>
+                
+                <div class="edu-bento-grid-layout">
+                    <!-- Bento Card: Full Program (Span 8) -->
+                    <div class="edu-bento-card-editorial bento-col-8 reveal-hidden" style="transition-delay: 0.2s; display: flex; flex-direction: column;">
+                        <span class="edu-bento-label">01 // Флагманский курс</span>
+                        <h3 class="edu-bento-h3">Gaze Architect: Полное погружение</h3>
+                        <p class="edu-sub-text" style="max-width: 100%;">
+                            Профессия с нуля за 4 дня. Изучаем всё: от базовой колористики до сложной геометрии бровей и ламинирования ресниц. 3 живые модели, отработка премиального сервиса, упаковка портфолио и стратегия выхода на доход 50+ тыс. рублей. Стартовый набор премиум-класса включен в стоимость.
+                        </p>
+                        <span class="edu-bento-price">45 000 ₽</span>
+                    </div>
+                    
+                    <!-- Bento Card: Upgrade (Span 4) -->
+                    <div class="edu-bento-card-editorial bento-col-4 reveal-hidden" style="transition-delay: 0.3s; display: flex; flex-direction: column; background-color: var(--color-warm-powder);">
+                        <span class="edu-bento-label">02 // Повышение</span>
+                        <h3 class="edu-bento-h3">Анализ & Ошибки</h3>
+                        <p class="edu-sub-text" style="font-size: 16px;">
+                            Для практикующих мастеров. Разбор ваших работ, исправление ошибок в геометрии, работа со сложными исходниками (асимметрия, перещипанные брови). 1 день, 2 модели.
+                        </p>
+                        <span class="edu-bento-price">18 000 ₽</span>
+                    </div>
+                    
+                    <!-- Bento Card: Strategy (Span 6) -->
+                    <div class="edu-bento-card-editorial bento-col-6 reveal-hidden" style="transition-delay: 0.4s; display: flex; flex-direction: column;">
+                        <span class="edu-bento-label">03 // Менторство</span>
+                        <h3 class="edu-bento-h3">Продажи & Сервис</h3>
+                        <p class="edu-sub-text" style="font-size: 16px;">
+                            Онлайн или офлайн консультация по упаковке блога, работе с Авито и DIKIDI, скриптам продаж и удержанию клиентов. Выстраиваем систему, при которой клиенты возвращаются.
+                        </p>
+                        <span class="edu-bento-price">10 000 ₽</span>
+                    </div>
+                    
+                    <!-- Bento Card: Bonus (Span 6) -->
+                    <div class="edu-bento-card-editorial bento-col-6 reveal-hidden" style="transition-delay: 0.5s; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: var(--color-deep-cocoa);">
+                        <h3 class="edu-bento-h3" style="color: var(--color-pearl-ivory); margin-bottom: 16px;">Есть вопросы по программе?</h3>
+                        <p class="edu-sub-text" style="color: var(--color-dusty-rose); font-size: 16px; margin-bottom: 32px;">
+                            Давай обсудим их лично в Telegram. Я помогу выбрать подходящий формат.
+                        </p>
+                        <button class="edu-btn--primary" style="background-color: var(--color-pearl-ivory); color: var(--color-deep-cocoa);">
+                            Написать в Telegram
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo" style="margin-top: 0;">
+        <div class="footer__inner">
+            <div class="footer__col footer__col--brand">
+                <div class="footer__logo" aria-hidden="true">GAZE. ARCHITECTURE</div>
+                <p class="footer__desc">Авторский метод Анны Казак. Инженерия взгляда без шаблонов.</p>
+            </div>
+            
+            <div class="footer__col footer__col--nav">
+                <h4 class="footer__title">Навигация</h4>
+                <ul class="footer__list">
+                    <li><a href="index.html#services" class="footer__link">Услуги и цены</a></li>
+                    <li><a href="index.html#philosophy" class="footer__link">Результаты и эмоции</a></li>
+                    <li><a href="education.html" class="footer__link">Обучение для мастеров</a></li>
+                    <li><a href="blog/gaide.html" class="footer__link">Бесплатный гайд</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer__col footer__col--contact">
+                <h4 class="footer__title">Контакты</h4>
+                <ul class="footer__list footer__list--mono">
+                    <li>Москва, Московская обл., г. Люберцы, ул. Летчика Ларюшина, 6/2</li>
+                    <li><a href="https://t.me/a_annett_a" target="_blank" rel="noopener noreferrer" class="footer__link">Запись онлайн 24/7</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer__bottom">
+            <p>© 2026 GAZE. ARCHITECTURE. Все права защищены.</p>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
     <script>
-        // Inline observer trigger if main.js is loaded deferred
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.reveal-hidden, .blur-reveal-hidden');
             setTimeout(() => {
