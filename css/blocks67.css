@@ -117,29 +117,37 @@
 }
 
 /* Final CTA / Bonus Container */
+.final-cta-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .bonus-cta-container {
-    background: var(--text-color);
-    color: var(--bg-color);
+    background: rgba(234, 225, 222, 0.5); /* bg-[#EAE1DE]/50 */
+    border: 1px solid rgba(224, 199, 192, 0.5); /* border-[#E0C7C0]/50 */
+    color: var(--text-color);
     padding: 60px 40px;
-    border-radius: 2px;
+    border-radius: 4px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    width: 100%;
+    max-width: 896px; /* max-w-4xl approx */
 }
 
 .bonus-text {
-    font-family: var(--font-micro);
-    font-size: 14px;
-    letter-spacing: 0.05em;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
     max-width: 600px;
     line-height: 1.6;
 }
 
 .bonus-btn {
-    background: var(--bg-color);
-    color: var(--text-color);
+    background: var(--text-color);
+    color: var(--bg-color);
     border: none;
 }
 
