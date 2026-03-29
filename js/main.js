@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- SCROLL REVEAL ANIMATIONS (Intersection Observer) ---
-    const revealElements = document.querySelectorAll('.reveal-up');
+    const revealElements = document.querySelectorAll('.fade-in-up');
     
     const revealObserverOptions = {
         root: null,
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-revealed');
+                entry.target.classList.add('is-visible');
                 // Optional: Stop observing once revealed
                 observer.unobserve(entry.target);
             }
@@ -234,5 +234,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => {
         revealObserver.observe(el);
+    });
+
+    // --- BLUR REVEAL ANIMATIONS ---
+    const blurElements = document.querySelectorAll('.blur-reveal');
+    const blurObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealObserverOptions);
+
+    blurElements.forEach(el => {
+        blurObserver.observe(el);
     });
 });

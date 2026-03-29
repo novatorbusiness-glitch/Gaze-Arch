@@ -1649,6 +1649,60 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* =========================================================================
+   GAZE ACADEMY (EDUCATION) GLOBAL EDITORIAL STYLES
+   ========================================================================= */
+
+.edu-section {
+    padding: 120px 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .edu-section {
+        padding: 80px 0;
+    }
+}
+
+.edu-editorial-text {
+    max-width: 800px;
+    margin: 0 auto 32px;
+    text-align: center;
+    line-height: 1.8;
+    color: #6B5E53;
+}
+
+.edu-h2 {
+    color: #4A413A;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+/* Force Animations (Scroll Reveal via IntersectionObserver) */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Blur Reveal for Hero Words/Headings */
+.blur-reveal {
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.blur-reveal.is-visible {
+    opacity: 1;
+    filter: blur(0px);
+}
+
 /* Tailwind-like Utility Classes for Education Page (Inline styled overrides mostly handled inside the HTML, these are backups) */
 .font-montserrat { font-family: var(--font-primary); }
 .font-mono { font-family: var(--font-secondary); }
