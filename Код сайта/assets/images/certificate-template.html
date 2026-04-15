@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Сертификат GAZE. ARCH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --warm:   #6B5E53;
+      --blush:  #E0C7C0;
+      --cream:  #F9F8F6;
+      --white:  #FFFFFF;
+      --muted:  rgba(107,94,83,0.55);
+    }
+
+    html, body {
+      width: 297mm;
+      height: 210mm;
+      background: var(--cream);
+    }
+
+    .cert {
+      width: 297mm;
+      height: 210mm;
+      background: var(--cream);
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── Угловые орнаменты ─── */
+    .cert__corner {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+    }
+    .cert__corner--tl { top: 18mm; left: 18mm; }
+    .cert__corner--tr { top: 18mm; right: 18mm; transform: scaleX(-1); }
+    .cert__corner--bl { bottom: 18mm; left: 18mm; transform: scaleY(-1); }
+    .cert__corner--br { bottom: 18mm; right: 18mm; transform: scale(-1,-1); }
+
+    /* ─── Внешняя рамка ─── */
+    .cert__frame-outer {
+      position: absolute;
+      inset: 14mm;
+      border: 1px solid var(--blush);
+      pointer-events: none;
+    }
+    .cert__frame-inner {
+      position: absolute;
+      inset: 17mm;
+      border: 0.5px solid rgba(224,199,192,0.5);
+      pointer-events: none;
+    }
+
+    /* ─── Фоновый орнамент (геометрия взгляда) ─── */
+    .cert__bg-ornament {
+      position: absolute;
+      right: 28mm;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.05;
+    }
+
+    /* ─── Вертикальный разделитель ─── */
+    .cert__divider-v {
+      position: absolute;
+      left: 88mm;
+      top: 22mm;
+      bottom: 22mm;
+      width: 0.5px;
+      background: linear-gradient(to bottom, transparent, var(--blush) 20%, var(--blush) 80%, transparent);
+    }
+
+    /* ─── Левая колонка: бренд ─── */
+    .cert__left {
+      position: absolute;
+      left: 22mm;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 56mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cert__logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cert__logo-img {
+      width: 48px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .cert__brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10pt;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm);
+    }
+
+    .cert__method {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: lowercase;
+    }
+
+    .cert__left-divider {
+      width: 32px;
+      height: 0.5px;
+      background: var(--blush);
+      margin: 4px 0;
+    }
+
+    /* Печать-круг */
+    .cert__seal-wrap {
+      margin-top: 14px;
+    }
+
+    /* ─── Правая колонка: основное содержание ─── */
+    .cert__right {
+      position: absolute;
+      left: 98mm;
+      right: 22mm;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .cert__supertitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 6mm;
+    }
+
+    .cert__headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22pt;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--warm);
+      line-height: 1.2;
+      margin-bottom: 4mm;
+    }
+
+    /* Горизонтальная линия-акцент */
+    .cert__hr {
+      width: 100%;
+      height: 0.5px;
+      background: linear-gradient(to right, var(--blush), transparent);
+      margin-bottom: 5mm;
+    }
+
+    .cert__certifies {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7pt;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+
+    .cert__name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28pt;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--warm);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 5mm;
+      border-bottom: 0.5px solid rgba(224,199,192,0.7);
+      padding-bottom: 3mm;
+    }
+
+    .cert__course-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2mm;
+    }
+
+    .cert__course-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--warm);
+      margin-bottom: 4mm;
+    }
+
+    .cert__description {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7pt;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 6mm;
+    }
+
+    /* Нижняя строка: подпись + дата */
+    .cert__footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 4mm;
+      border-top: 0.5px solid rgba(224,199,192,0.6);
+    }
+
+    .cert__sig-block {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cert__sig-img {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      font-style: italic;
+      color: var(--warm);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    .cert__sig-line {
+      width: 52px;
+      height: 0.5px;
+      background: var(--blush);
+      margin: 3px 0;
+    }
+
+    .cert__sig-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .cert__date-block {
+      text-align: right;
+    }
+
+    .cert__date-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 5.5pt;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cert__date-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--warm);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── Декоративные точки по углам внутренней рамки ─── */
+    .cert__dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--blush);
+    }
+    .cert__dot--tl { top: 16.5mm; left: 16.5mm; }
+    .cert__dot--tr { top: 16.5mm; right: 16.5mm; }
+    .cert__dot--bl { bottom: 16.5mm; left: 16.5mm; }
+    .cert__dot--br { bottom: 16.5mm; right: 16.5mm; }
+
+    /* ─── Print ─── */
+    @media print {
+      html, body { background: var(--cream); }
+      .cert { page-break-inside: avoid; }
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cert">
+
+  <!-- Рамки -->
+  <div class="cert__frame-outer"></div>
+  <div class="cert__frame-inner"></div>
+
+  <!-- Угловые орнаменты -->
+  <svg class="cert__corner cert__corner--tl" viewBox="0 0 56 56" fill="none">
+    <path d="M2 28 L2 2 L28 2" stroke="#E0C7C0" stroke-width="1" stroke-linecap="round"/>
+    <path d="M2 16 L2 2 L16 2" stroke="#E0C7C0" stroke-width="0.5" stroke-linecap="round"/>
+    <circle cx="2" cy="2" r="2.5" fill="#E0C7C0"/>
+  </svg>
+  <svg class="cert__corner cert__corner--tr" viewBox="0 0 56 56" fill="none">
+    <path d="M2 28 L2 2 L28 2" stroke="#E0C7C0" stroke-width="1" stroke-linecap="round"/>
+    <path d="M2 16 L2 2 L16 2" stroke="#E0C7C0" stroke-width="0.5" stroke-linecap="round"/>
+    <circle cx="2" cy="2" r="2.5" fill="#E0C7C0"/>
+  </svg>
+  <svg class="cert__corner cert__corner--bl" viewBox="0 0 56 56" fill="none">
+    <path d="M2 28 L2 2 L28 2" stroke="#E0C7C0" stroke-width="1" stroke-linecap="round"/>
+    <path d="M2 16 L2 2 L16 2" stroke="#E0C7C0" stroke-width="0.5" stroke-linecap="round"/>
+    <circle cx="2" cy="2" r="2.5" fill="#E0C7C0"/>
+  </svg>
+  <svg class="cert__corner cert__corner--br" viewBox="0 0 56 56" fill="none">
+    <path d="M2 28 L2 2 L28 2" stroke="#E0C7C0" stroke-width="1" stroke-linecap="round"/>
+    <path d="M2 16 L2 2 L16 2" stroke="#E0C7C0" stroke-width="0.5" stroke-linecap="round"/>
+    <circle cx="2" cy="2" r="2.5" fill="#E0C7C0"/>
+  </svg>
+
+  <!-- Угловые точки -->
+  <div class="cert__dot cert__dot--tl"></div>
+  <div class="cert__dot cert__dot--tr"></div>
+  <div class="cert__dot cert__dot--bl"></div>
+  <div class="cert__dot cert__dot--br"></div>
+
+  <!-- Фоновый орнамент (геометрия) -->
+  <svg class="cert__bg-ornament" width="160" height="160" viewBox="0 0 160 160" fill="none">
+    <circle cx="80" cy="80" r="72" stroke="#6B5E53" stroke-width="0.5"/>
+    <circle cx="80" cy="80" r="55" stroke="#6B5E53" stroke-width="0.3"/>
+    <circle cx="80" cy="80" r="36" stroke="#6B5E53" stroke-width="0.2"/>
+    <line x1="8" y1="80" x2="152" y2="80" stroke="#6B5E53" stroke-width="0.3"/>
+    <line x1="80" y1="8" x2="80" y2="152" stroke="#6B5E53" stroke-width="0.3"/>
+    <line x1="29" y1="29" x2="131" y2="131" stroke="#6B5E53" stroke-width="0.2"/>
+    <line x1="131" y1="29" x2="29" y2="131" stroke="#6B5E53" stroke-width="0.2"/>
+    <circle cx="80" cy="80" r="3" fill="#E0C7C0"/>
+  </svg>
+
+  <!-- Вертикальный разделитель -->
+  <div class="cert__divider-v"></div>
+
+  <!-- Левая колонка: бренд + печать -->
+  <div class="cert__left">
+    <div class="cert__logo-wrap">
+      <img class="cert__logo-img" src="logo.png" alt="GAZE. ARCH">
+      <span class="cert__brand">GAZE. ARCH</span>
+      <span class="cert__method">метод Анны Казак</span>
+    </div>
+    <div class="cert__left-divider"></div>
+    <!-- Печать -->
+    <div class="cert__seal-wrap">
+      <svg viewBox="0 0 100 100" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Внешние зубцы -->
+        <path d="M50 4
+          L54 14 L63 8 L64 18 L74 16 L71 26 L81 28 L74 36 L83 42 L73 46 L79 55 L68 55 L70 66 L59 63 L57 74 L50 68 L43 74 L41 63 L30 66 L32 55 L21 55 L27 46 L17 42 L26 36 L19 28 L29 26 L26 16 L36 18 L37 8 L46 14 Z"
+          fill="#F9F8F6" stroke="#E0C7C0" stroke-width="0.8"/>
+        <!-- Кольцо 1 -->
+        <circle cx="50" cy="50" r="32" stroke="#E0C7C0" stroke-width="1"/>
+        <!-- Кольцо 2 (тонкое) -->
+        <circle cx="50" cy="50" r="27" stroke="#E0C7C0" stroke-width="0.4"/>
+        <!-- Текст по кругу через path -->
+        <path id="circle-text-path" d="M50,50 m-24,0 a24,24 0 1,1 48,0 a24,24 0 1,1 -48,0" fill="none"/>
+        <text font-family="JetBrains Mono, monospace" font-size="4.8" font-weight="600" fill="#6B5E53" letter-spacing="0.18em">
+          <textPath href="#circle-text-path" startOffset="5%">GAZE. ARCH · МЕТОД АННЫ КАЗАК ·</textPath>
+        </text>
+        <!-- Центральный логотип-инициал -->
+        <text x="50" y="47" dominant-baseline="middle" text-anchor="middle"
+              font-family="Montserrat, sans-serif" font-size="9" font-weight="800"
+              fill="#6B5E53" letter-spacing="0.05em">GAZE</text>
+        <text x="50" y="57" dominant-baseline="middle" text-anchor="middle"
+              font-family="JetBrains Mono, monospace" font-size="4" font-weight="500"
+              fill="#E0C7C0" letter-spacing="0.12em">· ARCH ·</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Правая колонка -->
+  <div class="cert__right">
+    <p class="cert__supertitle">Сертификат о прохождении обучения</p>
+    <h1 class="cert__headline">Инженерия<br>взгляда</h1>
+    <div class="cert__hr"></div>
+
+    <p class="cert__certifies">Настоящим подтверждается, что</p>
+    <p class="cert__name" id="cert-name">Имя Фамилия</p>
+
+    <p class="cert__course-label">Авторский курс</p>
+    <p class="cert__course-name">«Инженерия взгляда» · GAZE. ARCH</p>
+    <p class="cert__description">
+      успешно прошла обучение методу архитектуры взгляда, овладела техникой
+      инженерии формы, химией составов и&nbsp;работой с&nbsp;асимметрией лица.
+      Имеет право принимать клиентов и&nbsp;применять метод GAZE. ARCH
+      в&nbsp;профессиональной деятельности.
+    </p>
+
+    <div class="cert__footer">
+      <div class="cert__sig-block">
+        <span class="cert__sig-img">Анна Казак</span>
+        <div class="cert__sig-line"></div>
+        <span class="cert__sig-label">Автор метода · Преподаватель</span>
+      </div>
+      <div class="cert__date-block">
+        <span class="cert__date-label">Дата выдачи</span>
+        <span class="cert__date-value" id="cert-date">__.__.____</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Автоподстановка даты
+  const today = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('cert-date').textContent =
+    pad(today.getDate()) + '.' + pad(today.getMonth()+1) + '.' + today.getFullYear();
+</script>
+
+</body>
+</html>

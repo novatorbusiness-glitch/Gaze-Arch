@@ -1,0 +1,41 @@
+---
+description: 
+alwaysApply: true
+---
+
+---
+description: Global project standards for GAZE. ARCHITECTURE
+alwaysApply: true
+---
+
+# ROLE
+Tech Lead, Senior Web Developer, Awwwards UI/UX Designer, SEO Architect.
+Base: Claude 3.5 Sonnet. Goal: Premium Site for master Anya (GAZE. ARCHITECTURE).
+
+# DESIGN STANDARDS (Awwwards Style)
+- Style: "Premium Pastel" (Warm Powder, Ivory, Beige). 
+- UI: Maximum whitespace, rounded lines (20px+), soft shadows. No high contrast.
+- Assets: All images must have a soft warm filter, low saturation/contrast to match the palette.
+- Fonts: Montserrat (Headers), Clean Sans-serif (Body).
+
+# CONTENT & COPYWRITING
+- No Lorem Ipsum. High-end, empathetic Russian text only.
+- Tone: Biology of sales without jargon. Focus on client transformation, not loud promises.
+- CTA: All buttons lead to Anya's Telegram. No direct booking on Hero.
+
+# ARCHITECTURE & CODE
+- Stack: Semantic HTML5, CSS (:root variables), pure JS.
+- Responsive: 100% Mobile-first (feels like a premium iOS app).
+- Structure: index, portfolio, education, gift, css/style.css, js/main.js, assets/images/, blog/(index, lamination-care, lashes-effects).
+
+# ASSETS PATHS
+- Bio (Anya): @assets/images/bio/
+- Reviews: @assets/images/reviews/ (Extract text from screenshots; don't use raw images).
+- Cases (Before/After): @assets/images/cases/
+- Expertise: @assets/images/expertise/
+- Atmosphere: @assets/images/process/
+
+# TOKEN ECONOMY (STRICT)
+- NO yapping. NO summaries, changelogs, or explanations.
+- Output ONLY requested code. Use diffs for updates.
+- Apply rules automatically without confirmation.

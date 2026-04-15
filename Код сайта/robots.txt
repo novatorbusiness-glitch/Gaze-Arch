@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Service and technical sections
+Disallow: /admin/
+
+# Temporarily block empty blog pages until content is published
+Disallow: /pages/blog/pages/blog/no-ruler-brows.html
+Disallow: /pages/blog/pages/blog/brow-lamination.html
+Disallow: /pages/blog/pages/blog/washing-mistakes.html
+Disallow: /pages/blog/pages/blog/avito-for-masters.html
+Disallow: /pages/blog/pages/blog/lashes-dont-breathe.html
+Disallow: /pages/blog/pages/blog/brow-oil.html
+
+Sitemap: https://gaze.architecture/sitemap.xml

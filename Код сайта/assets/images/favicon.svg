@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GAZE.ARCH">
+  <defs>
+    <linearGradient id="gaStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#84786f"/>
+      <stop offset="100%" stop-color="#5f544c"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#F9F8F6"/>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="none" stroke="#E0C7C0" stroke-width="1.5"/>
+  <text x="32" y="34" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" fill="url(#gaStroke)" letter-spacing="-1.5">GA</text>
+</svg>
