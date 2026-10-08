@@ -176,3 +176,10 @@
 }
 /* 08.10.2026: подпись «Анна Новицкая» — по центру под знаком GAZE */
 .nav-header__logo-wrapper { align-items: center; }
+
+/* 08.10.2026: на телефоне знак прижат к левому краю текста, подпись слева, бургер справа */
+@media (max-width: 768px) {
+  .nav-header__logo-wrapper { align-items: flex-start; }
+  .nav-header__logo-img { height: 40px; }
+  .nav-header__subtitle { text-align: left; }
+}
