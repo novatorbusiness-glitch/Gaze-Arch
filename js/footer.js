@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <a href="${withBasePath('/#services')}" data-hoverable>Услуги и цены</a>
               <a href="${withBasePath('/pages/portfolio/')}" data-hoverable>Результаты</a>
               <!-- «Блог» скрыт 08.10.2026: статьи вернём позже, переписанными -->
-              <a href="${withBasePath('/pages/education/')}" data-hoverable>Обучение</a>
+              <!-- «Обучение» скрыто 08.10.2026: Анна сейчас обучает редко, страница лежит в pages/education -->
               <a href="${withBasePath('/pages/guide/')}" class="link-guide" data-hoverable>Гайд</a>
               <a href="${withBasePath('/pages/gift/')}" data-hoverable>Сертификаты</a>
             </nav>
