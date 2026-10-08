@@ -1689,8 +1689,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const aiLoading = document.getElementById('ai-loading');
   const aiResult = document.getElementById('ai-result');
 
-  // ВНИМАНИЕ: Сюда нужно вставить твой ключ от Google Gemini API
-  const apiKey = "AIzaSyCSF4XnSP7EGINXDLGBsNEhBniGxNo4M6s";
+  // 08.10.2026: ИИ-блок в гайде убран, ключ удалён из открытого кода (ключи в браузере видны всем).
+  // Вернуть ИИ — только через сервер, не вписывая ключ сюда.
+  const apiKey = "";
 
   async function fetchGeminiRecommendation(userInput) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
