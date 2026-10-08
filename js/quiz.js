@@ -35,7 +35,7 @@
         <div class="quiz-options">
           <button class="quiz-option" data-value="classic">Классическая миндалевидная <small>Сбалансированная форма, открытый взгляд</small></button>
           <button class="quiz-option" data-value="deep">Глубоко посаженные глаза <small>Хочется визуально добавить больше открытости</small></button>
-          <button class="quiz-option" data-value="hooded">Нависшее веко <small>Требуется архитектурный эффект лифтинга</small></button>
+          <button class="quiz-option" data-value="hooded">Нависшее веко <small>Хочется визуально приподнять и открыть взгляд</small></button>
           <button class="quiz-option" data-value="droopy">Опущенные внешние уголки <small>Хочется визуально приподнять линию взгляда</small></button>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <h3 class="quiz-step__question">Какое состояние твоих родных бровей?</h3>
         <div class="quiz-options">
           <button class="quiz-option" data-value="bushy">Густые и непослушные <small>Нужна строгая долговременная укладка</small></button>
-          <button class="quiz-option" data-value="normal">Нормальные <small>Не хватает только четкой формы и архитектуры</small></button>
+          <button class="quiz-option" data-value="normal">Нормальные <small>Не хватает только чёткой формы</small></button>
           <button class="quiz-option" data-value="thin">Тонкие / перещипанные <small>Нужно визуально восстановить объем</small></button>
           <button class="quiz-option" data-value="light">Светлые или с пробелами <small>Необходим плотный цвет и четкий контур</small></button>
         </div>
@@ -62,7 +62,7 @@
 
       <div class="quiz-step" data-step="5" id="quiz-final">
         <div class="quiz-final__content">
-          <div class="hero-badge hero-badge--compact">Я вижу твою геометрию ✨</div>
+          <div class="hero-badge hero-badge--compact">Готово ✨</div>
           <h3 id="result-title" class="quiz-final__title">Анализ завершен</h3>
 
           <div class="quiz-result-box">
