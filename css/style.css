@@ -12226,3 +12226,10 @@ input, textarea { cursor: text !important; }
   .cookie-banner__actions { width: 100%; }
   .cookie-banner__btn { flex: 1; padding: 12px 8px; font-size: 12px; white-space: nowrap; }
 }
+
+/* 08.10, финальная проверка: подписи не мельче 11 px (кроме мелкого текста внутри макета сертификата и обложки гайда — это картинка) */
+.portfolio-mini span, .builder-popularity span, .step-meta span, .gift-cta-footer,
+.concept-weight__col span, .blueprint-label, .legal-hero__badge, .legal-meta { font-size: 11px !important; }
+.nav-header__subtitle, .guide-author__role, .guide-author__time, .guide-cta-card__footer, .live-cert__label,
+.portfolio-cell__num, .portfolio-cell__cat, .portfolio-ba-badge, .tg-badge { font-size: 11px !important; }
+.services-philosophy span, .card-service__hint, .card-service__badge, .contacts-info__label { font-size: 11px !important; }
