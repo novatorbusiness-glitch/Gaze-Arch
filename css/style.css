@@ -12049,3 +12049,13 @@ body.hero-focus-active .section-hero__content > *:not(.hero-actions):not(.hero-q
   object-fit: cover;
   transform-origin: center center;
 }
+
+/* 08.10.2026: ссылка на салон «Грани» в Яндекс Картах под адресом */
+.contacts-info__map-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--warm);
+  border-bottom: 1px solid currentColor;
+  text-decoration: none;
+}
