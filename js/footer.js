@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="footer-col footer-col--contacts fade-in stagger-2">
              <a href="tel:89199625522" class="footer-phone text-mono" data-hoverable>8 (919) 962-55-22</a>
-             <div class="footer-addr">г. Люберцы, ул. Летчика Ларюшина, 6/2</div>
+             <div class="footer-addr">г. Люберцы, ул. Лётчика Ларюшина, 6, корп. 2</div>
              <a href="https://t.me/a_annett_a" target="_blank" class="footer-tg-btn" data-hoverable>Написать в Telegram</a>
           </div>
         </div>
