@@ -188,3 +188,6 @@
 @media (max-width: 768px) {
   .nav-header { position: absolute; }
 }
+@media (max-width: 768px) {
+  .nav-header, .nav-header--scrolled { background: transparent; box-shadow: none; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+}

@@ -158,74 +158,59 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateCursorHover = setupCursorHovers;
   }
 
-  // === 2. HERO CANVAS (ГЕОМЕТРИЯ С ПАРАЛЛАКСОМ) ===
+  // === 2. HERO CANVAS: «пудровое облако» (08.10.2026, вместо сетки из точек) ===
+  // Мягкие пятна пудры и розы медленно плывут справа. Без движения, если в системе
+  // включено «уменьшить движение»; не рисуем, когда первый экран не виден.
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    let width, height, nodes = [];
-    const nodeCount = isDesktop ? 65 : 25; 
-    const connectionDistance = 180;
-    const mouse = { x: -1000, y: -1000 };
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width, height, visible = true;
+    // [x, y] — доля ширины/высоты; r — доля большей стороны; цвет; прозрачность в центре
+    const blobs = isDesktop ? [
+      { x: 0.78, y: 0.30, r: 0.32, c: '238, 218, 218', a: 0.95 },
+      { x: 0.92, y: 0.72, r: 0.28, c: '196, 138, 138', a: 0.38 },
+      { x: 0.62, y: 0.86, r: 0.22, c: '236, 208, 208', a: 0.70 },
+      { x: 0.98, y: 0.12, r: 0.18, c: '227, 196, 196', a: 0.60 },
+      { x: 0.50, y: 0.40, r: 0.16, c: '242, 230, 230', a: 0.55 },
+    ] : [
+      { x: 0.90, y: 0.12, r: 0.42, c: '242, 230, 230', a: 0.95 },
+      { x: 0.95, y: 0.82, r: 0.40, c: '196, 138, 138', a: 0.22 },
+      { x: 0.10, y: 0.95, r: 0.36, c: '236, 208, 208', a: 0.65 },
+    ];
 
     const resize = () => {
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
+      width = canvas.offsetWidth; height = canvas.offsetHeight;
+      canvas.width = width * dpr; canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     window.addEventListener('resize', resize); resize();
 
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
-        x: isDesktop ? (width * 0.4) + Math.random() * (width * 0.6) : Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 0.8,
-        layer: Math.random() > 0.5 ? 1 : 2
-      });
-    }
-
-    if (isDesktop) {
-      window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    }
-
-    const animateCanvas = () => {
+    const draw = (t) => {
       ctx.clearRect(0, 0, width, height);
-      nodes.forEach(n => {
-        n.x += n.vx; n.y += n.vy;
-        if (isDesktop) {
-          if (n.x < width * 0.35) n.vx = Math.abs(n.vx); 
-          if (n.x > width) n.vx = -Math.abs(n.vx);
-        } else {
-          if (n.x < 0 || n.x > width) n.vx *= -1;
-        }
-        if (n.y < 0 || n.y > height) n.vy *= -1;
-
-        if (isDesktop) {
-          const dx = mouse.x - n.x, dy = mouse.y - n.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 250) {
-            n.x += dx * 0.004 * (n.layer === 1 ? 1 : 0.5);
-            n.y += dy * 0.004 * (n.layer === 1 ? 1 : 0.5);
-          }
-        }
-        ctx.beginPath(); ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(196, 138, 138, 0.7)'; ctx.fill();
+      const side = Math.max(width, height);
+      blobs.forEach((b, i) => {
+        const x = b.x * width + Math.sin(t / 5200 + i * 1.7) * side * 0.03;
+        const y = b.y * height + Math.cos(t / 6100 + i * 2.3) * side * 0.025;
+        const r = b.r * side * (1 + Math.sin(t / 7000 + i) * 0.04);
+        const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+        g.addColorStop(0, `rgba(${b.c}, ${b.a})`);
+        g.addColorStop(1, `rgba(${b.c}, 0)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, width, height);
       });
+    };
 
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < connectionDistance) {
-            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(196, 138, 138, ${(1 - dist/connectionDistance) * 0.5})`;
-            ctx.lineWidth = 0.8; ctx.stroke();
-          }
-        }
-      }
+    const animateCanvas = (t) => {
+      if (visible) draw(t);
       requestAnimationFrame(animateCanvas);
     };
-    animateCanvas();
-    setTimeout(() => canvas.style.opacity = '1', 400);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+    }
+    if (still) draw(0); else requestAnimationFrame(animateCanvas);
+    setTimeout(() => canvas.style.opacity = '1', 300);
   }
 
   // === 3. HERO ЭФФЕКТЫ (ТУННЕЛЬ ВНИМАНИЯ) ===
