@@ -39,7 +39,6 @@ const navHTML = `
       
       <nav class="nav-header__tabs">
         <a href="${withBasePath('/pages/portfolio/')}" class="nav-tab" data-hoverable>Портфолио</a>
-        <a href="${withBasePath('/pages/blog/')}" class="nav-tab" data-hoverable>Блог</a>
         <a href="${withBasePath('/pages/gift/')}" class="nav-tab" data-hoverable>Подарить сертификат</a>
       </nav>
 
@@ -55,7 +54,6 @@ const navHTML = `
     <div class="nav-overlay__inner">
       <nav class="nav-overlay__menu">
         <a href="${withBasePath('/pages/portfolio/')}" class="nav-tab">Портфолио</a>
-        <a href="${withBasePath('/pages/blog/')}" class="nav-tab">Блог</a>
         <a href="${withBasePath('/pages/gift/')}" class="nav-tab">Подарить сертификат</a>
       </nav>
       <a href="https://t.me/a_annett_a" target="_blank" class="btn-primary nav-overlay__cta">Записаться</a>

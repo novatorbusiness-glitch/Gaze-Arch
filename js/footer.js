@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <nav class="footer-links">
               <a href="${withBasePath('/#services')}" data-hoverable>Услуги и цены</a>
               <a href="${withBasePath('/pages/portfolio/')}" data-hoverable>Результаты</a>
+              <a href="${withBasePath('/pages/blog/')}" data-hoverable>Блог</a>
               <a href="${withBasePath('/pages/education/')}" data-hoverable>Обучение</a>
               <a href="${withBasePath('/pages/guide/')}" class="link-guide" data-hoverable>Гайд</a>
               <a href="${withBasePath('/pages/gift/')}" data-hoverable>Сертификаты</a>
