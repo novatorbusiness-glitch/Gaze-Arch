@@ -1165,6 +1165,18 @@ body.hero-focus-active .section-hero__content > *:not(.hero-actions):not(.hero-q
   font-weight: 600;
 }
 
+/* 08.10.2026: блок «Что ты получишь» — карточка с одним абзацем (без «Было | Решение») */
+.card-wide__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--warm);
+  transform: translateZ(20px);
+}
+
+.card-wide__title + .card-wide__text {
+  margin-top: -16px;
+}
+
 /* --- Бейджи --- */
 .card-wide__label {
   font-family: var(--font-mono);
