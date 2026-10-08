@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="footer-legal text-mono">
             <span>НПД: Новицкая Анна</span>
             <span class="footer-dot"></span>
-            <span>ИНН: 502727402636</span>
+            <span>ИНН: 771543781105</span>
             <span class="footer-dot"></span>
             <a href="${withBasePath('/pages/offer/')}" class="footer-link-small" data-hoverable>Оферта</a>
             <span class="footer-dot"></span>
