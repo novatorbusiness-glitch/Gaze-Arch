@@ -12132,3 +12132,43 @@ body { font-variant-numeric: tabular-nums; }
 .footer-legal a.footer-link-small,
 .footer-legal a.footer-link-small:visited { color: rgba(255, 255, 255, 0.72); text-decoration: underline; text-underline-offset: 3px; }
 .footer-legal a.footer-link-small:hover { color: #FFFFFF; }
+
+/* ================================================================
+   08.10.2026 · Аудит вёрстки на телефоне (375 px)
+   ================================================================ */
+/* Подвал: строка ИНН / Оферта / Политика больше не шире экрана */
+.footer-legal { flex-wrap: wrap; justify-content: center; row-gap: 8px; opacity: 0.7; }
+.footer-legal > * { min-width: 0; }
+
+@media (max-width: 768px) {
+  /* Мелкий текст не меньше 11 px */
+  .nav-header__subtitle,
+  .story-chapter__num,
+  .services-philosophy span,
+  .card-service__badge,
+  .portfolio-cell__num,
+  .portfolio-cell__cat,
+  .portfolio-ba-badge,
+  .tg-badge,
+  .guide-author__role,
+  .guide-author__time,
+  .guide-cta-card__footer,
+  .footer-disclaimer,
+  .step-meta-status,
+  .live-cert__label,
+  .lead-fomo,
+  .contacts-info__label,
+  .proof-marquee-status__text,
+  .footer-copyright,
+  .footer-legal { font-size: 11px !important; }
+  .portfolio-tab { font-size: 12px !important; }
+
+  /* Ссылки подвала: удобно попасть пальцем (не меньше 40 px по высоте) */
+  .footer-links { gap: 2px; }
+  .footer-links a { display: inline-block; padding: 10px 0; }
+  .footer-legal a.footer-link-small { display: inline-block; padding: 8px 0; }
+  .contacts-info__map-link { padding: 8px 0; }
+
+  /* Заголовок первого экрана: 3–4 строки вместо 5 */
+  .hero-title { font-size: clamp(26px, 7.4vw, 34px); line-height: 1.12; }
+}
