@@ -250,30 +250,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const answers = {};
 
   const resultsMap = {
-    'natural': { 
-      title: 'Классическая гармония', 
-      services: 'Архитектура бровей + Наращивание (Классика / 1.5D)',
-      desc: 'Идеальный выбор для тех, кто ценит естественность и хочет подчеркнуть природную анатомию взгляда без лишнего объема.' 
+    'natural': {
+      title: 'Естественный результат',
+      services: 'Оформление бровей + наращивание (классика или 1.5D)',
+      desc: 'Подчеркнём твои черты мягко и натурально, без лишнего объёма.'
     },
-    'volume_up': { 
-      title: 'Выразительный объём', 
-      services: 'Наращивание (Объём 2D / 2.5D / 3D)',
-      desc: 'Твоим чертам лица подойдет более плотное заполнение, которое сделает взгляд глубоким и уверенным 24/7.' 
+    'volume_up': {
+      title: 'Выразительный объём',
+      services: 'Наращивание 2D–3D',
+      desc: 'Взгляд станет ярче, а тушь не понадобится.'
     },
-    'lifting': { 
-      title: 'Архитектурный лифт', 
-      services: 'Ламинирование ресниц + Архитектура бровей',
-      desc: 'Этот комплекс визуально приподнимет веко и создаст эффект открытого, свежего взгляда за счет правильного изгиба.' 
+    'lifting': {
+      title: 'Открытый взгляд',
+      services: 'Ламинирование ресниц + оформление бровей',
+      desc: 'Изгиб визуально приподнимет веко, взгляд станет свежее.'
     },
-    'trendy': { 
-      title: 'Трендовая геометрия', 
-      services: 'Наращивание (Спецэффекты: Лучи / Мокрый эффект)',
-      desc: 'Современная техника из прайса, которая подчеркнет твою уникальность и добавит взгляду журнальной текстуры.' 
+    'trendy': {
+      title: 'Модный эффект',
+      services: 'Наращивание с эффектом «лучики» или «мокрый»',
+      desc: 'Если хочется чего-то яркого и необычного.'
     },
-    'complex': { 
-      title: 'Мягкий баланс (Комплекс)', 
-      services: 'Ламинирование бровей + Ламинирование ресниц',
-      desc: 'Полная перезагрузка образа с упором на здоровье и восстановление формы. Твой взгляд станет чистым и выразительным.' 
+    'complex': {
+      title: 'Мягкий уход',
+      services: 'Ламинирование бровей и ресниц',
+      desc: 'Свои реснички и брови, только ухоженнее, без наращивания.'
     }
   };
 
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateUI() {
     const percent = (currentStep / totalSteps) * 100;
     if (progressFill) progressFill.style.width = `${percent}%`;
-    if (stepCounter) stepCounter.innerText = currentStep < totalSteps ? `ШАГ ${currentStep} ИЗ ${totalSteps}` : `АНАЛИЗ ЗАВЕРШЕН`;
+    if (stepCounter) stepCounter.innerText = currentStep < totalSteps ? `ШАГ ${currentStep} ИЗ ${totalSteps}` : `ГОТОВО`;
   }
 
   function showResult() {
@@ -349,10 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Сообщение для Ани
     if (tgBtn) {
-      const msg = `Привет, Аня! Я прошла диагностику на сайте.%0A%0A` +
-                  `✨ Мой результат: *${result.title}*%0A` +
-                  `🛠 Рекомендованные услуги: *${result.services}*%0A%0A` +
-                  `Подскажи, пожалуйста, когда можно к тебе записаться?`;
+      const msg = encodeURIComponent(`Привет, Аня! Прошла подбор формы на сайте. Мне подходит: ${result.title} (${result.services}). Когда можно записаться?`);
       tgBtn.href = `https://t.me/a_annett_a?text=${msg}`;
     }
   }
@@ -1876,7 +1873,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateUI = () => {
     const targetText = state.name ? state.name : state.target;
-    const msg = `«Хочу подарить сертификат на ${state.sum} ₽ для ${targetText}.»`;
+    const msg = `«Привет, Аня! Хочу подарить сертификат на ${state.sum} ₽ для ${targetText}. Как его оформить?»`;
     if (tgMsgEl) tgMsgEl.innerText = msg;
     if (ctaBtn) ctaBtn.href = `https://t.me/a_annett_a?text=${encodeURIComponent(msg.replace(/[«»]/g, ''))}`;
   };
@@ -2180,7 +2177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (articleBookingBtn) {
     const articleTitle = document.querySelector('.article-hero__title')?.innerText.replace(/\s+/g, ' ').trim() || 'статью на сайте';
     const bookingMessage = encodeURIComponent(
-      `Привет, Аня! Я прочитала статью «${articleTitle}» на сайте GAZE.ARCH.\n\nХочу записаться к тебе и подобрать подходящую услугу под мои глаза. Подскажи, пожалуйста, с чего лучше начать и когда у тебя есть ближайшее окно?`
+      `Привет, Аня! Прочитала на сайте статью «${articleTitle}». Хочу записаться, подскажи ближайшие свободные окна?`
     );
     articleBookingBtn.href = `https://t.me/a_annett_a?text=${bookingMessage}`;
   }
@@ -2461,9 +2458,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (lbCta) {
         const msg = encodeURIComponent(
-          `Привет, Аня! Я посмотрела в портфолио работу «${dataset.title || 'без названия'}» (${dataset.service || 'услуга'}).\n\n` +
-          `Очень откликается этот результат: «${dataset.desc || 'хочу похожий эффект'}».\n\n` +
-          `Хочу так же, но с учетом моей анатомии. Подскажи, пожалуйста, с чего лучше начать и какие есть ближайшие окна?`
+          `Привет, Аня! Увидела в портфолио работу «${dataset.title || 'без названия'}» (${dataset.service || 'услуга'}). Хочу похожий результат. Когда есть свободные окна?`
         );
         lbCta.href = `https://t.me/a_annett_a?text=${msg}`;
       }
@@ -2645,9 +2640,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (tgBtnPortfolio) {
     const msg = encodeURIComponent(
-      'Привет, Аня! Я посмотрела портфолио GAZE.ARCH.\\n\\n' +
-      'Очень откликается подход и натуральный результат. Хочу подобрать форму именно под мою анатомию лица.\\n\\n' +
-      'Подскажи, пожалуйста, с чего лучше начать и какие есть ближайшие окна?'
+      'Привет, Аня! Посмотрела твои работы на сайте, очень нравится. Хочу записаться, когда есть свободные окна?'
     );
     tgBtnPortfolio.href = `https://t.me/a_annett_a?text=${msg}`;
   }
