@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /pages/blog/
 Allow: /
 
 # Service and technical sections

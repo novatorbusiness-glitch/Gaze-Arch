@@ -35,24 +35,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-  <url>
-    <loc>https://gaze.architecture/pages/blog/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gaze.architecture/pages/blog/article.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://gaze.architecture/pages/blog/pages/blog/expensive-look.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://gaze.architecture/pages/blog/pages/blog/fox-effect.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>
