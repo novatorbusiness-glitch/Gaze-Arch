@@ -12092,3 +12092,31 @@ body.hero-focus-active .section-hero__content > *:not(.hero-actions):not(.hero-q
 .salon-rating strong {
   font-weight: 700;
 }
+
+/* 08.10.2026: гайд — простые списки «что тебе подойдёт» */
+.guide-list {
+  margin: 8px 0 24px;
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: inherit;
+}
+
+.guide-list li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.65;
+}
+
+.guide-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.7em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blush);
+}
