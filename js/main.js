@@ -1833,7 +1833,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. ЛОГИКА КОНСТРУКТОРА СЕРТИФИКАТА
-  const state = { target: 'Подруги', sum: '3 000', name: '' };
+  const state = { target: 'подруги', sum: '3 000', name: '' };
 
   const tabs = document.querySelectorAll('.builder-tab');
   const cards = document.querySelectorAll('.builder-card');
@@ -1906,7 +1906,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tabs.forEach(t => t.classList.remove('is-active'));
         tab.classList.add('is-active');
         const val = tab.dataset.val;
-        const declensions = { 'Подруге': 'Подруги', 'Маме': 'Мамы', 'Себе': 'Себя', 'Коллеге': 'Коллеги' };
+        const declensions = { 'Подруге': 'подруги', 'Маме': 'мамы', 'Себе': 'себя', 'Коллеге': 'коллеги' };
         state.target = declensions[val] || val;
         updateUI();
       });
