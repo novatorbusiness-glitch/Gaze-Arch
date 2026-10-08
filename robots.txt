@@ -14,4 +14,4 @@ Disallow: /pages/blog/pages/blog/avito-for-masters.html
 Disallow: /pages/blog/pages/blog/lashes-dont-breathe.html
 Disallow: /pages/blog/pages/blog/brow-oil.html
 
-Sitemap: https://gaze.architecture/sitemap.xml
+Sitemap: https://gaze-arch.ru/sitemap.xml
