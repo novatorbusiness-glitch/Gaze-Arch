@@ -33,7 +33,7 @@ const navHTML = `
   <header class="nav-header" id="nav-header">
     <div class="container nav-header__inner">
       <a href="${withBasePath('/')}" class="nav-header__logo-wrapper" data-hoverable>
-        <img src="${withBasePath('/assets/images/brand/gaze-logo.svg')}?v=3" alt="GAZE" class="nav-header__logo-img">
+        <img src="${withBasePath('/assets/images/brand/gaze-logo.svg')}?v=4" alt="GAZE" class="nav-header__logo-img">
         <div class="nav-header__subtitle">Анна Новицкая</div>
       </a>
       

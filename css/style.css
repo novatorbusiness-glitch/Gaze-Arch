@@ -12172,3 +12172,6 @@ body { font-variant-numeric: tabular-nums; }
   /* Заголовок первого экрана: 3–4 строки вместо 5 */
   .hero-title { font-size: clamp(26px, 7.4vw, 34px); line-height: 1.12; }
 }
+
+/* 08.10: запас по краям у знака (запасной шрифт шире) — выравниваем по подписи */
+.nav-header__logo-img { margin-left: -6px; }
