@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="${withBasePath('/pages/offer/')}" class="footer-link-small" data-hoverable>Оферта</a>
             <span class="footer-dot"></span>
             <a href="${withBasePath('/pages/privacy/')}" class="footer-link-small" data-hoverable>Политика конфиденциальности</a>
+            <span class="footer-dot"></span>
+            <a href="#" class="footer-link-small" onclick="window.gazeCookieSettings && window.gazeCookieSettings(); return false;" data-hoverable>Настройки cookie</a>
           </div>
           <div class="footer-copyright text-mono">© 2026 GAZE · Анна Новицкая</div>
         </div>
