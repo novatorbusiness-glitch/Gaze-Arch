@@ -183,3 +183,8 @@
   .nav-header__logo-img { height: 40px; }
   .nav-header__subtitle { text-align: left; }
 }
+
+/* 08.10: на телефоне шапка не едет за прокруткой — стоит вверху страницы */
+@media (max-width: 768px) {
+  .nav-header { position: absolute; }
+}
