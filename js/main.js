@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         ctx.beginPath(); ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(224, 199, 192, 0.7)'; ctx.fill();
+        ctx.fillStyle = 'rgba(196, 138, 138, 0.7)'; ctx.fill();
       });
 
       for (let i = 0; i < nodes.length; i++) {
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < connectionDistance) {
             ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(224, 199, 192, ${(1 - dist/connectionDistance) * 0.5})`;
+            ctx.strokeStyle = `rgba(196, 138, 138, ${(1 - dist/connectionDistance) * 0.5})`;
             ctx.lineWidth = 0.8; ctx.stroke();
           }
         }
@@ -530,7 +530,7 @@ setTimeout(() => {
       const tiltAmount = Math.abs(currentRotX) + Math.abs(currentRotY);
       const shadowAlpha = 0.06 + tiltAmount * 0.008;
       storyCard.style.boxShadow =
-        `0 ${16 + tiltAmount * 1.5}px ${40 + tiltAmount * 3}px rgba(107, 94, 83, ${shadowAlpha})`;
+        `0 ${16 + tiltAmount * 1.5}px ${40 + tiltAmount * 3}px rgba(46, 44, 48, ${shadowAlpha})`;
 
       requestAnimationFrame(animate);
     };
@@ -1824,7 +1824,7 @@ document.addEventListener('DOMContentLoaded', () => {
         p.x += p.vx; p.y += p.vy; p.x += (p.baseX - p.x) * 0.001;
         if (isDesktop) { const dx = mouse.x - p.x, dy = mouse.y - p.y, dist = Math.sqrt(dx*dx + dy*dy); if (dist < 120) { p.x -= (dx/dist)*0.8; p.y -= (dy/dist)*0.8; } }
         if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; p.baseX = p.x; }
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fillStyle = `rgba(224, 199, 192, ${p.alpha})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fillStyle = `rgba(196, 138, 138, ${p.alpha})`; ctx.fill();
       });
       requestAnimationFrame(animate);
     };

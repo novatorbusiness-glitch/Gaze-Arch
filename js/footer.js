@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         <div class="footer-content">
           <div class="footer-col footer-col--nav fade-in">
-            <img src="${withBasePath('/assets/images/logo.png')}" alt="GAZE.ARCH" class="footer-brand-logo">
+            <img src="${withBasePath('/assets/images/brand/gaze-anna-logo.svg')}" alt="GAZE · Анна Новицкая" class="footer-brand-logo">
             <nav class="footer-links">
               <a href="${withBasePath('/#services')}" data-hoverable>Услуги и цены</a>
               <a href="${withBasePath('/pages/portfolio/')}" data-hoverable>Результаты</a>
@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="footer-col footer-col--viz fade-in stagger-1">
             <div class="footer-blueprint-wrap">
               <svg viewBox="0 0 200 100" class="footer-svg">
-                <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(249, 248, 246, 0.1)" stroke-dasharray="2 2" />
-                <line x1="0" y1="50" x2="200" y2="50" stroke="rgba(249, 248, 246, 0.1)" stroke-dasharray="2 2" />
-                <path d="M 50,50 Q 100,10 150,50 Q 100,90 50,50 Z" fill="none" stroke="rgba(224, 199, 192, 0.3)" stroke-width="1" />
+                <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(247, 245, 246, 0.1)" stroke-dasharray="2 2" />
+                <line x1="0" y1="50" x2="200" y2="50" stroke="rgba(247, 245, 246, 0.1)" stroke-dasharray="2 2" />
+                <path d="M 50,50 Q 100,10 150,50 Q 100,90 50,50 Z" fill="none" stroke="rgba(196, 138, 138, 0.3)" stroke-width="1" />
                 <circle cx="100" cy="50" r="2" fill="var(--blush)" />
               </svg>
             </div>
             <div class="footer-philosophy">
-              <span class="text-mono">МЕТОД АННЫ НОВИЦКОЙ</span>
+              <span class="text-mono">АННА НОВИЦКАЯ</span>
               <h3 class="footer-philosophy__title">Инженерия взгляда<br>Без шаблонов</h3>
             </div>
           </div>
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="footer-dot"></span>
             <a href="${withBasePath('/pages/privacy/')}" class="footer-link-small" data-hoverable>Политика конфиденциальности</a>
           </div>
-          <div class="footer-copyright text-mono">© 2026 GAZE.ARCH.</div>
+          <div class="footer-copyright text-mono">© 2026 GAZE · Анна Новицкая</div>
         </div>
 
         <div class="footer-disclaimer fade-in stagger-4">
