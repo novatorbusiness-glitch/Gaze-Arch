@@ -54,15 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="footer-col footer-col--viz fade-in stagger-1">
-            <div class="footer-blueprint-wrap">
-              <svg viewBox="0 0 200 100" class="footer-svg">
-                <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(247, 245, 246, 0.1)" stroke-dasharray="2 2" />
-                <line x1="0" y1="50" x2="200" y2="50" stroke="rgba(247, 245, 246, 0.1)" stroke-dasharray="2 2" />
-                <path d="M 52,58 Q 98,26 150,46" fill="none" stroke="rgba(226, 179, 179, 0.7)" stroke-width="2.5" stroke-linecap="round" />
-              </svg>
-            </div>
             <div class="footer-philosophy">
-              <span class="text-mono">АННА НОВИЦКАЯ</span>
               <h3 class="footer-philosophy__title">Ресницы и брови<br>под твоё лицо</h3>
             </div>
           </div>
@@ -95,13 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     </footer>
 
-    <div class="soft-dozhym" id="soft-dozhym">
-      <div class="soft-dozhym__inner">
-        <span class="soft-dozhym__text">Хочешь, я подберу форму под тебя?</span>
-        <a href="https://t.me/a_annett_a" target="_blank" class="btn-primary btn-primary--shimmer soft-dozhym__btn" data-hoverable>Написать Ане</a>
-        <button class="soft-dozhym__close" id="dozhym-close" aria-label="Закрыть" data-hoverable>×</button>
-      </div>
-    </div>
   `;
 
   document.body.insertAdjacentHTML('beforeend', footerHTML);
@@ -109,8 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Даем время на рендер и запускаем обсерверы
   setTimeout(() => {
     const footer = document.getElementById('footer-main');
-    const dozhym = document.getElementById('soft-dozhym');
-    const closeBtn = document.getElementById('dozhym-close');
     
     // Анимация появления элементов футера
     const footerObserver = new IntersectionObserver((entries) => {
@@ -122,28 +105,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.footer-main .fade-in').forEach(el => footerObserver.observe(el));
-
-    // Логика появления окна "мягкого дожима"
-    if (footer && dozhym && !sessionStorage.getItem('gaze-dozhym-closed')) {
-      const dozhymObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              if (!sessionStorage.getItem('gaze-dozhym-closed')) {
-                dozhym.classList.add('is-visible');
-              }
-            }, 2500);
-          }
-        });
-      }, { threshold: 0.1 });
-      dozhymObserver.observe(footer);
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        dozhym.classList.remove('is-visible');
-        sessionStorage.setItem('gaze-dozhym-closed', 'true');
-      });
-    }
   }, 100);
 });

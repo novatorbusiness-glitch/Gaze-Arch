@@ -747,6 +747,7 @@ setTimeout(() => {
     let autoPaused = false;
     let resumeTimer = 0;
     let lastTimestamp = 0;
+    let autoPos = 0;
     let isDragging = false;
     let dragStartX = 0;
     let dragStartScroll = 0;
@@ -791,6 +792,7 @@ setTimeout(() => {
       if (animationId) return;
       autoPaused = false;
       lastTimestamp = 0;
+      autoPos = marquee.scrollLeft;
       setStatus('auto');
 
       const loop = (timestamp) => {
@@ -803,11 +805,15 @@ setTimeout(() => {
           lastTimestamp = timestamp;
         }
 
-        const delta = timestamp - lastTimestamp;
+        const delta = Math.min(timestamp - lastTimestamp, 64);
         lastTimestamp = timestamp;
 
-        marquee.scrollLeft += (speed * delta) / 1000;
-        normalizeScrollPosition();
+        // 08.10: копим дробную позицию отдельно — на телефоне scrollLeft округляется,
+        // и сдвиг в 0,3 px за кадр терялся (лента стояла)
+        autoPos += (speed * delta) / 1000;
+        if (autoPos <= cardGap) autoPos += segmentWidth;
+        else if (autoPos >= track.scrollWidth - marquee.clientWidth - cardGap) autoPos -= segmentWidth;
+        marquee.scrollLeft = autoPos;
 
         animationId = requestAnimationFrame(loop);
       };
@@ -846,6 +852,10 @@ setTimeout(() => {
     marquee.addEventListener('touchstart', () => {
       stopAutoScroll();
       clearTimeout(resumeTimer);
+    }, { passive: true });
+
+    marquee.addEventListener('touchend', () => {
+      scheduleResume(5000);
     }, { passive: true });
 
     marquee.addEventListener('wheel', () => {
@@ -894,7 +904,12 @@ setTimeout(() => {
       });
     }
 
+    // 08.10: на телефоне resize срабатывает при прокрутке (прячется адресная строка) —
+    // реагируем только на смену ширины, иначе лента останавливалась и прыгала в начало
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       clearTimeout(resumeTimer);
       stopAutoScroll();
       requestAnimationFrame(centerOnInitialCard);
