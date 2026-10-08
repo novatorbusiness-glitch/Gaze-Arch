@@ -2473,6 +2473,12 @@ document.addEventListener('DOMContentLoaded', () => {
           `linear-gradient(135deg, hsl(${h+10}, 22%, 88%), hsl(${h}, 18%, 78%))`;
       }
 
+      // 08.10.2026: в окне показываем фото самой работы (раньше была только цветная заглушка)
+      const cellImg = document.querySelector(`.portfolio-cell[data-index="${dataset.index}"] img`);
+      if (lbPlaceholder && cellImg) {
+        lbPlaceholder.style.background = `center / cover no-repeat url("${cellImg.getAttribute('src')}")`;
+      }
+
       showDialog();
       if (portfolioMain) portfolioMain.classList.add('lightbox-active');
 
