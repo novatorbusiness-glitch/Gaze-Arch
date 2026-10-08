@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </svg>
             </div>
             <div class="footer-philosophy">
-              <span class="text-mono">МЕТОД АННЫ КАЗАК</span>
+              <span class="text-mono">МЕТОД АННЫ НОВИЦКОЙ</span>
               <h3 class="footer-philosophy__title">Инженерия взгляда<br>Без шаблонов</h3>
             </div>
           </div>

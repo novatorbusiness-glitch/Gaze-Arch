@@ -350,7 +350,7 @@ body.hero-focus-active .hero-canvas {
   filter: blur(6px);
   opacity: 0.4 !important;
 }
-body.hero-focus-active .section-hero__content > *:not(.hero-actions) {
+body.hero-focus-active .section-hero__content > *:not(.hero-actions):not(.hero-quiz-link) {
   opacity: 0.3;
   filter: blur(2px);
   transform: scale(0.98) translateX(-10px);
@@ -502,6 +502,26 @@ body.hero-focus-active .section-hero__content > *:not(.hero-actions) {
   align-items: center;
   position: relative;
   z-index: 10;
+}
+
+/* 08.10.2026: квиз «Подобрать форму» — ссылкой под кнопками (главная кнопка — «Записаться») */
+.hero-quiz-link {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 4px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-quiz-link:hover {
+  color: inherit;
 }
 
 .hero-cta-main {
