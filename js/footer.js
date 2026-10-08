@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="footer-bottom fade-in stagger-3">
           <div class="footer-legal text-mono">
-            <span>НПД: Казак Анна</span>
+            <span>НПД: Новицкая Анна</span>
             <span class="footer-dot"></span>
             <span>ИНН: 502727402636</span>
             <span class="footer-dot"></span>
