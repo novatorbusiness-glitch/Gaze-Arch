@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Генератор сертификатов · GAZE.ARCH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --cream:  #F9F8F6;
+      --white:  #FFFFFF;
+      --warm:   #6B5E53;
+      --blush:  #E0C7C0;
+      --text-muted:   rgba(107, 94, 83, 0.6);
+      --border-light: rgba(107, 94, 83, 0.15);
+      --accent-soft:  rgba(107, 94, 83, 0.05);
+      --shadow-lg: 0 24px 60px rgba(107, 94, 83, 0.08);
+      --font-head: 'Montserrat', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-head);
+      background: var(--cream);
+      color: var(--warm);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* === КАРКАС === */
+    .admin {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      min-height: 100vh;
+    }
+
+    /* === ЛЕВАЯ ПАНЕЛЬ === */
+    .admin-panel {
+      background: var(--white);
+      border-right: 1px solid var(--border-light);
+      padding: 40px;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--warm);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .admin-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    /* Поля с плавающей подписью */
+    .field {
+      position: relative;
+      margin-bottom: 26px;
+    }
+
+    .field input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--border-light);
+      background: transparent;
+      padding: 8px 0;
+      font-size: 16px;
+      color: var(--warm);
+      outline: none;
+      font-family: var(--font-head);
+      transition: border-color 0.2s var(--ease-out);
+    }
+
+    .field input:focus { border-color: var(--blush); }
+
+    .field input.mono { font-family: var(--font-mono); }
+
+    .field label {
+      position: absolute;
+      left: 0;
+      top: 8px;
+      font-size: 16px;
+      color: var(--text-muted);
+      pointer-events: none;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .field input:focus + label,
+    .field input:not(:placeholder-shown) + label,
+    .field.has-value label {
+      top: -12px;
+      font-size: 12px;
+      color: var(--blush);
+    }
+
+    /* Быстрые номиналы */
+    .quick {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      margin-bottom: 26px;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--warm);
+      cursor: pointer;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .pill:hover {
+      border-color: var(--blush);
+      background: var(--accent-soft);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 32px 0;
+    }
+
+    /* Кнопки */
+    .btn {
+      display: block;
+      width: 100%;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-head);
+      transition: all 0.2s var(--ease-out);
+      margin-bottom: 12px;
+      border: none;
+    }
+
+    .btn-solid {
+      background: var(--warm);
+      color: var(--cream);
+    }
+    .btn-solid:hover {
+      background: #4a413a;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--warm);
+      color: var(--warm);
+    }
+    .btn-ghost:hover { background: var(--accent-soft); }
+
+    .btn-reset {
+      background: none;
+      border: none;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      cursor: pointer;
+      margin-top: 8px;
+      font-family: var(--font-head);
+      transition: color 0.2s var(--ease-out);
+    }
+    .btn-reset:hover { color: var(--warm); }
+
+    .admin-note {
+      margin-top: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-top: 32px;
+      line-height: 1.5;
+    }
+
+    /* === ПРАВАЯ ЗОНА (ПРЕВЬЮ) === */
+    .preview-zone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      background: var(--cream);
+    }
+
+    /* === СЕРТИФИКАТ === */
+    .certificate {
+      width: 900px;
+      height: 600px;
+      background: var(--white);
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      padding: 60px;
+      flex-shrink: 0;
+    }
+
+    /* Внутренняя тонкая рамка */
+    .cert-frame {
+      position: absolute;
+      inset: 16px;
+      border: 1px solid var(--blush);
+      opacity: 0.2;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    /* Декоративные SVG-дуги в углах */
+    .cert-arc {
+      position: absolute;
+      pointer-events: none;
+    }
+    .cert-arc--tr {
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 280px;
+      color: var(--blush);
+      opacity: 0.15;
+    }
+    .cert-arc--bl {
+      bottom: 0;
+      left: 0;
+      width: 280px;
+      height: 280px;
+      color: var(--blush);
+      opacity: 0.08;
+      transform: scale(-1, -1);
+    }
+
+    .cert-logo {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+
+    .cert-method {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .cert-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cert-sum {
+      text-align: center;
+      line-height: 1;
+      margin-top: 18px;
+      color: var(--warm);
+    }
+    .cert-sum .val {
+      font-family: var(--font-mono);
+      font-size: 64px;
+      font-weight: 700;
+    }
+    .cert-sum .rub {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+    .cert-sum .placeholder {
+      font-family: var(--font-mono);
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .cert-name {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--warm);
+      font-style: italic;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .cert-reason {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .cert-divider {
+      width: 120px;
+      height: 1px;
+      background: var(--blush);
+      opacity: 0.3;
+      margin: 32px auto;
+    }
+
+    .cert-footer {
+      position: absolute;
+      bottom: 60px;
+      left: 60px;
+      right: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .cert-footer-left {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+
+    .cert-footer-right {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-align: right;
+      max-width: 200px;
+      line-height: 1.5;
+    }
+
+    /* === PRINT === */
+    @media print {
+      body { display: block; background: white; }
+      .admin-panel { display: none; }
+      .preview-zone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 0;
+      }
+      .certificate {
+        box-shadow: none;
+        border: none;
+        transform: none !important;
+        width: 900px;
+        height: 600px;
+      }
+    }
+
+    /* === АДАПТИВ === */
+    @media (max-width: 1024px) {
+      .admin {
+        grid-template-columns: 1fr;
+      }
+      .admin-panel {
+        position: static;
+        height: auto;
+        overflow-y: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .admin-note { margin-top: 0; }
+      .preview-zone { padding: 40px 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .certificate {
+        transform: scale(0.5);
+        transform-origin: top center;
+      }
+      .preview-zone { align-items: flex-start; }
+      .preview-note-mobile {
+        display: block;
+      }
+    }
+
+    .preview-note-mobile {
+      display: none;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin">
+
+    <!-- ЛЕВАЯ ПАНЕЛЬ -->
+    <aside class="admin-panel">
+      <h1 class="admin-title">Генератор сертификатов</h1>
+      <p class="admin-sub">Внутренний инструмент GAZE. ARCHITECTURE</p>
+
+      <div class="field">
+        <input id="f-sum" type="number" min="500" step="100" placeholder=" " inputmode="numeric" class="mono">
+        <label for="f-sum">Сумма, ₽</label>
+      </div>
+      <div class="quick">
+        <button class="pill" type="button" data-sum="2000">2000</button>
+        <button class="pill" type="button" data-sum="3000">3000</button>
+        <button class="pill" type="button" data-sum="5000">5000</button>
+      </div>
+
+      <div class="field">
+        <input id="f-name" type="text" placeholder=" " maxlength="40">
+        <label for="f-name">Имя получателя</label>
+      </div>
+
+      <div class="field">
+        <input id="f-reason" type="text" placeholder=" " maxlength="60">
+        <label for="f-reason">Повод</label>
+      </div>
+
+      <div class="field has-value">
+        <input id="f-date" type="date">
+        <label for="f-date">Дата выдачи</label>
+      </div>
+
+      <div class="field has-value">
+        <input id="f-expiry" type="date">
+        <label for="f-expiry">Срок действия</label>
+      </div>
+
+      <div class="field">
+        <input id="f-number" type="text" placeholder=" " class="mono">
+        <label for="f-number">Номер сертификата</label>
+      </div>
+
+      <div class="divider"></div>
+
+      <button id="btn-png" class="btn btn-solid" type="button">Скачать PNG</button>
+      <button id="btn-print" class="btn btn-ghost" type="button">Открыть для печати (PDF)</button>
+      <button id="btn-reset" class="btn-reset" type="button">Сбросить все поля</button>
+
+      <p class="admin-note">Сертификат генерируется на стороне клиента. Данные никуда не отправляются.</p>
+    </aside>
+
+    <!-- ПРАВАЯ ЗОНА -->
+    <main class="preview-zone">
+      <div class="certificate" id="certificate">
+
+        <div class="cert-frame"></div>
+
+        <svg class="cert-arc cert-arc--tr" viewBox="0 0 280 280" fill="none" stroke="currentColor">
+          <path d="M280 0 C 200 30, 80 80, 30 130" stroke-width="1"/>
+          <path d="M280 0 C 230 50, 130 130, 70 210" stroke-width="0.5"/>
+          <path d="M280 0 C 260 20, 210 60, 160 110" stroke-width="0.5"/>
+          <circle cx="280" cy="0" r="3" fill="currentColor" stroke="none"/>
+        </svg>
+
+        <svg class="cert-arc cert-arc--bl" viewBox="0 0 280 280" fill="none" stroke="currentColor">
+          <path d="M280 0 C 200 30, 80 80, 30 130" stroke-width="1"/>
+          <path d="M280 0 C 230 50, 130 130, 70 210" stroke-width="0.5"/>
+          <path d="M280 0 C 260 20, 210 60, 160 110" stroke-width="0.5"/>
+          <circle cx="280" cy="0" r="3" fill="currentColor" stroke="none"/>
+        </svg>
+
+        <div class="cert-logo">GAZE.ARCHITECTURE</div>
+        <div class="cert-method">метод Анны Казак</div>
+
+        <div class="cert-title">Подарочный сертификат</div>
+
+        <div class="cert-sum">
+          <span class="val" id="c-sum">—</span><span class="rub" id="c-rub">₽</span>
+        </div>
+
+        <div class="cert-name" id="c-name"></div>
+        <div class="cert-reason" id="c-reason"></div>
+
+        <div class="cert-divider"></div>
+
+        <div class="cert-footer">
+          <div class="cert-footer-left">
+            <div id="c-expiry"></div>
+            <div id="c-number"></div>
+          </div>
+          <div class="cert-footer-right">Архитектура бровей · Ламинирование · Наращивание ресниц</div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var sumEl    = document.getElementById('f-sum');
+    var nameEl   = document.getElementById('f-name');
+    var reasonEl = document.getElementById('f-reason');
+    var dateEl   = document.getElementById('f-date');
+    var expiryEl = document.getElementById('f-expiry');
+    var numberEl = document.getElementById('f-number');
+
+    var cSum    = document.getElementById('c-sum');
+    var cRub    = document.getElementById('c-rub');
+    var cName   = document.getElementById('c-name');
+    var cReason = document.getElementById('c-reason');
+    var cExpiry = document.getElementById('c-expiry');
+    var cNumber = document.getElementById('c-number');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function toISO(d) {
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+
+    function addMonths(iso, months) {
+      var d = new Date(iso + 'T00:00:00');
+      d.setMonth(d.getMonth() + months);
+      return toISO(d);
+    }
+
+    function genNumber() {
+      return 'GAZE-' + Math.floor(100000 + Math.random() * 900000);
+    }
+
+    function fmtSum(n) {
+      return new Intl.NumberFormat('ru-RU').format(n);
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return '';
+      var d = new Date(iso + 'T00:00:00');
+      return new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    function render() {
+      // Сумма
+      var raw = sumEl.value;
+      var num = parseInt(raw, 10);
+      if (raw !== '' && !isNaN(num)) {
+        cSum.textContent = fmtSum(num);
+        cSum.classList.remove('placeholder');
+        cRub.style.display = '';
+      } else {
+        cSum.textContent = '—';
+        cRub.style.display = 'none';
+      }
+
+      // Имя
+      var name = nameEl.value.trim();
+      if (name) {
+        cName.textContent = 'для ' + capitalize(name);
+        cName.style.display = '';
+      } else {
+        cName.style.display = 'none';
+      }
+
+      // Повод
+      var reason = reasonEl.value.trim();
+      if (reason) {
+        cReason.textContent = reason;
+        cReason.style.display = '';
+      } else {
+        cReason.style.display = 'none';
+      }
+
+      // Срок действия + номер
+      cExpiry.textContent = expiryEl.value ? ('Действителен до: ' + fmtDate(expiryEl.value)) : '';
+      cNumber.textContent = numberEl.value ? ('№ ' + numberEl.value) : '';
+    }
+
+    // Инициализация
+    var today = toISO(new Date());
+    dateEl.value = today;
+    expiryEl.value = addMonths(today, 3);
+    numberEl.value = genNumber();
+
+    // Автозаполнение срока действия (+3 мес), пока не тронут вручную
+    var expiryTouched = false;
+    dateEl.addEventListener('input', function () {
+      if (!expiryTouched && dateEl.value) {
+        expiryEl.value = addMonths(dateEl.value, 3);
+      }
+      render();
+    });
+    expiryEl.addEventListener('input', function () {
+      expiryTouched = true;
+      render();
+    });
+
+    // Реактивное обновление
+    [sumEl, nameEl, reasonEl, numberEl].forEach(function (el) {
+      el.addEventListener('input', render);
+    });
+
+    // Быстрые номиналы
+    Array.prototype.forEach.call(document.querySelectorAll('.pill'), function (btn) {
+      btn.addEventListener('click', function () {
+        sumEl.value = btn.getAttribute('data-sum');
+        sumEl.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+
+    // Сброс
+    document.getElementById('btn-reset').addEventListener('click', function () {
+      sumEl.value = '';
+      nameEl.value = '';
+      reasonEl.value = '';
+      var t = toISO(new Date());
+      dateEl.value = t;
+      expiryEl.value = addMonths(t, 3);
+      expiryTouched = false;
+      numberEl.value = genNumber();
+      render();
+    });
+
+    // Экспорт PNG
+    document.getElementById('btn-png').addEventListener('click', async function () {
+      var cert = document.getElementById('certificate');
+      var prevTransform = cert.style.transform;
+      cert.style.transform = 'none'; // рендер в полном размере, без масштаба адаптива
+      try {
+        var canvas = await html2canvas(cert, {
+          scale: 2,               // ретина-качество 1800×1200
+          backgroundColor: null,  // прозрачный фон за скруглениями
+          useCORS: true,
+          logging: false
+        });
+        var link = document.createElement('a');
+        var num = numberEl.value || genNumber();
+        link.download = 'GAZE-сертификат-' + num + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (e) {
+        alert('Не удалось сформировать PNG: ' + e.message);
+      } finally {
+        cert.style.transform = prevTransform;
+      }
+    });
+
+    // Печать PDF
+    document.getElementById('btn-print').addEventListener('click', function () {
+      window.print();
+    });
+
+    // Первичный рендер
+    render();
+  })();
+  </script>
+
+</body>
+</html>
