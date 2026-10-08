@@ -12127,3 +12127,8 @@ body.hero-focus-active .section-hero__content > *:not(.hero-actions):not(.hero-q
 .nav-header__logo-img { height: 46px; }
 .footer-brand-logo { height: 72px; }
 body { font-variant-numeric: tabular-nums; }
+
+/* 08.10.2026: ссылки «Оферта» и «Политика» в тёмном подвале — читаемые */
+.footer-legal a.footer-link-small,
+.footer-legal a.footer-link-small:visited { color: rgba(255, 255, 255, 0.72); text-decoration: underline; text-underline-offset: 3px; }
+.footer-legal a.footer-link-small:hover { color: #FFFFFF; }
