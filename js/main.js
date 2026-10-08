@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const scale = 0.25; // пятна мягкие: рисуем в 1/4 разрешения, браузер растягивает — в разы легче
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let width, height, visible = true;
     // [x, y] — доля ширины/высоты; r — доля большей стороны; цвет; прозрачность в центре
@@ -182,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resize = () => {
       width = canvas.offsetWidth; height = canvas.offsetHeight;
-      canvas.width = width * dpr; canvas.height = height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width = Math.ceil(width * scale); canvas.height = Math.ceil(height * scale);
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
     };
     window.addEventListener('resize', resize); resize();
 
@@ -202,8 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
+    let lastDraw = 0;
     const animateCanvas = (t) => {
-      if (visible) draw(t);
+      if (visible && t - lastDraw > 33) { draw(t); lastDraw = t; } // ~30 кадров/с хватает для медленного движения
       requestAnimationFrame(animateCanvas);
     };
     if ('IntersectionObserver' in window) {
