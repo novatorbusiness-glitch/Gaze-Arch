@@ -1834,7 +1834,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. ЛОГИКА КОНСТРУКТОРА СЕРТИФИКАТА
-  const state = { target: 'подруги', sum: '3 000', name: '' };
+  const state = { target: 'подруги', sum: '3 000', proc: 'ламинирование ресниц', name: '' };
 
   const tabs = document.querySelectorAll('.builder-tab');
   const cards = document.querySelectorAll('.builder-card');
@@ -1875,14 +1875,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const updateUI = () => {
     const targetText = state.name ? state.name : state.target;
-    const msg = `«Привет, Аня! Хочу подарить сертификат на ${state.sum} ₽ для ${targetText}. Как его оформить?»`;
+    // 09.10.2026: сертификат на процедуру, а не на сумму
+    const msg = `«Привет, Аня! Хочу подарить сертификат на ${state.proc} для ${targetText}. Как его оформить?»`;
     if (tgMsgEl) tgMsgEl.innerText = msg;
     if (ctaBtn) ctaBtn.href = `https://t.me/a_annett_a?text=${encodeURIComponent(msg.replace(/[«»]/g, ''))}`;
   };
 
   const updateCertSum = (newVal) => {
     if(!certSumWrap) return;
-    const formatted = `${newVal} ₽`;
+    const formatted = /^\d[\d ]*$/.test(newVal) ? `${newVal} ₽` : newVal;
     const currentElements = certSumWrap.querySelectorAll('.live-cert__val-sum');
     
     if (currentElements.length > 0 && currentElements[currentElements.length - 1].innerText === formatted) return;
@@ -1924,12 +1925,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const sum = card.dataset.sum;
         const formattedSum = sum.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         state.sum = formattedSum;
+        const procName = card.dataset.proc || '';
+        state.proc = procName.toLowerCase();
         
         if(phraseEl) {
           phraseEl.style.opacity = '0';
           setTimeout(() => { phraseEl.innerText = card.dataset.msg; phraseEl.style.opacity = '1'; }, 300);
         }
-        updateCertSum(formattedSum);
+        updateCertSum(procName || formattedSum);
         updateUI();
       });
     });
@@ -1954,7 +1957,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCertSum(formattedSum);
       } else {
         e.target.value = '';
-        if(cards[1]) cards[1].click(); 
+        if(cards[1]) cards[1].click();
       }
       updateUI();
     });
