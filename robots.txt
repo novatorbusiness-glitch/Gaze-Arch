@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /app/
 Disallow: /pages/education/
 
 Sitemap: https://gaze-arch.ru/sitemap.xml
