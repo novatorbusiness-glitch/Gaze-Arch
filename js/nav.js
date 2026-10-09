@@ -42,7 +42,7 @@ const navHTML = `
         <a href="${withBasePath('/pages/gift/')}" class="nav-tab" data-hoverable>Подарить сертификат</a>
       </nav>
 
-      <a href="https://t.me/a_annett_a" target="_blank" class="btn-primary btn-primary--shimmer nav-header__cta" data-hoverable>Записаться</a>
+      <a href="https://dikidi.net/1522114" target="_blank" rel="noopener" class="btn-primary btn-primary--shimmer nav-header__cta" data-hoverable>Записаться</a>
       
       <button class="nav-header__burger" id="nav-burger" aria-label="Открыть меню" data-hoverable>
         <span></span><span></span>
@@ -56,7 +56,7 @@ const navHTML = `
         <a href="${withBasePath('/pages/portfolio/')}" class="nav-tab">Портфолио</a>
         <a href="${withBasePath('/pages/gift/')}" class="nav-tab">Подарить сертификат</a>
       </nav>
-      <a href="https://t.me/a_annett_a" target="_blank" class="btn-primary nav-overlay__cta">Записаться</a>
+      <a href="https://dikidi.net/1522114" target="_blank" rel="noopener" class="btn-primary nav-overlay__cta">Записаться</a>
     </div>
   </div>
 `;

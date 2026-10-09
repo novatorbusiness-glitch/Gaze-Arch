@@ -2461,12 +2461,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lbTitle) lbTitle.textContent = dataset.title     || '';
       if (lbDesc)  lbDesc.textContent  = dataset.desc      || '';
 
-      if (lbCta) {
-        const msg = encodeURIComponent(
-          `Привет, Аня! Увидела в портфолио работу «${dataset.title || 'без названия'}» (${dataset.service || 'услуга'}). Хочу похожий результат. Когда есть свободные окна?`
-        );
-        lbCta.href = `https://t.me/a_annett_a?text=${msg}`;
-      }
+      // 09.10.2026: «Хочу так же» ведёт на онлайн-запись DIKIDI (ссылка в разметке)
 
       // Перекрашиваем placeholder в тот же градиент, что и исходная ячейка
       if (lbPlaceholder) {
