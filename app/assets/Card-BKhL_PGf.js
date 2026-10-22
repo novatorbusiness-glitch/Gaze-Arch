@@ -1,0 +1,1 @@
+import{t as e,y as t}from"./jsx-runtime-BxaGWW_0.js";var n={card:`_card_1xei6_1`,elevated:`_elevated_1xei6_9`,clickable:`_clickable_1xei6_13`},r=e();function i({children:e,className:i,style:a,onClick:o,elevated:s=!1}){return(0,r.jsx)(`div`,{className:t(n.card,s&&n.elevated,o&&n.clickable,i),style:a,onClick:o,children:e})}export{i as t};
