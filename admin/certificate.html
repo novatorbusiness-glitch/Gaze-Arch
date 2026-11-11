@@ -540,7 +540,11 @@
 
     function addMonths(iso, months) {
       var d = new Date(iso + 'T00:00:00');
+      var day = d.getDate();
+      d.setDate(1);
       d.setMonth(d.getMonth() + months);
+      var lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+      d.setDate(Math.min(day, lastDay));
       return toISO(d);
     }
 
